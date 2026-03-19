@@ -11,9 +11,10 @@ ETF短线/中短线监控系统
 Author: Sarah Mitchell (VisionClaw)
 """
 
-import requests
+import urllib.request
 import json
 import time
+import re
 from datetime import datetime, date
 import os
 
@@ -57,85 +58,104 @@ SECTOR_STOP_LOSS = -4.0 # 止损
 DAILY_LOSS_LIMIT = -500  # 单日亏损超500元停止操作 (元)
 
 
-def get_quote_xueqiu(symbols: list) -> dict:
-    """从雪球获取ETF实时行情"""
-    import http.cookiejar
-    import urllib.request
-    
-    symbol_str = ",".join(symbols)
-    url = f"https://stock.xueqiu.com/v5/stock/batch/quote.json?symbol={symbol_str}&extend=detail"
-    
-    # 读取Chrome cookies (需要已登录雪球)
+def _exchange(code: str) -> str:
+    """Return exchange prefix for a stock/ETF code."""
+    return "sz" if code.startswith("1") else "sh"
+
+
+def get_quote(symbols: list) -> dict:
+    """Fetch ETF/stock quotes using Tencent Finance API (free, no auth).
+    Falls back to Sina Finance if Tencent fails.
+    Returns dict: {code: {name, current, prev_close, open, change_pct, volume}}
+    """
+    # --- Tencent Finance ---
     try:
-        import browser_cookie3
-        cookies = browser_cookie3.chrome(domain_name='.xueqiu.com')
-        cookie_dict = {c.name: c.value for c in cookies}
-        cookie_header = "; ".join(f"{k}={v}" for k, v in cookie_dict.items())
-        
+        codes = ",".join(f"{_exchange(s)}{s}" for s in symbols)
+        url = f"https://qt.gtimg.cn/q={codes}"
         req = urllib.request.Request(url, headers={
-            'User-Agent': 'Mozilla/5.0',
-            'Cookie': cookie_header,
+            "User-Agent": "Mozilla/5.0",
+            "Referer": "https://finance.qq.com"
         })
-        resp = urllib.request.urlopen(req, timeout=10)
-        data = json.loads(resp.read().decode('utf-8'))
-        return data
-    except Exception as e:
-        print(f"  [错误] 获取行情失败: {e}")
-        return {}
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            raw = resp.read().decode("gbk", errors="replace")
 
-
-def get_quote_simple(symbols: list) -> dict:
-    """简单方式获取行情 (通过新浪API)"""
-    try:
-        codes = ",".join(f"{'sh' if s.startswith('5') else 'sz'}{s}" for s in symbols)
-        url = f"https://hq.sinajs.cn/list={codes}"
-        headers = {
-            'User-Agent': 'Mozilla/5.0',
-            'Referer': 'https://finance.sina.com.cn'
-        }
-        resp = requests.get(url, headers=headers, timeout=10)
-        resp.encoding = 'gbk'
-        
         result = {}
-        for line in resp.text.strip().split('\n'):
-            if '=' not in line or not line.strip():
+        for sym in symbols:
+            full = f"{_exchange(sym)}{sym}"
+            m = re.search(rf'v_{re.escape(full)}="([^"]*)"', raw)
+            if not m:
                 continue
-            symbol_part = line.split('=')[0].strip().split('_')[-1]
-            data_part = line.split('"')[1]
-            fields = data_part.split(',')
-            
-            if len(fields) < 10:
+            fields = m.group(1).split("~")
+            if len(fields) < 6:
                 continue
-                
-            code = symbol_part[2:]  # Remove 'sh' or 'sz' prefix
             try:
+                name = fields[1]
+                current = float(fields[3])
+                prev_close = float(fields[4])
+                open_p = float(fields[5])
+                volume = int(fields[6]) if fields[6].isdigit() else 0
+                change_pct = (current - prev_close) / prev_close * 100 if prev_close else 0
+                result[sym] = {
+                    "name": name,
+                    "current": current,
+                    "prev_close": prev_close,
+                    "open": open_p,
+                    "change_pct": change_pct,
+                    "volume": volume,
+                }
+            except (ValueError, IndexError):
+                pass
+        if result:
+            return result
+    except Exception as e:
+        print(f"  [腾讯行情失败] {e}, 切换新浪...")
+
+    # --- Sina Finance fallback ---
+    try:
+        codes = ",".join(f"{_exchange(s)}{s}" for s in symbols)
+        url = f"https://hq.sinajs.cn/list={codes}"
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "Mozilla/5.0",
+            "Referer": "https://finance.sina.com.cn"
+        })
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            raw = resp.read().decode("gbk", errors="replace")
+
+        result = {}
+        for line in raw.strip().split("\n"):
+            if "=" not in line or not line.strip():
+                continue
+            sym_part = line.split("=")[0].strip().split("_")[-1]
+            code = sym_part[2:]
+            try:
+                data = line.split('"')[1]
+                fields = data.split(",")
+                if len(fields) < 10:
+                    continue
                 name = fields[0]
                 prev_close = float(fields[2]) if fields[2] else 0
                 current = float(fields[3]) if fields[3] else 0
-                open_price = float(fields[1]) if fields[1] else 0
+                open_p = float(fields[1]) if fields[1] else 0
                 volume = int(fields[8]) if fields[8] else 0
-                
-                if prev_close > 0 and current > 0:
-                    change_pct = (current - prev_close) / prev_close * 100
-                else:
-                    change_pct = 0
-                    
+                change_pct = (current - prev_close) / prev_close * 100 if prev_close else 0
                 result[code] = {
-                    'name': name,
-                    'current': current,
-                    'prev_close': prev_close,
-                    'open': open_price,
-                    'change_pct': change_pct,
-                    'volume': volume,
+                    "name": name,
+                    "current": current,
+                    "prev_close": prev_close,
+                    "open": open_p,
+                    "change_pct": change_pct,
+                    "volume": volume,
                 }
-            except (ValueError, IndexError) as e:
+            except (ValueError, IndexError):
                 pass
-                
         return result
     except Exception as e:
-        print(f"  [错误] 新浪行情失败: {e}")
+        print(f"  [新浪行情失败] {e}")
         return {}
 
+
+# Alias for backward compatibility
+get_quote_simple = get_quote
 
 def analyze_opportunities(quotes: dict) -> dict:
     """分析交易机会"""
