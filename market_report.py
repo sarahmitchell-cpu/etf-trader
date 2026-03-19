@@ -7,9 +7,10 @@ Fallback: Sina Finance (hq.sinajs.cn).
 import urllib.request
 import json
 import re
+import os
 from datetime import datetime
 
-TELEGRAM_TOKEN = "__TELEGRAM_TOKEN_REMOVED__"
+TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN", "")  # Set via env var, never hardcode
 TELEGRAM_CHAT_ID = "5310487594"
 
 # Our positions (cost basis)
