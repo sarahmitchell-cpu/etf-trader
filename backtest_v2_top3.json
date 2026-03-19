@@ -1,0 +1,11 @@
+{
+  "strategy_annual": 6.11,
+  "bh_annual": 7.47,
+  "top_n": 3,
+  "n_years": 12.7,
+  "improvements": [
+    "全历史PE百分位",
+    "Top3",
+    "动量因子3M+6M"
+  ]
+}

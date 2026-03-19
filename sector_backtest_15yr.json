@@ -1,0 +1,12 @@
+{
+  "strategy_annual": 2.29,
+  "bh_annual": 4.65,
+  "strategy_dd": -41.27,
+  "bh_dd": -28.46,
+  "strategy_sharpe": 0.22,
+  "bh_sharpe": 0.35,
+  "total_return": 24.4,
+  "years": 9.7,
+  "start": "2016-06",
+  "end": "2026-02"
+}
