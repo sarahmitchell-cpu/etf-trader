@@ -1,5 +1,2 @@
-# Cached index data (large CSV files, re-downloadable)
-*_daily.csv
-# Generated output
+# Only ignore temporary/generated output
 latest_signal.json
-backtest_result.json
