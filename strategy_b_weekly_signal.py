@@ -6,7 +6,7 @@ Strategy B: Enhanced Factor ETF Weekly Signal
 每周五收盘后运行，输出下周调仓建议。
 
 核心逻辑:
-  1. 因子池: 现金流 + 国信价值 + 红利低波 + 创业成长
+  1. 因子池: 现金流 + 国信价值 + 红利低波 + 创业成长 (全收益指数, 含分红再投资)
   2. 动态权重: 8周因子动量排名 → 第1名40% / 第2名30% / 第3名20% / 第4名10%
   3. 双时间框架Regime (中证全指):
      - 强牛: 价格 > 13周MA 且 > 40周MA → 满仓
@@ -49,15 +49,22 @@ DATA_DIR = os.environ.get(
     os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data'),
 )
 
-# 因子指数 (交易标的)
+# 因子指数 (交易标的) — 使用全收益指数 (Total Return Index, 含分红再投资)
 # NOTE: 这4个因子是基于历史表现筛选的, 存在选择偏差 (selection bias).
 # 回测结果可能高估未来表现. 建议定期审视因子有效性.
 # v3: 加入创业成长, 与防守因子低相关, 牛市提供成长弹性.
+# v4: 切换为全收益指数, 回测结果更贴近实盘 (ETF本身包含分红再投资).
+#
+# 全收益代码对照 (价格指数 → 全收益指数):
+#   932365 → 932365CNY010 (中证现金流全收益)
+#   931052 → H21052       (国信价值全收益)
+#   H30269 → H20269       (红利低波全收益)
+#   000958 → H00958       (创业成长全收益)
 FACTOR_INDICES = {
-    '932365': {'name': '现金流', 'etf': '159201', 'etf_name': '万家自由现金流ETF'},
-    '931052': {'name': '国信价值', 'etf': '512040', 'etf_name': '国信价值ETF'},
-    'H30269': {'name': '红利低波', 'etf': '515080', 'etf_name': '红利低波ETF'},
-    '000958': {'name': '创业成长', 'etf': '159967', 'etf_name': '创业板成长ETF'},
+    '932365CNY010': {'name': '现金流', 'etf': '159201', 'etf_name': '万家自由现金流ETF'},
+    'H21052':       {'name': '国信价值', 'etf': '512040', 'etf_name': '国信价值ETF'},
+    'H20269':       {'name': '红利低波', 'etf': '515080', 'etf_name': '红利低波ETF'},
+    'H00958':       {'name': '创业成长', 'etf': '159967', 'etf_name': '创业板成长ETF'},
 }
 
 # 信号指数 (用于判断市场状态)
@@ -77,6 +84,17 @@ PARAMS = {
     'txn_cost_bps': 10,         # 单边交易成本 (基点, 10bp = 0.1%)
 }
 
+# 东方财富 (East Money) 备用数据源 secid 映射
+# 当 CSIndex API 被WAF封锁时自动降级使用
+# 注意: 东方财富仅提供价格指数, 不含全收益指数
+EASTMONEY_SECID = {
+    '000985': '1.000985',       # 中证全指 (上证)
+    '932365CNY010': None,       # 全收益指数无东财数据
+    'H21052': None,
+    'H20269': None,
+    'H00958': '1.000958',       # 降级为价格指数 000958 (创业成长股息率<0.3%, 差异可忽略)
+}
+
 # 缓存过期天数 (超过此天数重新从API获取)
 CACHE_MAX_AGE_DAYS = 3
 
@@ -85,31 +103,8 @@ CACHE_MAX_AGE_DAYS = 3
 # 数据获取
 # ============================================================
 
-def fetch_index(code: str, days: int = 600) -> Optional[pd.DataFrame]:
-    """
-    获取指数日线数据。优先使用本地CSV缓存(若未过期)，否则调用CSIndex API。
-
-    Args:
-        code: 指数代码 (如 '000985')
-        days: 获取最近多少天的数据
-
-    Returns:
-        DataFrame with DatetimeIndex and 'close' column, or None on failure
-    """
-    os.makedirs(DATA_DIR, exist_ok=True)
-    csv_path = os.path.join(DATA_DIR, f'{code}_daily.csv')
-
-    # 优先读本地缓存 (检查是否过期)
-    if os.path.exists(csv_path):
-        file_age_days = (time.time() - os.path.getmtime(csv_path)) / 86400
-        if file_age_days <= CACHE_MAX_AGE_DAYS:
-            df = pd.read_csv(csv_path, parse_dates=['date'], index_col='date')
-            if len(df) > 0:
-                return df[['close']]
-        else:
-            print(f"  [INFO] 缓存已过期 ({file_age_days:.1f}天), 尝试刷新: {code}")
-
-    # API获取
+def _fetch_csindex(code: str, days: int, csv_path: str) -> Optional[pd.DataFrame]:
+    """从 CSIndex API 获取指数日线数据。"""
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) '
                        'AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -128,6 +123,9 @@ def fetch_index(code: str, days: int = 600) -> Optional[pd.DataFrame]:
                f'?indexCode={code}&startDate={s}&endDate={e}')
         try:
             r = requests.get(url, headers=headers, timeout=30)
+            if r.status_code == 403:
+                print(f"  [WARN] CSIndex WAF封锁 (403), 跳过: {code}/{year}", file=sys.stderr)
+                return None  # 被封锁, 立即放弃, 不再浪费请求
             resp = r.json()
             if resp.get('success') and resp.get('data'):
                 data = resp['data']
@@ -136,17 +134,10 @@ def fetch_index(code: str, days: int = 600) -> Optional[pd.DataFrame]:
                 elif isinstance(data, dict):
                     all_rows.append(data)
         except Exception as ex:
-            print(f"  [WARN] API请求失败 {code}/{year}: {ex}", file=sys.stderr)
-        time.sleep(0.5)
+            print(f"  [WARN] CSIndex请求失败 {code}/{year}: {ex}", file=sys.stderr)
+        time.sleep(1.0)  # 增加间隔, 降低被封风险
 
     if not all_rows:
-        # API失败, 回退到过期缓存 (有总比没有好)
-        if os.path.exists(csv_path):
-            print(f"  [WARN] API获取失败, 使用过期缓存: {code}", file=sys.stderr)
-            df = pd.read_csv(csv_path, parse_dates=['date'], index_col='date')
-            if len(df) > 0:
-                return df[['close']]
-        print(f"  [ERROR] 无法获取数据: {code}", file=sys.stderr)
         return None
 
     df = pd.DataFrame(all_rows)
@@ -155,6 +146,96 @@ def fetch_index(code: str, days: int = 600) -> Optional[pd.DataFrame]:
     df = df[['date', 'close']].sort_values('date').drop_duplicates('date').set_index('date')
     df.to_csv(csv_path)
     return df
+
+
+def _fetch_eastmoney(code: str, days: int, csv_path: str) -> Optional[pd.DataFrame]:
+    """从东方财富 API 获取指数日线数据 (备用数据源, 仅价格指数)。"""
+    secid = EASTMONEY_SECID.get(code)
+    if not secid:
+        return None
+
+    now = datetime.now()
+    start_date = now - timedelta(days=days)
+    url = 'https://push2his.eastmoney.com/api/qt/stock/kline/get'
+    params = {
+        'secid': secid,
+        'fields1': 'f1,f2,f3,f4,f5,f6',
+        'fields2': 'f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61',
+        'klt': '101',   # daily
+        'fqt': '1',
+        'beg': start_date.strftime('%Y%m%d'),
+        'end': now.strftime('%Y%m%d'),
+        'lmt': '5000',
+        'ut': 'fa5fd1943c7b386f172d6893dbbd4dc1',
+    }
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'}
+    try:
+        r = requests.get(url, params=params, headers=headers, timeout=30)
+        j = r.json()
+        klines = j.get('data', {}).get('klines', []) if j.get('data') else []
+        if not klines:
+            return None
+        rows = []
+        for k in klines:
+            parts = k.split(',')
+            rows.append({'date': parts[0], 'close': float(parts[2])})
+        df = pd.DataFrame(rows)
+        df['date'] = pd.to_datetime(df['date'])
+        df = df.set_index('date').sort_index()
+        df.to_csv(csv_path)
+        print(f"  [INFO] 使用东方财富备用数据源: {code} ({len(df)}行)")
+        return df
+    except Exception as ex:
+        print(f"  [WARN] 东方财富请求失败 {code}: {ex}", file=sys.stderr)
+        return None
+
+
+def fetch_index(code: str, days: int = 600) -> Optional[pd.DataFrame]:
+    """
+    获取指数日线数据。优先使用本地CSV缓存(若未过期)，否则依次尝试:
+    1. CSIndex API (主数据源, 支持全收益指数)
+    2. 东方财富 API (备用数据源, 仅价格指数)
+    3. 过期的本地缓存 (最后兜底)
+
+    Args:
+        code: 指数代码 (如 '000985', '932365CNY010')
+        days: 获取最近多少天的数据
+
+    Returns:
+        DataFrame with DatetimeIndex and 'close' column, or None on failure
+    """
+    os.makedirs(DATA_DIR, exist_ok=True)
+    csv_path = os.path.join(DATA_DIR, f'{code}_daily.csv')
+
+    # 优先读本地缓存 (检查是否过期)
+    if os.path.exists(csv_path):
+        file_age_days = (time.time() - os.path.getmtime(csv_path)) / 86400
+        if file_age_days <= CACHE_MAX_AGE_DAYS:
+            df = pd.read_csv(csv_path, parse_dates=['date'], index_col='date')
+            if len(df) > 0:
+                return df[['close']]
+        else:
+            print(f"  [INFO] 缓存已过期 ({file_age_days:.1f}天), 尝试刷新: {code}")
+
+    # 数据源1: CSIndex API
+    df = _fetch_csindex(code, days, csv_path)
+    if df is not None and len(df) > 0:
+        return df[['close']]
+
+    # 数据源2: 东方财富 (仅部分指数可用)
+    df = _fetch_eastmoney(code, days, csv_path)
+    if df is not None and len(df) > 0:
+        return df[['close']]
+
+    # 兜底: 过期缓存
+    if os.path.exists(csv_path):
+        print(f"  [WARN] 所有API失败, 使用过期缓存: {code}", file=sys.stderr)
+        df = pd.read_csv(csv_path, parse_dates=['date'], index_col='date')
+        if len(df) > 0:
+            return df[['close']]
+
+    print(f"  [ERROR] 无法获取数据: {code}", file=sys.stderr)
+    return None
 
 
 def load_all_data(for_backtest: bool = False) -> Optional[Tuple[Dict[str, pd.Series], pd.Series]]:
