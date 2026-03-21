@@ -12,7 +12,7 @@ Strategy B: Enhanced Factor ETF Weekly Signal
      - 强牛: 价格 > 13周MA 且 > 40周MA → 满仓
      - 过渡: 价格在两条MA之间 → 70%仓位
      - 熊市: 价格 < 13周MA 且 < 40周MA → 35%仓位
-  4. 波动率缩放: 目标15%年化波动率, 12周回看
+  4. 波动率缩放: 目标15%年化波动率, 12周回看, 上限1.3x杠杆
 
 重要说明:
   - 回测使用 T-1 数据决策、T 期收益, 无前瞻偏差
@@ -81,6 +81,7 @@ PARAMS = {
     'regime_full': 1.0,         # 强牛仓位系数
     'regime_transition': 0.7,   # 过渡期仓位系数 (v2: 0.5->0.7, 防守因子配得起更高底仓)
     'regime_bear': 0.35,        # 熊市仓位系数 (v2: 0.2->0.35, 因子跌幅远小于大盘)
+    'vol_scale_cap': 1.3,       # Vol缩放上限 (v6: 1.0→1.3, 允许低波时适度加杠杆)
     'txn_cost_bps': 10,         # 单边交易成本 (基点, 10bp = 0.1%)
 }
 
@@ -377,7 +378,7 @@ def compute_vol_scale(blend_returns: pd.Series) -> Tuple[float, float]:
     if vol_annual <= 0:
         return 1.0, 0.0
 
-    scale = min(PARAMS['vol_target'] / vol_annual, 1.0)
+    scale = min(PARAMS['vol_target'] / vol_annual, PARAMS['vol_scale_cap'])
     return scale, vol_annual
 
 
