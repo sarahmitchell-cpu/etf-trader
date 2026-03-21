@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-策略B: 增强版A股因子ETF周度信号 (Strategy B: Enhanced Factor ETF Weekly Signal)
+Strategy B: Enhanced Factor ETF Weekly Signal
+(策略B: 增强版A股因子ETF周度信号)
 
-基于深度研究的A股因子ETF择时策略，每周五收盘后运行，输出下周调仓建议。
+每周五收盘后运行，输出下周调仓建议。
 
 核心逻辑:
-  1. 因子池: 现金流(60%基准) + 国信价值(25%) + 红利低波(15%)
+  1. 因子池: 现金流 + 国信价值 + 红利低波
   2. 动态权重: 8周因子动量排名 → 最强50% / 中间30% / 最弱20%
   3. 双时间框架Regime (中证全指):
      - 强牛: 价格 > 13周MA 且 > 40周MA → 满仓
@@ -13,8 +14,10 @@
      - 熊市: 价格 < 13周MA 且 < 40周MA → 20%仓位
   4. 波动率缩放: 目标15%年化波动率, 12周回看
 
-回测表现 (2014-2026, 信号: 中证全指):
-  - CAGR: 23.2%, MDD: -7.1%, Calmar: 3.251
+重要说明:
+  - 回测使用 T-1 数据决策、T 期收益, 无前瞻偏差
+  - 回测包含交易成本 (默认单边 10bp)
+  - 因子池为历史表现筛选, 存在选择偏差, 未来表现可能不同
 
 用法:
   python3 strategy_b_weekly_signal.py              # 正常运行
@@ -41,9 +44,14 @@ from typing import Optional, Dict, Tuple, List
 # ============================================================
 
 # 数据目录 (用于缓存CSV)
-DATA_DIR = os.environ.get('ETF_DATA_DIR', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data'))
+DATA_DIR = os.environ.get(
+    'ETF_DATA_DIR',
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data'),
+)
 
 # 因子指数 (交易标的)
+# NOTE: 这3个因子是基于历史表现筛选的, 存在选择偏差 (selection bias).
+# 回测结果可能高估未来表现. 建议定期审视因子有效性.
 FACTOR_INDICES = {
     '932365': {'name': '现金流', 'etf': '159201', 'etf_name': '万家自由现金流ETF'},
     '931052': {'name': '国信价值', 'etf': '512040', 'etf_name': '国信价值ETF'},
@@ -55,25 +63,29 @@ SIGNAL_INDEX = {'code': '000985', 'name': '中证全指'}
 
 # 策略参数
 PARAMS = {
-    'ma_short': 13,         # 短期均线周数
-    'ma_long': 40,          # 长期均线周数
-    'vol_target': 0.15,     # 目标年化波动率
-    'vol_lookback': 12,     # 波动率回看周数
-    'momentum_lookback': 8, # 因子动量回看周数
+    'ma_short': 13,             # 短期均线周数
+    'ma_long': 40,              # 长期均线周数
+    'vol_target': 0.15,         # 目标年化波动率
+    'vol_lookback': 12,         # 波动率回看周数
+    'momentum_lookback': 8,     # 因子动量回看周数
     'momentum_weights': [0.50, 0.30, 0.20],  # 排名权重 (第1/2/3名)
-    'regime_full': 1.0,     # 强牛仓位系数
-    'regime_transition': 0.5,  # 过渡期仓位系数
-    'regime_bear': 0.2,     # 熊市仓位系数
+    'regime_full': 1.0,         # 强牛仓位系数
+    'regime_transition': 0.5,   # 过渡期仓位系数
+    'regime_bear': 0.2,         # 熊市仓位系数
+    'txn_cost_bps': 10,         # 单边交易成本 (基点, 10bp = 0.1%)
 }
+
+# 缓存过期天数 (超过此天数重新从API获取)
+CACHE_MAX_AGE_DAYS = 3
 
 
 # ============================================================
 # 数据获取
 # ============================================================
 
-def fetch_index(code: str, days: int = 600) -> pd.DataFrame | None:
+def fetch_index(code: str, days: int = 600) -> Optional[pd.DataFrame]:
     """
-    获取指数日线数据。优先使用本地CSV缓存，缓存不存在则调用CSIndex API。
+    获取指数日线数据。优先使用本地CSV缓存(若未过期)，否则调用CSIndex API。
 
     Args:
         code: 指数代码 (如 '000985')
@@ -85,11 +97,15 @@ def fetch_index(code: str, days: int = 600) -> pd.DataFrame | None:
     os.makedirs(DATA_DIR, exist_ok=True)
     csv_path = os.path.join(DATA_DIR, f'{code}_daily.csv')
 
-    # 优先读本地缓存
+    # 优先读本地缓存 (检查是否过期)
     if os.path.exists(csv_path):
-        df = pd.read_csv(csv_path, parse_dates=['date'], index_col='date')
-        if len(df) > 0:
-            return df[['close']]
+        file_age_days = (time.time() - os.path.getmtime(csv_path)) / 86400
+        if file_age_days <= CACHE_MAX_AGE_DAYS:
+            df = pd.read_csv(csv_path, parse_dates=['date'], index_col='date')
+            if len(df) > 0:
+                return df[['close']]
+        else:
+            print(f"  [INFO] 缓存已过期 ({file_age_days:.1f}天), 尝试刷新: {code}")
 
     # API获取
     headers = {
@@ -122,6 +138,12 @@ def fetch_index(code: str, days: int = 600) -> pd.DataFrame | None:
         time.sleep(0.5)
 
     if not all_rows:
+        # API失败, 回退到过期缓存 (有总比没有好)
+        if os.path.exists(csv_path):
+            print(f"  [WARN] API获取失败, 使用过期缓存: {code}", file=sys.stderr)
+            df = pd.read_csv(csv_path, parse_dates=['date'], index_col='date')
+            if len(df) > 0:
+                return df[['close']]
         print(f"  [ERROR] 无法获取数据: {code}", file=sys.stderr)
         return None
 
@@ -133,20 +155,24 @@ def fetch_index(code: str, days: int = 600) -> pd.DataFrame | None:
     return df
 
 
-def load_all_data() -> tuple[dict[str, pd.Series], pd.Series] | None:
+def load_all_data(for_backtest: bool = False) -> Optional[Tuple[Dict[str, pd.Series], pd.Series]]:
     """
     加载所有需要的指数数据并转换为周频。
+
+    Args:
+        for_backtest: 如果True, 获取更长时间的数据 (4500天 ~12年)
 
     Returns:
         (factor_weekly, signal_weekly) 或 None
     """
-    print("加载数据...")
+    days = 4500 if for_backtest else 600
+    print(f"加载数据 ({'回测模式, ~12年' if for_backtest else '信号模式, ~2年'})...")
 
     # 加载因子指数
     factor_daily = {}
     for code, info in FACTOR_INDICES.items():
         print(f"  {info['name']} ({code})...")
-        df = fetch_index(code)
+        df = fetch_index(code, days=days)
         if df is None:
             print(f"  [ERROR] 无法加载 {info['name']}", file=sys.stderr)
             return None
@@ -155,7 +181,7 @@ def load_all_data() -> tuple[dict[str, pd.Series], pd.Series] | None:
 
     # 加载信号指数
     print(f"  {SIGNAL_INDEX['name']} ({SIGNAL_INDEX['code']})...")
-    sig_df = fetch_index(SIGNAL_INDEX['code'])
+    sig_df = fetch_index(SIGNAL_INDEX['code'], days=days)
     if sig_df is None:
         print(f"  [ERROR] 无法加载 {SIGNAL_INDEX['name']}", file=sys.stderr)
         return None
@@ -185,22 +211,33 @@ def load_all_data() -> tuple[dict[str, pd.Series], pd.Series] | None:
 # 策略核心逻辑
 # ============================================================
 
-def compute_regime(signal_prices: pd.Series) -> tuple[str, float]:
+def compute_regime(signal_prices: pd.Series) -> Tuple[str, float]:
     """
     双时间框架Regime判断。
 
     Args:
-        signal_prices: 信号指数周价格序列
+        signal_prices: 信号指数周价格序列 (应不包含当期决策周)
 
     Returns:
         (regime_label, regime_multiplier)
     """
+    if len(signal_prices) < PARAMS['ma_long']:
+        # 数据不足, 默认过渡期
+        return 'transition', PARAMS['regime_transition']
+
     ma_short = signal_prices.rolling(PARAMS['ma_short']).mean()
     ma_long = signal_prices.rolling(PARAMS['ma_long']).mean()
 
     price = signal_prices.iloc[-1]
-    above_short = price > ma_short.iloc[-1]
-    above_long = price > ma_long.iloc[-1]
+    ma_s_val = ma_short.iloc[-1]
+    ma_l_val = ma_long.iloc[-1]
+
+    # 检查NaN (前ma_long周可能为NaN)
+    if pd.isna(ma_s_val) or pd.isna(ma_l_val):
+        return 'transition', PARAMS['regime_transition']
+
+    above_short = price > ma_s_val
+    above_long = price > ma_l_val
 
     if above_short and above_long:
         return 'strong_bull', PARAMS['regime_full']
@@ -210,12 +247,12 @@ def compute_regime(signal_prices: pd.Series) -> tuple[str, float]:
         return 'transition', PARAMS['regime_transition']
 
 
-def compute_momentum_weights(factor_weekly: dict[str, pd.Series]) -> dict[str, float]:
+def compute_momentum_weights(factor_weekly: Dict[str, pd.Series]) -> Dict[str, float]:
     """
     计算因子动量权重 (8周涨幅排名)。
 
     Args:
-        factor_weekly: 因子周价格字典
+        factor_weekly: 因子周价格字典 (应不包含当期决策周)
 
     Returns:
         {因子名: 权重}
@@ -227,15 +264,19 @@ def compute_momentum_weights(factor_weekly: dict[str, pd.Series]) -> dict[str, f
             mom = prices.iloc[-1] / prices.iloc[-lookback] - 1
             momenta[name] = mom
 
-    ranked = sorted(momenta.items(), key=lambda x: x[1], reverse=True)
+    # 稳定排序: 动量相同时按名称排序, 避免依赖dict顺序
+    ranked = sorted(momenta.items(), key=lambda x: (-x[1], x[0]))
     weights = {}
     for i, (name, _) in enumerate(ranked):
-        weights[name] = PARAMS['momentum_weights'][i]
+        if i < len(PARAMS['momentum_weights']):
+            weights[name] = PARAMS['momentum_weights'][i]
+        else:
+            weights[name] = 0.0
 
     return weights
 
 
-def compute_vol_scale(blend_returns: pd.Series) -> float:
+def compute_vol_scale(blend_returns: pd.Series) -> Tuple[float, float]:
     """
     计算波动率缩放系数。
 
@@ -243,23 +284,27 @@ def compute_vol_scale(blend_returns: pd.Series) -> float:
         blend_returns: 组合周收益率序列
 
     Returns:
-        缩放系数 (0~1)
+        (缩放系数 0~1, 年化波动率)
     """
     lookback = PARAMS['vol_lookback']
     if len(blend_returns) < lookback:
-        return 1.0
+        return 1.0, 0.0
 
     vol_annual = blend_returns.iloc[-lookback:].std() * np.sqrt(52)
     if vol_annual <= 0:
-        return 1.0
+        return 1.0, 0.0
 
-    return min(PARAMS['vol_target'] / vol_annual, 1.0)
+    scale = min(PARAMS['vol_target'] / vol_annual, 1.0)
+    return scale, vol_annual
 
 
-def generate_signal(factor_weekly: dict[str, pd.Series],
+def generate_signal(factor_weekly: Dict[str, pd.Series],
                     signal_weekly: pd.Series) -> dict:
     """
     生成本周信号。
+
+    信号生成使用截至本周五的所有已知数据(因为是收盘后运行,
+    数据已实现, 不存在前瞻问题)。
 
     Args:
         factor_weekly: 因子周价格字典
@@ -270,7 +315,7 @@ def generate_signal(factor_weekly: dict[str, pd.Series],
     """
     latest_date = signal_weekly.index[-1]
 
-    # 1. Regime判断
+    # 1. Regime判断 (使用全部历史, 当前价格已实现)
     regime_label, regime_mult = compute_regime(signal_weekly)
     ma_short = signal_weekly.rolling(PARAMS['ma_short']).mean()
     ma_long = signal_weekly.rolling(PARAMS['ma_long']).mean()
@@ -278,15 +323,15 @@ def generate_signal(factor_weekly: dict[str, pd.Series],
     # 2. 因子动量权重
     mom_weights = compute_momentum_weights(factor_weekly)
 
-    # 3. 计算组合收益率 (用动量权重)
+    # 3. 计算组合收益率 (用动量加权, 与回测一致)
     factor_returns = {name: prices.pct_change().dropna()
                       for name, prices in factor_weekly.items()}
-    # 使用等权计算vol (因为动量权重每周变化, 用等权更稳定)
-    blend_ret = sum(ret for ret in factor_returns.values()) / len(factor_returns)
+    names = list(factor_weekly.keys())
+    blend_ret = sum(factor_returns[name] * mom_weights.get(name, 1/len(names))
+                    for name in names)
 
     # 4. Vol缩放
-    vol_scale = compute_vol_scale(blend_ret)
-    vol_annual = blend_ret.iloc[-PARAMS['vol_lookback']:].std() * np.sqrt(52)
+    vol_scale, vol_annual = compute_vol_scale(blend_ret)
 
     # 5. 最终仓位
     total_position = vol_scale * regime_mult
@@ -342,7 +387,7 @@ def generate_signal(factor_weekly: dict[str, pd.Series],
     emoji = {'strong_bull': '🟢', 'transition': '🟡', 'bear': '🔴'}[regime_label]
     signal['action_summary'] = [
         f"{emoji} 市场状态: {regime_labels_cn[regime_label]}",
-        f"总仓位: {signal['total_position_pct']}% (Regime {regime_mult*100:.0f}% × Vol缩放 {vol_scale*100:.0f}%)",
+        f"总仓位: {signal['total_position_pct']}% (Regime {regime_mult*100:.0f}% x Vol缩放 {vol_scale*100:.0f}%)",
     ]
     for h in momentum_detail:
         signal['action_summary'].append(
@@ -358,18 +403,26 @@ def generate_signal(factor_weekly: dict[str, pd.Series],
 # 回测
 # ============================================================
 
-def run_backtest(factor_weekly: dict[str, pd.Series],
+def run_backtest(factor_weekly: Dict[str, pd.Series],
                  signal_weekly: pd.Series) -> dict:
     """
     运行完整回测。
+
+    关键设计:
+      - 在第 i 周, 使用 [:i] (即 T-1 及之前) 的数据做所有决策
+      - 决策后的仓位承受第 i 周的实际收益 (factor_returns[i])
+      - 这模拟了: 周五收盘后看数据 → 下周一开盘执行 → 承受下周收益
+      - 包含交易成本: 仓位变化时收取单边成本
 
     Returns:
         回测结果字典
     """
     print("\n运行回测...")
 
-    # 需要至少40周数据来计算长期MA
-    min_weeks = max(PARAMS['ma_long'], PARAMS['vol_lookback'], PARAMS['momentum_lookback'])
+    txn_cost = PARAMS['txn_cost_bps'] / 10000  # 转换为小数
+
+    # 需要至少 ma_long+1 周数据来保证有足够的MA历史
+    min_weeks = max(PARAMS['ma_long'], PARAMS['vol_lookback'], PARAMS['momentum_lookback']) + 1
 
     factor_returns = {name: prices.pct_change() for name, prices in factor_weekly.items()}
     names = list(factor_weekly.keys())
@@ -377,52 +430,48 @@ def run_backtest(factor_weekly: dict[str, pd.Series],
     nav = [1.0]
     dates = []
     weekly_positions = []
+    total_txn_cost = 0.0
+    prev_weights = {name: 0.0 for name in names}
+    prev_position = 0.0
 
     for i in range(min_weeks, len(signal_weekly)):
         date = signal_weekly.index[i]
 
-        # Regime
-        sig_slice = signal_weekly.iloc[:i+1]
-        ma_s = sig_slice.rolling(PARAMS['ma_short']).mean()
-        ma_l = sig_slice.rolling(PARAMS['ma_long']).mean()
-        price = sig_slice.iloc[-1]
-        above_short = price > ma_s.iloc[-1]
-        above_long = price > ma_l.iloc[-1]
+        # ---- 决策阶段: 仅使用 [:i] 的数据 (T-1 及之前) ----
 
-        if above_short and above_long:
-            regime_mult = PARAMS['regime_full']
-        elif not above_short and not above_long:
-            regime_mult = PARAMS['regime_bear']
-        else:
-            regime_mult = PARAMS['regime_transition']
+        # Regime: 用截至上周五 (index i-1) 的价格
+        sig_slice = signal_weekly.iloc[:i]
+        regime_label, regime_mult = compute_regime(sig_slice)
 
-        # Momentum weights
-        mom = {}
-        lb = PARAMS['momentum_lookback']
-        for name in names:
-            prices_slice = factor_weekly[name].iloc[:i+1]
-            if len(prices_slice) >= lb:
-                mom[name] = prices_slice.iloc[-1] / prices_slice.iloc[-lb] - 1
-        ranked = sorted(mom.items(), key=lambda x: x[1], reverse=True)
-        weights = {}
-        for j, (name, _) in enumerate(ranked):
-            weights[name] = PARAMS['momentum_weights'][j]
+        # Momentum weights: 用截至上周五的因子价格
+        factor_slices = {name: factor_weekly[name].iloc[:i] for name in names}
+        mom_weights = compute_momentum_weights(factor_slices)
 
-        # Vol scaling
-        blend_ret = sum(factor_returns[name].iloc[:i+1] * weights.get(name, 1/3)
-                        for name in names)
-        vol_lb = PARAMS['vol_lookback']
-        recent = blend_ret.iloc[-vol_lb:]
-        vol_ann = recent.std() * np.sqrt(52)
-        vol_scale = min(PARAMS['vol_target'] / vol_ann, 1.0) if vol_ann > 0 else 1.0
+        # Vol scaling: 用截至上周五的组合收益率
+        blend_ret = sum(factor_returns[name].iloc[1:i] * mom_weights.get(name, 1/len(names))
+                        for name in names).dropna()
+        vol_scale, _ = compute_vol_scale(blend_ret)
 
         # Position
         position = vol_scale * regime_mult
 
-        # Weekly return
-        week_ret = sum(factor_returns[name].iloc[i] * weights.get(name, 1/3)
+        # ---- 交易成本: 计算仓位变化 ----
+        turnover = 0.0
+        for name in names:
+            new_w = position * mom_weights.get(name, 0.0)
+            old_w = prev_position * prev_weights.get(name, 0.0)
+            turnover += abs(new_w - old_w)
+        # 也考虑现金仓位变化 (卖出ETF=买入现金, 反之亦然, 只算ETF端)
+        period_txn_cost = turnover * txn_cost
+        total_txn_cost += period_txn_cost
+
+        prev_weights = mom_weights.copy()
+        prev_position = position
+
+        # ---- 收益阶段: 使用第 i 周的实际收益 ----
+        week_ret = sum(factor_returns[name].iloc[i] * mom_weights.get(name, 1/len(names))
                        for name in names)
-        portfolio_ret = position * week_ret
+        portfolio_ret = position * week_ret - period_txn_cost
         nav.append(nav[-1] * (1 + portfolio_ret))
         dates.append(date)
         weekly_positions.append(position)
@@ -453,6 +502,9 @@ def run_backtest(factor_weekly: dict[str, pd.Series],
         'calmar': round(calmar, 3),
         'annual_returns': annual_returns,
         'avg_position_pct': round(np.mean(weekly_positions) * 100, 1),
+        'total_txn_cost_pct': round(total_txn_cost * 100, 2),
+        'txn_cost_bps': PARAMS['txn_cost_bps'],
+        'note': '回测使用T-1数据决策, 包含交易成本, 无前瞻偏差',
     }
 
     print(f"\n回测结果:")
@@ -462,6 +514,8 @@ def run_backtest(factor_weekly: dict[str, pd.Series],
     print(f"  Sharpe: {result['sharpe']}")
     print(f"  Calmar: {result['calmar']}")
     print(f"  平均仓位: {result['avg_position_pct']}%")
+    print(f"  累计交易成本: {result['total_txn_cost_pct']}%")
+    print(f"  (单边{PARAMS['txn_cost_bps']}bp, 无前瞻偏差)")
     print(f"\n年度收益:")
     for year, ret in sorted(annual_returns.items()):
         print(f"  {year}: {ret:+.1f}%")
@@ -516,7 +570,7 @@ def main():
         print("=" * 50)
 
     # 加载数据
-    result = load_all_data()
+    result = load_all_data(for_backtest=do_backtest)
     if result is None:
         print("[ERROR] 数据加载失败!", file=sys.stderr)
         sys.exit(1)
