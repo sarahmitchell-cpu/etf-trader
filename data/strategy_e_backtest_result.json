@@ -1,0 +1,20 @@
+{
+  "strategy": "Strategy E: 逆向价值+质量 Top4",
+  "period": "2021-07-25 ~ 2026-03-20",
+  "years": 4.7,
+  "cagr_pct": 22.0,
+  "total_return_pct": 133.6,
+  "mdd_pct": -17.6,
+  "sharpe": 0.937,
+  "calmar": 1.246,
+  "win_rate_pct": 48.8,
+  "annual_returns": {
+    "2022": 19.3,
+    "2023": -4.3,
+    "2024": 26.5,
+    "2025": 15.4,
+    "2026": 9.9
+  },
+  "total_txn_pct": 6.24,
+  "note": "无前瞻偏差: T周决策→T+1周收益, 交易成本8bp"
+}

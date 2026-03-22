@@ -1,0 +1,21 @@
+{
+  "strategy": "Strategy D: Top8龙头动量 (LB4w Skip1)",
+  "period": "2021-05-16 ~ 2026-03-20",
+  "years": 4.8,
+  "cagr_pct": 14.2,
+  "total_return_pct": 96.3,
+  "mdd_pct": -20.2,
+  "sharpe": 0.81,
+  "calmar": 0.704,
+  "win_rate_pct": 51.6,
+  "annual_returns": {
+    "2022": 6.4,
+    "2023": -0.9,
+    "2024": 24.6,
+    "2025": 28.3,
+    "2026": 4.2
+  },
+  "total_txn_pct": 9.58,
+  "num_rebalances": 127,
+  "note": "无前瞻偏差: T周决策→T+1周收益, 交易成本8bp"
+}
