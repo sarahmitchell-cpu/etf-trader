@@ -1,2 +1,5 @@
-# Only ignore temporary/generated output
-latest_signal.json
+# Optimization intermediate files (large, reproducible)
+optimization/
+
+# Signal files are regenerated each run
+# (but we keep them for reference)

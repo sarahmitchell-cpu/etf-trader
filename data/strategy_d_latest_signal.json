@@ -1,0 +1,383 @@
+{
+  "date": "2026-03-20",
+  "generated_at": "2026-03-21 21:47:01",
+  "strategy": "Strategy D (龙头股动量)",
+  "variant": "Top8 Mom4w Skip1",
+  "rebalance_freq": "每2周",
+  "total_stocks": 8,
+  "position_per_stock": 12.5,
+  "selected_stocks": [
+    {
+      "code": "601088",
+      "name": "中国神华",
+      "sector": "煤炭",
+      "momentum": 19.54
+    },
+    {
+      "code": "300274",
+      "name": "阳光电源",
+      "sector": "逆变器",
+      "momentum": 16.39
+    },
+    {
+      "code": "002594",
+      "name": "比亚迪",
+      "sector": "新能源车",
+      "momentum": 14.14
+    },
+    {
+      "code": "300750",
+      "name": "宁德时代",
+      "sector": "电池",
+      "momentum": 13.05
+    },
+    {
+      "code": "002714",
+      "name": "牧原股份",
+      "sector": "养殖",
+      "momentum": 9.04
+    },
+    {
+      "code": "601006",
+      "name": "大秦铁路",
+      "sector": "铁路",
+      "momentum": 5.36
+    },
+    {
+      "code": "601012",
+      "name": "隆基绿能",
+      "sector": "光伏",
+      "momentum": 4.74
+    },
+    {
+      "code": "600900",
+      "name": "长江电力",
+      "sector": "水电",
+      "momentum": 4.54
+    }
+  ],
+  "all_rankings": [
+    {
+      "ticker": "601088.SS",
+      "name": "中国神华",
+      "code": "601088",
+      "sector": "煤炭",
+      "momentum_4w": 19.54,
+      "rank": 1,
+      "selected": true,
+      "position_pct": 12.5
+    },
+    {
+      "ticker": "300274.SZ",
+      "name": "阳光电源",
+      "code": "300274",
+      "sector": "逆变器",
+      "momentum_4w": 16.39,
+      "rank": 2,
+      "selected": true,
+      "position_pct": 12.5
+    },
+    {
+      "ticker": "002594.SZ",
+      "name": "比亚迪",
+      "code": "002594",
+      "sector": "新能源车",
+      "momentum_4w": 14.14,
+      "rank": 3,
+      "selected": true,
+      "position_pct": 12.5
+    },
+    {
+      "ticker": "300750.SZ",
+      "name": "宁德时代",
+      "code": "300750",
+      "sector": "电池",
+      "momentum_4w": 13.05,
+      "rank": 4,
+      "selected": true,
+      "position_pct": 12.5
+    },
+    {
+      "ticker": "002714.SZ",
+      "name": "牧原股份",
+      "code": "002714",
+      "sector": "养殖",
+      "momentum_4w": 9.04,
+      "rank": 5,
+      "selected": true,
+      "position_pct": 12.5
+    },
+    {
+      "ticker": "601006.SS",
+      "name": "大秦铁路",
+      "code": "601006",
+      "sector": "铁路",
+      "momentum_4w": 5.36,
+      "rank": 6,
+      "selected": true,
+      "position_pct": 12.5
+    },
+    {
+      "ticker": "601012.SS",
+      "name": "隆基绿能",
+      "code": "601012",
+      "sector": "光伏",
+      "momentum_4w": 4.74,
+      "rank": 7,
+      "selected": true,
+      "position_pct": 12.5
+    },
+    {
+      "ticker": "600900.SS",
+      "name": "长江电力",
+      "code": "600900",
+      "sector": "水电",
+      "momentum_4w": 4.54,
+      "rank": 8,
+      "selected": true,
+      "position_pct": 12.5
+    },
+    {
+      "ticker": "600941.SS",
+      "name": "中国移动",
+      "code": "600941",
+      "sector": "运营商",
+      "momentum_4w": 3.93,
+      "rank": 9,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "600036.SS",
+      "name": "招商银行",
+      "code": "600036",
+      "sector": "银行",
+      "momentum_4w": 2.69,
+      "rank": 10,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "600887.SS",
+      "name": "伊利股份",
+      "code": "600887",
+      "sector": "食品",
+      "momentum_4w": -0.34,
+      "rank": 11,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "601668.SS",
+      "name": "中国建筑",
+      "code": "601668",
+      "sector": "建筑",
+      "momentum_4w": -0.4,
+      "rank": 12,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "600519.SS",
+      "name": "贵州茅台",
+      "code": "600519",
+      "sector": "白酒",
+      "momentum_4w": -2.71,
+      "rank": 13,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "002415.SZ",
+      "name": "海康威视",
+      "code": "002415",
+      "sector": "安防",
+      "momentum_4w": -3.34,
+      "rank": 14,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "000858.SZ",
+      "name": "五粮液",
+      "code": "000858",
+      "sector": "白酒",
+      "momentum_4w": -3.45,
+      "rank": 15,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "002371.SZ",
+      "name": "北方华创",
+      "code": "002371",
+      "sector": "半导体设备",
+      "momentum_4w": -3.58,
+      "rank": 16,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "600585.SS",
+      "name": "海螺水泥",
+      "code": "600585",
+      "sector": "水泥",
+      "momentum_4w": -4.14,
+      "rank": 17,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "600028.SS",
+      "name": "中国石化",
+      "code": "600028",
+      "sector": "石油",
+      "momentum_4w": -4.55,
+      "rank": 18,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "600690.SS",
+      "name": "海尔智家",
+      "code": "600690",
+      "sector": "家电",
+      "momentum_4w": -4.63,
+      "rank": 19,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "000333.SZ",
+      "name": "美的集团",
+      "code": "000333",
+      "sector": "家电",
+      "momentum_4w": -4.97,
+      "rank": 20,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "600276.SS",
+      "name": "恒瑞医药",
+      "code": "600276",
+      "sector": "创新药",
+      "momentum_4w": -5.31,
+      "rank": 21,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "000063.SZ",
+      "name": "中兴通讯",
+      "code": "000063",
+      "sector": "通信设备",
+      "momentum_4w": -7.78,
+      "rank": 22,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "601318.SS",
+      "name": "中国平安",
+      "code": "601318",
+      "sector": "保险",
+      "momentum_4w": -8.5,
+      "rank": 23,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "300760.SZ",
+      "name": "迈瑞医疗",
+      "code": "300760",
+      "sector": "医疗器械",
+      "momentum_4w": -8.75,
+      "rank": 24,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "001979.SZ",
+      "name": "招商蛇口",
+      "code": "001979",
+      "sector": "地产",
+      "momentum_4w": -12.58,
+      "rank": 25,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "600893.SS",
+      "name": "航发动力",
+      "code": "600893",
+      "sector": "航发",
+      "momentum_4w": -13.52,
+      "rank": 26,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "002230.SZ",
+      "name": "科大讯飞",
+      "code": "002230",
+      "sector": "AI",
+      "momentum_4w": -14.11,
+      "rank": 27,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "601899.SS",
+      "name": "紫金矿业",
+      "code": "601899",
+      "sector": "有色",
+      "momentum_4w": -16.23,
+      "rank": 28,
+      "selected": false,
+      "position_pct": 0.0
+    }
+  ],
+  "action_summary": [
+    "本期持仓 (8只, 等权12.5%每只):",
+    "",
+    "  >> #1 601088 中国神华 [煤炭] +19.5%",
+    "  >> #2 300274 阳光电源 [逆变器] +16.4%",
+    "  >> #3 002594 比亚迪 [新能源车] +14.1%",
+    "  >> #4 300750 宁德时代 [电池] +13.1%",
+    "  >> #5 002714 牧原股份 [养殖] +9.0%",
+    "  >> #6 601006 大秦铁路 [铁路] +5.4%",
+    "  >> #7 601012 隆基绿能 [光伏] +4.7%",
+    "  >> #8 600900 长江电力 [水电] +4.5%",
+    "",
+    "动量排名 (全部):",
+    "  >> #1 601088 中国神华 [煤炭] +19.5%",
+    "  >> #2 300274 阳光电源 [逆变器] +16.4%",
+    "  >> #3 002594 比亚迪 [新能源车] +14.1%",
+    "  >> #4 300750 宁德时代 [电池] +13.1%",
+    "  >> #5 002714 牧原股份 [养殖] +9.0%",
+    "  >> #6 601006 大秦铁路 [铁路] +5.4%",
+    "  >> #7 601012 隆基绿能 [光伏] +4.7%",
+    "  >> #8 600900 长江电力 [水电] +4.5%",
+    "     #9 600941 中国移动 [运营商] +3.9%",
+    "     #10 600036 招商银行 [银行] +2.7%",
+    "     #11 600887 伊利股份 [食品] -0.3%",
+    "     #12 601668 中国建筑 [建筑] -0.4%",
+    "     #13 600519 贵州茅台 [白酒] -2.7%",
+    "     #14 002415 海康威视 [安防] -3.3%",
+    "     #15 000858 五粮液 [白酒] -3.5%",
+    "     #16 002371 北方华创 [半导体设备] -3.6%",
+    "     #17 600585 海螺水泥 [水泥] -4.1%",
+    "     #18 600028 中国石化 [石油] -4.5%",
+    "     #19 600690 海尔智家 [家电] -4.6%",
+    "     #20 000333 美的集团 [家电] -5.0%",
+    "     #21 600276 恒瑞医药 [创新药] -5.3%",
+    "     #22 000063 中兴通讯 [通信设备] -7.8%",
+    "     #23 601318 中国平安 [保险] -8.5%",
+    "     #24 300760 迈瑞医疗 [医疗器械] -8.8%",
+    "     #25 001979 招商蛇口 [地产] -12.6%",
+    "     #26 600893 航发动力 [航发] -13.5%",
+    "     #27 002230 科大讯飞 [AI] -14.1%",
+    "     #28 601899 紫金矿业 [有色] -16.2%"
+  ]
+}

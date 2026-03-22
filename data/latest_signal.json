@@ -1,0 +1,66 @@
+{
+  "date": "2026-03-20",
+  "generated_at": "2026-03-21 16:12:00",
+  "strategy": "Strategy B (增强版)",
+  "signal_index": {
+    "name": "中证全指(000985)",
+    "price": 5965.89,
+    "ma_13w": 6149.39,
+    "ma_40w": 5714.99
+  },
+  "regime": {
+    "label": "transition",
+    "label_cn": "过渡 (价格在两条MA之间)",
+    "multiplier": 0.7
+  },
+  "volatility": {
+    "annual_12w": 9.9,
+    "target": 15.0,
+    "scale": 1.3
+  },
+  "total_position_pct": 91.0,
+  "cash_pct": 9.0,
+  "holdings": [
+    {
+      "name": "红利低波",
+      "etf": "515080",
+      "etf_name": "红利低波ETF",
+      "momentum_8w": 2.12,
+      "weight": 0.5,
+      "position_pct": 45.5
+    },
+    {
+      "name": "现金流",
+      "etf": "159201",
+      "etf_name": "万家自由现金流ETF",
+      "momentum_8w": -1.98,
+      "weight": 0.3,
+      "position_pct": 27.3
+    },
+    {
+      "name": "国信价值",
+      "etf": "512040",
+      "etf_name": "国信价值ETF",
+      "momentum_8w": -2.95,
+      "weight": 0.2,
+      "position_pct": 18.2
+    },
+    {
+      "name": "创业成长",
+      "etf": "159967",
+      "etf_name": "创业板成长ETF",
+      "momentum_8w": -3.69,
+      "weight": 0.0,
+      "position_pct": 0.0
+    }
+  ],
+  "action_summary": [
+    "🟡 市场状态: 过渡 (价格在两条MA之间)",
+    "总仓位: 91.0% (Regime 70% x Vol缩放 130%)",
+    "  515080 红利低波ETF: 45.5% (动量+2.1%, 权重50%)",
+    "  159201 万家自由现金流ETF: 27.3% (动量-2.0%, 权重30%)",
+    "  512040 国信价值ETF: 18.2% (动量-3.0%, 权重20%)",
+    "  159967 创业板成长ETF: 0.0% (动量-3.7%, 权重0%)",
+    "  货币基金/现金: 9.0%"
+  ]
+}

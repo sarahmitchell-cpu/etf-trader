@@ -1,0 +1,62 @@
+{
+  "backtest_date": "2026-03-21",
+  "period": "2021-11-26 ~ 2026-03-20",
+  "years": 3.7,
+  "txn_cost_bps": 8,
+  "results": [
+    {
+      "label": "Top1+趋势过滤",
+      "cagr": 0.3643,
+      "total_return": 2.1675,
+      "mdd": -0.0364,
+      "sharpe": 3.013,
+      "win_rate": 0.565,
+      "trades": 63
+    },
+    {
+      "label": "Top1+趋势过滤+ZeroBear",
+      "cagr": 0.3545,
+      "total_return": 2.084,
+      "mdd": -0.0364,
+      "sharpe": 2.956,
+      "win_rate": 0.466,
+      "trades": 63
+    },
+    {
+      "label": "Top1+无趋势过滤",
+      "cagr": 0.2973,
+      "total_return": 1.6277,
+      "mdd": -0.0505,
+      "sharpe": 2.385,
+      "win_rate": 0.601,
+      "trades": 54
+    },
+    {
+      "label": "Top1+趋势过滤+无Regime",
+      "cagr": 0.4467,
+      "total_return": 2.9377,
+      "mdd": -0.0463,
+      "sharpe": 2.928,
+      "win_rate": 0.565,
+      "trades": 63
+    },
+    {
+      "label": "Top1+ZeroBear+无趋势过滤",
+      "cagr": 0.3023,
+      "total_return": 1.6654,
+      "mdd": -0.0505,
+      "sharpe": 2.456,
+      "win_rate": 0.466,
+      "trades": 54
+    },
+    {
+      "label": "Top1+趋势+ZeroBear+VolCap1.5",
+      "cagr": 0.3543,
+      "total_return": 2.0821,
+      "mdd": -0.0364,
+      "sharpe": 2.952,
+      "win_rate": 0.466,
+      "trades": 63
+    }
+  ]
+}

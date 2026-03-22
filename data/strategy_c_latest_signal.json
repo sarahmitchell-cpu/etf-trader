@@ -1,0 +1,51 @@
+{
+  "date": "2026-03-20",
+  "generated_at": "2026-03-21 20:04:48",
+  "strategy": "Strategy C (跨境ETF纯动量轮动)",
+  "variant": "Top1 Pure Momentum (4w)",
+  "total_position_pct": 100.0,
+  "cash_pct": 0.0,
+  "selected_etf": "恒生高股息ETF",
+  "selected_code": "159726",
+  "holdings": [
+    {
+      "ticker": "159726.SZ",
+      "name": "恒生高股息ETF",
+      "code": "159726",
+      "factor": "高股息",
+      "momentum_4w": -1.6,
+      "rank": 1,
+      "selected": true,
+      "position_pct": 100.0
+    },
+    {
+      "ticker": "513180.SS",
+      "name": "恒生科技ETF",
+      "code": "513180",
+      "factor": "科技",
+      "momentum_4w": -11.02,
+      "rank": 2,
+      "selected": false,
+      "position_pct": 0.0
+    },
+    {
+      "ticker": "513060.SS",
+      "name": "恒生医疗ETF",
+      "code": "513060",
+      "factor": "医疗",
+      "momentum_4w": -11.57,
+      "rank": 3,
+      "selected": false,
+      "position_pct": 0.0
+    }
+  ],
+  "action_summary": [
+    "本周持仓: 恒生高股息ETF (159726)",
+    "仓位: 100%",
+    "",
+    "动量排名 (4周):",
+    ">> #1 159726 恒生高股息ETF: -1.6%",
+    "   #2 513180 恒生科技ETF: -11.0%",
+    "   #3 513060 恒生医疗ETF: -11.6%"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "strategy": "Strategy C: Top1纯动量 (4周)",
+  "period": "2022-01-14 ~ 2026-03-20",
+  "total_weeks": 213,
+  "total_years": 4.2,
+  "cagr_pct": 17.0,
+  "total_return_pct": 94.2,
+  "mdd_pct": -23.3,
+  "sharpe": 0.7,
+  "calmar": 0.727,
+  "win_rate_pct": 54.2,
+  "holding_distribution": {
+    "恒生高股息ETF": 39.0,
+    "恒生科技ETF": 32.4,
+    "恒生医疗ETF": 28.6
+  },
+  "trade_count": 58,
+  "annual_returns": {
+    "2023": -3.9,
+    "2024": 21.6,
+    "2025": 54.8,
+    "2026": -4.7
+  },
+  "total_txn_cost_pct": 9.36,
+  "txn_cost_bps": 8,
+  "note": "无前瞻偏差: T周决策→T+1周收益, 交易成本8bp"
+}
