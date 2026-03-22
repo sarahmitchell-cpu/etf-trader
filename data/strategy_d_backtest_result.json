@@ -17,5 +17,5 @@
   },
   "total_txn_pct": 9.58,
   "num_rebalances": 127,
-  "note": "无前瞻偏差: T周决策→T+1周收益, 交易成本8bp"
+  "note": "无前瞻偏差: T周决策->T+1周收益, 交易成本8bp"
 }
