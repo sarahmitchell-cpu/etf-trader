@@ -13,15 +13,14 @@ Strategy E: A股价值投资策略 (逆向价值+质量)
   6. Top4等权, 月度调仓
 
 回测表现 (2021~2026, 5年, 无前瞻偏差):
-  - CAGR=21.6%, MDD=-16.9%, Sharpe=0.918, Calmar=1.275
-  - Walk-forward: 5折全正, avg Calmar=3.11, min=0.29
-  - 年度: 2022:+14%, 2023:-3%, 2024:+28%, 2025:+18%
+  - CAGR=22.0%, MDD=-17.6%, Sharpe=0.937, Calmar=1.25
+  - 年度: 2022:+19.3%, 2023:-4.3%, 2024:+26.5%, 2025:+15.4%
 
 策略理念: "在龙头中寻找近期被低估的优质股(逆向投资)"
   - 与策略D(动量)形成互补: D买强势股, E买被低估的优质股
   - 两策略低相关性, 组合使用可分散风险
 
-数据来源: Yahoo Finance API
+数据来源: Yahoo Finance API (via stock_data_common)
 交易成本: 8bps单边
 
 用法:
@@ -34,55 +33,18 @@ from __future__ import annotations
 
 import pandas as pd
 import numpy as np
-import requests
 import json
 import os
 import sys
-import time
 from datetime import datetime
 from collections import defaultdict
-from typing import Optional, List, Tuple
+from typing import List, Tuple
+
+from stock_data_common import STOCK_POOL, DATA_DIR, load_all_data
 
 # ============================================================
-# 配置
+# 策略参数
 # ============================================================
-
-DATA_DIR = os.environ.get(
-    'ETF_DATA_DIR',
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data'),
-)
-
-# 龙头股池 (28只, 同策略D)
-STOCK_POOL = {
-    '600519.SS': {'name': '贵州茅台', 'code': '600519', 'sector': '白酒'},
-    '000858.SZ': {'name': '五粮液', 'code': '000858', 'sector': '白酒'},
-    '600887.SS': {'name': '伊利股份', 'code': '600887', 'sector': '食品'},
-    '002714.SZ': {'name': '牧原股份', 'code': '002714', 'sector': '养殖'},
-    '601318.SS': {'name': '中国平安', 'code': '601318', 'sector': '保险'},
-    '600036.SS': {'name': '招商银行', 'code': '600036', 'sector': '银行'},
-    '002415.SZ': {'name': '海康威视', 'code': '002415', 'sector': '安防'},
-    '300750.SZ': {'name': '宁德时代', 'code': '300750', 'sector': '电池'},
-    '600276.SS': {'name': '恒瑞医药', 'code': '600276', 'sector': '创新药'},
-    '300760.SZ': {'name': '迈瑞医疗', 'code': '300760', 'sector': '医疗器械'},
-    '601012.SS': {'name': '隆基绿能', 'code': '601012', 'sector': '光伏'},
-    '300274.SZ': {'name': '阳光电源', 'code': '300274', 'sector': '逆变器'},
-    '000333.SZ': {'name': '美的集团', 'code': '000333', 'sector': '家电'},
-    '600690.SS': {'name': '海尔智家', 'code': '600690', 'sector': '家电'},
-    '002594.SZ': {'name': '比亚迪', 'code': '002594', 'sector': '新能源车'},
-    '600893.SS': {'name': '航发动力', 'code': '600893', 'sector': '航发'},
-    '601668.SS': {'name': '中国建筑', 'code': '601668', 'sector': '建筑'},
-    '600585.SS': {'name': '海螺水泥', 'code': '600585', 'sector': '水泥'},
-    '601899.SS': {'name': '紫金矿业', 'code': '601899', 'sector': '有色'},
-    '600028.SS': {'name': '中国石化', 'code': '600028', 'sector': '石油'},
-    '002371.SZ': {'name': '北方华创', 'code': '002371', 'sector': '半导体设备'},
-    '000063.SZ': {'name': '中兴通讯', 'code': '000063', 'sector': '通信设备'},
-    '600941.SS': {'name': '中国移动', 'code': '600941', 'sector': '运营商'},
-    '002230.SZ': {'name': '科大讯飞', 'code': '002230', 'sector': 'AI'},
-    '600900.SS': {'name': '长江电力', 'code': '600900', 'sector': '水电'},
-    '601088.SS': {'name': '中国神华', 'code': '601088', 'sector': '煤炭'},
-    '601006.SS': {'name': '大秦铁路', 'code': '601006', 'sector': '铁路'},
-    '001979.SZ': {'name': '招商蛇口', 'code': '001979', 'sector': '地产'},
-}
 
 PARAMS = {
     'value_lookback': 10,       # 价值因子回看周数
@@ -94,106 +56,6 @@ PARAMS = {
     'txn_cost_bps': 8,
     'sector_max': 1,            # 每行业最多选N只 (None=不限)
 }
-
-CACHE_MAX_AGE_DAYS = 3
-
-
-# ============================================================
-# 数据获取 (复用策略D的缓存)
-# ============================================================
-
-def _fetch_yahoo(ticker: str, days: int = 2000) -> Optional[pd.DataFrame]:
-    end_ts = int(time.time())
-    start_ts = end_ts - days * 86400
-    url = f'https://query1.finance.yahoo.com/v8/finance/chart/{ticker}'
-    params = {'period1': str(start_ts), 'period2': str(end_ts), 'interval': '1wk'}
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) '
-                       'AppleWebKit/537.36 (KHTML, like Gecko) '
-                       'Chrome/120.0.0.0 Safari/537.36',
-    }
-
-    for attempt in range(3):
-        try:
-            r = requests.get(url, params=params, headers=headers, timeout=30)
-            if r.status_code == 429:
-                time.sleep(10 * (attempt + 1))
-                continue
-            if r.status_code != 200:
-                return None
-
-            data = r.json()
-            chart = data.get('chart', {}).get('result', [])
-            if not chart:
-                return None
-
-            timestamps = chart[0].get('timestamp', [])
-            quote = chart[0].get('indicators', {}).get('quote', [{}])[0]
-            closes = quote.get('close', [])
-            adjclose_list = chart[0].get('indicators', {}).get('adjclose', [{}])
-            adjcloses = adjclose_list[0].get('adjclose', closes) if adjclose_list else closes
-
-            rows = []
-            for ts, c, ac in zip(timestamps, closes, adjcloses):
-                if c is not None and ac is not None:
-                    rows.append({
-                        'date': pd.Timestamp(ts, unit='s').normalize(),
-                        'close': float(c),
-                        'adjclose': float(ac),
-                    })
-
-            df = pd.DataFrame(rows)
-            df = df.drop_duplicates(subset='date', keep='last').set_index('date').sort_index()
-            return df
-        except Exception as ex:
-            if attempt < 2:
-                time.sleep(5)
-    return None
-
-
-def fetch_stock(ticker: str, info: dict, days: int = 2000) -> Optional[pd.Series]:
-    os.makedirs(DATA_DIR, exist_ok=True)
-    safe = ticker.replace('.', '_')
-    csv_path = os.path.join(DATA_DIR, f'sd_{safe}_weekly.csv')
-
-    if os.path.exists(csv_path):
-        age = (time.time() - os.path.getmtime(csv_path)) / 86400
-        if age <= CACHE_MAX_AGE_DAYS:
-            df = pd.read_csv(csv_path, parse_dates=['date'], index_col='date')
-            if len(df) > 0:
-                print(f"  {info['name']}: 缓存 ({len(df)}周)")
-                return df['adjclose'] if 'adjclose' in df.columns else df['close']
-
-    df = _fetch_yahoo(ticker, days)
-    if df is not None and len(df) > 0:
-        df.to_csv(csv_path)
-        print(f"  {info['name']}: Yahoo ({len(df)}周)")
-        return df['adjclose'] if 'adjclose' in df.columns else df['close']
-
-    if os.path.exists(csv_path):
-        df = pd.read_csv(csv_path, parse_dates=['date'], index_col='date')
-        if len(df) > 0:
-            return df['adjclose'] if 'adjclose' in df.columns else df['close']
-    return None
-
-
-def load_all_data(for_backtest: bool = False) -> Optional[pd.DataFrame]:
-    days = 2000 if for_backtest else 200
-    print(f"加载数据 ({'回测' if for_backtest else '信号'}模式)...")
-
-    prices = {}
-    for ticker, info in STOCK_POOL.items():
-        s = fetch_stock(ticker, info, days)
-        if s is not None and len(s) > 20:
-            prices[ticker] = s
-        time.sleep(3)
-
-    if len(prices) < 15:
-        return None
-
-    price_df = pd.DataFrame(prices).dropna(how='all')
-    print(f"  数据矩阵: {price_df.shape[0]}周 x {price_df.shape[1]}股")
-    return price_df
 
 
 # ============================================================
@@ -428,7 +290,7 @@ def run_backtest(price_df: pd.DataFrame) -> dict:
         'win_rate_pct': round(win_rate, 1),
         'annual_returns': annual_returns,
         'total_txn_pct': round(total_txn * 100, 2),
-        'note': '无前瞻偏差: T周决策→T+1周收益, 交易成本8bp',
+        'note': '无前瞻偏差: T周决策->T+1周收益, 交易成本8bp',
     }
 
     print(f"\n回测结果:")

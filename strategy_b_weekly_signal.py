@@ -407,12 +407,25 @@ def generate_signal(factor_weekly: Dict[str, pd.Series],
     # 2. 因子动量权重
     mom_weights = compute_momentum_weights(factor_weekly)
 
-    # 3. 计算组合收益率 (用动量加权, 与回测一致)
+    # 3. 计算历史组合收益率 (每期用当期权重, 与回测一致)
     factor_returns = {name: prices.pct_change().dropna()
                       for name, prices in factor_weekly.items()}
     names = list(factor_weekly.keys())
-    blend_ret = sum(factor_returns[name] * mom_weights.get(name, 1/len(names))
-                    for name in names)
+    lookback_vol = PARAMS['vol_lookback']
+    lookback_mom = PARAMS['momentum_lookback']
+    n_weeks = len(signal_weekly)
+    # 需要回溯足够多的周来积累 vol_lookback 个历史组合收益
+    start_from = max(0, n_weeks - lookback_vol - 2)
+    historical_port_rets = []
+    for t in range(start_from, n_weeks):
+        t_factor_slices = {name: factor_weekly[name].iloc[:t] for name in names}
+        if len(t_factor_slices[names[0]]) < lookback_mom:
+            continue
+        t_weights = compute_momentum_weights(t_factor_slices)
+        t_ret = sum(factor_returns[name].iloc[t] * t_weights.get(name, 1/len(names))
+                    for name in names if t < len(factor_returns[name]))
+        historical_port_rets.append(float(t_ret))
+    blend_ret = pd.Series(historical_port_rets)
 
     # 4. Vol缩放
     vol_scale, vol_annual = compute_vol_scale(blend_ret)
@@ -518,6 +531,10 @@ def run_backtest(factor_weekly: Dict[str, pd.Series],
     prev_weights = {name: 0.0 for name in names}
     prev_position = 0.0
 
+    # 记录每期实际组合收益 (用当期权重), 用于后续vol scaling
+    # 修复: 之前用当前期权重回溯blend全部历史收益, 不是真实历史组合波动率
+    historical_port_rets = []
+
     for i in range(min_weeks, len(signal_weekly)):
         date = signal_weekly.index[i]
 
@@ -531,10 +548,12 @@ def run_backtest(factor_weekly: Dict[str, pd.Series],
         factor_slices = {name: factor_weekly[name].iloc[:i] for name in names}
         mom_weights = compute_momentum_weights(factor_slices)
 
-        # Vol scaling: 用截至上周五的组合收益率
-        blend_ret = sum(factor_returns[name].iloc[1:i] * mom_weights.get(name, 1/len(names))
-                        for name in names).dropna()
-        vol_scale, _ = compute_vol_scale(blend_ret)
+        # Vol scaling: 使用历史实际组合收益序列 (每期用当期权重计算的收益)
+        if len(historical_port_rets) >= PARAMS['vol_lookback']:
+            hist_ret_series = pd.Series(historical_port_rets)
+            vol_scale, _ = compute_vol_scale(hist_ret_series)
+        else:
+            vol_scale = 1.0
 
         # Position
         position = vol_scale * regime_mult
@@ -559,6 +578,9 @@ def run_backtest(factor_weekly: Dict[str, pd.Series],
         nav.append(nav[-1] * (1 + portfolio_ret))
         dates.append(date)
         weekly_positions.append(position)
+
+        # 记录本期加权因子收益 (不含仓位缩放, 用于后续vol scaling)
+        historical_port_rets.append(float(week_ret))
 
     nav_series = pd.Series(nav[1:], index=dates)
 
