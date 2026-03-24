@@ -8,7 +8,7 @@ Strategy H: Index Dip-Buying & Rally-Chasing (指数超跌买入/追涨买入)
   - H3: 科创50 追涨 5日涨>6% → 持14日(SL-5%)     Sharpe=1.00  CAGR=22.3%
   - H4: 科创50 追涨 1日涨>3% → 持2日             Sharpe=0.95  CAGR=16.3%
   - H5: 恒生指数 超跌 5日跌>5% → 持6日(SL-7%)    Sharpe=0.61  CAGR=8.0%
-  - H6: 上证50ETF 超跌 6日跌>4% → 持4日          Sharpe=0.51  CAGR=7.5%
+  - H6: 科创50 超跌 5日跌>8% → 持19日(SL-3%)      Sharpe=1.32  CAGR=20.2%
   - H7: 通用 超跌 6日跌>6% → 持4日 (6指数覆盖)   avg Sharpe=0.42
   - H8: 沪深300 追涨 1日涨>2% → 持2日            Sharpe=0.85  CAGR=7.2%
 
@@ -96,15 +96,15 @@ VARIANTS = {
         'backtest': {'sharpe': 0.61, 'cagr': 8.0, 'mdd': -14.1, 'win_rate': 61, 'n_trades': 59},
     },
     'H6': {
-        'name': 'H6: 上证50ETF 超跌 6日跌>4% 持4日',
-        'ticker': '510050.SS',
-        'index_name': '上证50ETF',
+        'name': 'H6: 科创50 超跌 5日跌>8% 持19日(SL-3%)',
+        'ticker': '588000.SS',
+        'index_name': '科创50ETF',
         'direction': 'dip',
-        'cum_days': 6,
-        'threshold_pct': 4,
-        'hold_days': 4,
-        'stop_loss_pct': None,
-        'backtest': {'sharpe': 0.51, 'cagr': 7.5, 'mdd': -20.3, 'win_rate': 54, 'n_trades': 81},
+        'cum_days': 5,
+        'threshold_pct': 8,
+        'hold_days': 19,
+        'stop_loss_pct': -3,
+        'backtest': {'sharpe': 1.32, 'cagr': 20.2, 'mdd': -11.4, 'win_rate': 62, 'n_trades': 16},
     },
     'H7': {
         'name': 'H7: 通用 超跌 6日跌>6% 持4日 (多指数)',
