@@ -44,7 +44,7 @@
 
 ```bash
 Python 3.8+
-pip3 install pandas numpy requests baostock
+pip3 install -r requirements.txt
 ```
 
 - `baostock`: 策略D和G需要（获取沪深300/中证500历史成分股数据）
@@ -119,13 +119,15 @@ python3 strategy_b_weekly_signal.py --json
 
 ### 策略B: 4因子ETF轮动
 
-**逻辑**：4只SmartBeta ETF按8周动量排名 → 50/30/20/0集中配置 → Regime判断（牛/熊/过渡）调整仓位 → 波动率缩放动态调节。
+**逻辑**：4只SmartBeta ETF按4周动量排名 → 50/30/20/0集中配置 → Regime判断（牛/熊/过渡）调整仓位 → 波动率缩放动态调节。
 
 **ETF池**：红利低波(515080)、自由现金流(159201)、国信价值(512040)、创业成长(159967)
 
-**参数**: `momentum_lookback=8, vol_target=15%, regime: MA13w/MA40w`
+**参数**: `momentum_lookback=4, vol_target=15%, regime: MA13w/MA40w, vol_scale_cap=1.3`
 
 **回测 (11年)**: CAGR 15.6%, MDD -18.3%, Sharpe 1.157
+
+> **杠杆风险提示**: vol_scale_cap=1.3意味着低波动市场中仓位可达130%，需要融资。如不使用杠杆，建议将vol_scale_cap设为1.0。
 
 ### 策略C: 跨境ETF纯动量
 
@@ -137,11 +139,13 @@ python3 strategy_b_weekly_signal.py --json
 
 ### 策略D: CSI300低波动TOP10
 
+> **注**: 策略D有两个版本。v1是"28只龙头股动量"(CAGR 14.2%, MDD -20.2%)，已归档至`strategy_d_v1_weekly_signal.py`。当前D指v2 (CSI300低波动)，指标完全不同，请勿混淆。`data/strategy_d_backtest_result.json`和`data/strategy_d_latest_signal.json`包含的是v1数据，v2数据见`data/strategy_d_v2_*.json`。
+
 **逻辑**：从沪深300当期真实成分股中，选20周年化波动率最低的10只，等权配置，双周调仓。使用baostock获取历史成分股数据，消除生存偏差。
 
 **参数**: `vol_lookback=20w, top_n=10, txn_cost=8bp`
 
-**回测 (15年+)**: CAGR 13.9%, MDD -8.5%, Calmar 1.64
+**回测 (~4.2年, 2022-01~2026-03)**: CAGR 13.9%, MDD -8.5%, Calmar 1.64
 
 ### 策略E: 逆向价值+质量
 
@@ -167,7 +171,7 @@ python3 strategy_b_weekly_signal.py --json
 
 **参数**: `vol_lookback=12w, factor_weights={low_vol:0.5, low_pb:0.5}, top_n=10, txn_cost=8bp`
 
-**回测 (15年+)**: CAGR 13.5%, MDD -11.9%, Calmar 1.13
+**回测 (~5年, 2021-01~2026-03)**: CAGR 13.5%, MDD -11.9%, Calmar 1.13
 
 ---
 
@@ -195,7 +199,7 @@ git clone https://github.com/sarahmitchell-cpu/etf-trader.git
 cd etf-trader
 
 # 2. 安装依赖
-pip3 install pandas numpy requests baostock
+pip3 install -r requirements.txt
 
 # 3. 运行回测（自动下载数据）
 python3 strategy_a_weekly_signal.py --backtest  # 策略A
@@ -229,6 +233,7 @@ python3 strategy_b_weekly_signal.py --json > signal_b.json
 etf-trader/
 │
 ├── README.md                          # 策略总览与复现说明
+├── requirements.txt                   # Python依赖
 │
 ├── 策略信号脚本 (7套策略)
 │   ├── strategy_a_weekly_signal.py    # A: 纯债ETF轮动
@@ -291,7 +296,7 @@ etf-trader/
 
 ### 3. Walk-Forward验证
 
-策略D和E经过5折walk-forward交叉验证。
+策略D(v1, 28只龙头动量版本)和E经过5折walk-forward交叉验证。当前策略D(v2, CSI300低波动版本)尚未进行walk-forward验证。
 
 ---
 
@@ -305,15 +310,22 @@ etf-trader/
 
 ## 已知局限性
 
-- **策略C**：仅4.2年数据，2025港股大涨贡献大部分收益，统计意义有限
+- **策略B**：`vol_scale_cap=1.3`允许仓位达130%（隐含杠杆），需融资账户支持
+- **策略C**：仅4.2年数据，2025港股大涨贡献大部分收益，统计意义有限；无止损/回撤保护机制，MDD -23.3%
+- **策略D(v2)**：回测仅~4.2年(2022-01起)，统计检验力不足；当前持仓50%为金融股（4只券商+1只银行），行业集中度过高，无sector_max约束
 - **策略E**：28只龙头是当前视角选出的，存在后视选择偏差
 - **策略D/G**：使用baostock成分股数据已消除大部分生存偏差，但不排除数据源本身的微小误差
 - **策略F**：15bp交易成本较高，QDII ETF折溢价风险未完全建模
+- **策略G**：回测仅~5年(2021-01起)，统计检验力有限
+- **Sharpe比率**：各策略计算公式不完全一致（部分扣除无风险利率，部分未扣除），跨策略直接比较需谨慎
+- **D+E组合MDD**：使用硬编码相关系数估算，非实际合并NAV计算，仅供参考
 
 ## 风险提示
 
 - 本项目为个人量化研究工具，**不构成任何投资建议**
 - 历史回测不代表未来收益
+- 策略B在低波动环境下仓位可能超过100%（杠杆），放大亏损风险
+- 策略C无下行保护，极端行情下可能遭受较大回撤
 - 请根据自身风险承受能力决定是否参考
 
 ---

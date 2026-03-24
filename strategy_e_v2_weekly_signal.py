@@ -545,7 +545,7 @@ def run_backtest(price_df: pd.DataFrame,
     dd = nav_s / nav_s.cummax() - 1
     mdd = dd.min()
     wr = pd.Series(weekly_rets)
-    sharpe = wr.mean() / wr.std() * np.sqrt(52) if wr.std() > 0 else 0
+    sharpe = (wr.mean() * 52 - 0.025) / (wr.std() * np.sqrt(52)) if wr.std() > 0 else 0  # rf=2.5%
     calmar = cagr / abs(mdd) if mdd != 0 else 0
     win_rate = (wr > 0).sum() / len(wr) * 100
 

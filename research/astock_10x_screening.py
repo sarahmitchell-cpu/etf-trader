@@ -94,7 +94,7 @@ def get_market_cap_and_filter(stocks):
                 revenue = float(row2[8]) if row2[8] else 0
                 roe = float(row2[3]) if row2[3] else 0
                 eps_ttm = float(row2[7]) if row2[7] else 0
-            except:
+            except Exception:
                 pass
 
         if total_share <= 0:
@@ -147,7 +147,7 @@ def get_growth_data(stocks):
                     try:
                         yoy_ni = float(row[5]) if row[5] else None
                         growth_ni_list.append((year, yoy_ni))
-                    except:
+                    except Exception:
                         pass
 
                 rs = bs.query_profit_data(code=code, year=year, quarter=quarter)
@@ -159,7 +159,7 @@ def get_growth_data(stocks):
                         roe_list.append((year, roe_val))
                         if rev:
                             growth_rev_list.append((year, rev))
-                    except:
+                    except Exception:
                         pass
 
         # Also get latest quarters (2024Q1-Q4, 2025Q1-Q3 if available)
@@ -172,7 +172,7 @@ def get_growth_data(stocks):
                         yoy_ni = float(row[5]) if row[5] else None
                         if yoy_ni is not None:
                             growth_ni_list.append((f"{year}Q{quarter}", yoy_ni))
-                    except:
+                    except Exception:
                         pass
 
         # Compute growth metrics
@@ -257,7 +257,7 @@ def get_price_performance(stocks):
             row = rs.get_row_data()
             try:
                 prices.append(float(row[1]))
-            except:
+            except Exception:
                 continue
 
         if len(prices) >= 52:

@@ -506,7 +506,7 @@ def calc_stats(nav_series, weekly_rets, total_txn):
     mdd = float(np.min(dd))
 
     wr = np.array(weekly_rets)
-    sharpe = float(np.mean(wr) / np.std(wr) * np.sqrt(52)) if len(wr) > 10 and np.std(wr) > 0 else 0.0
+    sharpe = float((np.mean(wr) * 52 - 0.025) / (np.std(wr) * np.sqrt(52))) if len(wr) > 10 and np.std(wr) > 0 else 0.0  # rf=2.5%
     calmar = cagr / abs(mdd) if mdd != 0 else 0
 
     annual = {}

@@ -137,7 +137,7 @@ def fetch_growth_from_efinance(stock_list, price_df):
                     stock_data[f'yoy_ni_{year}'] = float(row[5]) if row[5] else None
                     stock_data[f'yoy_pni_{year}'] = float(row[7]) if row[7] else None
                     stock_data[f'yoy_eps_{year}'] = float(row[6]) if row[6] else None
-                except:
+                except Exception:
                     pass
 
             # Profit
@@ -148,7 +148,7 @@ def fetch_growth_from_efinance(stock_list, price_df):
                     stock_data[f'roe_{year}'] = float(row[3]) if row[3] else None
                     stock_data[f'np_margin_{year}'] = float(row[4]) if row[4] else None
                     stock_data[f'revenue_{year}'] = float(row[8]) if row[8] else None
-                except:
+                except Exception:
                     pass
 
         if stock_data:

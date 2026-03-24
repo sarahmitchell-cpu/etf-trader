@@ -354,7 +354,7 @@ def run_backtest(etf_weekly: Dict[str, pd.Series]) -> dict:
     mdd = drawdown.min()
 
     weekly_rets = nav_series.pct_change().dropna()
-    sharpe = weekly_rets.mean() / weekly_rets.std() * np.sqrt(52) if weekly_rets.std() > 0 else 0
+    sharpe = (weekly_rets.mean() * 52 - 0.025) / (weekly_rets.std() * np.sqrt(52)) if weekly_rets.std() > 0 else 0  # rf=2.5%
     calmar = cagr / abs(mdd) if mdd != 0 else 0
 
     # 持仓分布

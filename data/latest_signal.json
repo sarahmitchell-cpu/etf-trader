@@ -25,7 +25,7 @@
       "name": "红利低波",
       "etf": "515080",
       "etf_name": "红利低波ETF",
-      "momentum_8w": 2.12,
+      "momentum_4w": 2.12,
       "weight": 0.5,
       "position_pct": 40.8
     },
@@ -33,7 +33,7 @@
       "name": "现金流",
       "etf": "159201",
       "etf_name": "万家自由现金流ETF",
-      "momentum_8w": -1.98,
+      "momentum_4w": -1.98,
       "weight": 0.3,
       "position_pct": 24.5
     },
@@ -41,7 +41,7 @@
       "name": "国信价值",
       "etf": "512040",
       "etf_name": "国信价值ETF",
-      "momentum_8w": -2.95,
+      "momentum_4w": -2.95,
       "weight": 0.2,
       "position_pct": 16.3
     },
@@ -49,7 +49,7 @@
       "name": "创业成长",
       "etf": "159967",
       "etf_name": "创业板成长ETF",
-      "momentum_8w": -3.69,
+      "momentum_4w": -3.69,
       "weight": 0.0,
       "position_pct": 0.0
     }

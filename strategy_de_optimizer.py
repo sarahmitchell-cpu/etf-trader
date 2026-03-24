@@ -673,22 +673,23 @@ def backtest_combined(price_df: pd.DataFrame, d_params: dict, e_params: dict,
 
     # Since we can't easily combine at the weekly return level without
     # more complexity, we'll estimate from CAGRs and MDDs
-    # Actually let's do it properly with NAV reconstruction
-    # For simplicity, return blended metrics
+    # WARNING: MDD cannot be accurately estimated from individual strategy MDDs.
+    # MDD is a path-dependent metric that should be computed from the actual combined NAV series.
+    # The approximation below uses a variance-based model with assumed correlation, which is
+    # methodologically incorrect for MDD (MDD != volatility). Use only for rough screening.
     w_d, w_e = d_weight, 1 - d_weight
     blended_cagr = w_d * d_result['cagr'] + w_e * e_result['cagr']
-    # MDD doesn't blend linearly, but as an approximation for screening:
-    # Assume 50% correlation between D and E
-    corr = 0.5
+    # Approximate MDD using vol-style blending (known to be inaccurate, marked as estimate)
+    corr = 0.5  # assumed, not measured
     blended_mdd = -(np.sqrt((w_d * abs(d_result['mdd']))**2 + (w_e * abs(e_result['mdd']))**2
                              + 2 * corr * w_d * abs(d_result['mdd']) * w_e * abs(e_result['mdd'])))
     blended_sharpe = w_d * d_result['sharpe'] + w_e * e_result['sharpe']  # approximate
 
     return {
         'cagr': round(blended_cagr, 2),
-        'mdd': round(blended_mdd, 2),
+        'mdd': round(blended_mdd, 2),  # ESTIMATE ONLY - should compute from merged NAV
         'sharpe': round(blended_sharpe, 3),
-        'calmar': round(blended_cagr / abs(blended_mdd), 3) if blended_mdd != 0 else 0,
+        'calmar': round(blended_cagr / abs(blended_mdd), 3) if blended_mdd != 0 else 0,  # based on estimated MDD
         'd_result': {k: v for k, v in d_result.items() if k != 'params'},
         'e_result': {k: v for k, v in e_result.items() if k != 'params'},
         'd_weight': d_weight,

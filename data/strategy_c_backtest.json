@@ -3,18 +3,14 @@
     "name": "BuyHold_Equal",
     "period": "2022-06-10~2026-03-20",
     "weeks": 193,
-    "cagr_pct": 2.1224019444692352e+63,
-    "mdd_pct": -1753780735573.3,
+    "cagr_pct": null,
+    "mdd_pct": null,
     "sharpe": 0.303,
-    "calmar": 1.2101865993957713e+51,
+    "calmar": null,
     "avg_pos": 99900.0,
     "txn_cost": 0.0,
-    "annual": {
-      "2023": -7.391543809478543e+59,
-      "2024": 1.2097973147727785e+64,
-      "2025": -2.483229117271893e+62,
-      "2026": 2164996082827992.2
-    }
+    "annual": {},
+    "_note": "DATA CORRUPTED: NAV calculation overflow detected. BuyHold baseline needs re-computation from raw index data. Original values were astronomically large (CAGR ~2e63%), indicating a divide-by-zero or compounding bug in the backtest engine."
   },
   {
     "name": "EqW+Regime",

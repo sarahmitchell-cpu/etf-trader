@@ -190,7 +190,7 @@ def main():
             try:
                 s['yoy_ni'] = round(float(row[5]) * 100, 1) if row[5] else None
                 s['yoy_pni'] = round(float(row[7]) * 100, 1) if row[7] else None
-            except:
+            except Exception:
                 pass
 
         # Get 2023 growth for trend
@@ -199,7 +199,7 @@ def main():
             row = rs.get_row_data()
             try:
                 s['yoy_ni_2023'] = round(float(row[5]) * 100, 1) if row[5] else None
-            except:
+            except Exception:
                 pass
 
         # Get ROE and revenue
@@ -209,7 +209,7 @@ def main():
             try:
                 s['roe'] = round(float(row[3]) * 100, 1) if row[3] else None
                 s['revenue'] = float(row[8]) if row[8] else None
-            except:
+            except Exception:
                 pass
 
         rs = bs.query_profit_data(code=bs_code, year=2023, quarter=4)
@@ -217,7 +217,7 @@ def main():
             row = rs.get_row_data()
             try:
                 s['revenue_2023'] = float(row[8]) if row[8] else None
-            except:
+            except Exception:
                 pass
 
         # Get industry

@@ -89,7 +89,7 @@ def select_value_quality(price_df: pd.DataFrame, idx: int) -> Tuple[List[str], L
             continue
 
         # Value factor: negative momentum = high value
-        mom_12w = float(price_df[col].iloc[idx] / price_df[col].iloc[idx - vlb] - 1)
+        mom_10w = float(price_df[col].iloc[idx] / price_df[col].iloc[idx - vlb] - 1)
 
         # Quality factor: low volatility
         ret_slice = returns[col].iloc[max(0, idx-vol_lb):idx+1].dropna()
@@ -106,9 +106,9 @@ def select_value_quality(price_df: pd.DataFrame, idx: int) -> Tuple[List[str], L
             mom_4w = 0.0
 
         scores[col] = {
-            'value_score': -mom_12w,
+            'value_score': -mom_10w,
             'quality_score': -vol,
-            'mom_12w': mom_12w,
+            'mom_10w': mom_10w,
             'mom_4w': mom_4w,
             'vol_12w': vol,
         }
@@ -147,7 +147,7 @@ def select_value_quality(price_df: pd.DataFrame, idx: int) -> Tuple[List[str], L
             'name': info['name'],
             'code': info.get('code', t),
             'sector': info.get('sector', '?'),
-            'mom_12w': round(s['mom_12w'] * 100, 1),
+            'mom_10w': round(s['mom_10w'] * 100, 1),
             'mom_4w': round(s['mom_4w'] * 100, 1),
             'vol_12w': round(s['vol_12w'] * 100, 2),
             'value_rank': int(value_ranks[t]),
@@ -185,7 +185,7 @@ def generate_signal(price_df: pd.DataFrame) -> dict:
                 'code': d['code'],
                 'name': d['name'],
                 'sector': d['sector'],
-                'mom_12w': d['mom_12w'],
+                'mom_10w': d['mom_10w'],
                 'vol_12w': d['vol_12w'],
             })
 
@@ -199,14 +199,14 @@ def generate_signal(price_df: pd.DataFrame) -> dict:
     for d in details:
         if d['selected']:
             lines.append(f"  >> #{d['composite_rank']} {d['code']} {d['name']} [{d['sector']}] "
-                        f"12w:{d['mom_12w']:+.1f}% 4w:{d['mom_4w']:+.1f}% Vol:{d['vol_12w']:.1f}%")
+                        f"10w:{d['mom_10w']:+.1f}% 4w:{d['mom_4w']:+.1f}% Vol:{d['vol_12w']:.1f}%")
 
     lines.append("")
     lines.append("完整排名 (价值+质量综合):")
     for d in details:
         icon = '>>' if d['selected'] else '  '
         lines.append(f"  {icon} #{d['composite_rank']} {d['code']} {d['name']} [{d['sector']}] "
-                    f"12w:{d['mom_12w']:+.1f}% V-R:{d['value_rank']} Q-R:{d['quality_rank']}")
+                    f"10w:{d['mom_10w']:+.1f}% V-R:{d['value_rank']} Q-R:{d['quality_rank']}")
 
     lines.append("")
     lines.append(f"注: 已过滤4周跌幅>{abs(PARAMS['max_drawdown_filter'])*100:.0f}%的股票(防暴跌)")

@@ -442,7 +442,7 @@ def generate_signal(factor_weekly: Dict[str, pd.Series],
             'name': name,
             'etf': FACTOR_INDICES[[k for k, v in FACTOR_INDICES.items() if v['name'] == name][0]]['etf'],
             'etf_name': FACTOR_INDICES[[k for k, v in FACTOR_INDICES.items() if v['name'] == name][0]]['etf_name'],
-            'momentum_8w': round(mom * 100, 2),
+            'momentum_4w': round(mom * 100, 2),
             'weight': mom_weights[name],
             'position_pct': round(total_position * mom_weights[name] * 100, 1),
         })
@@ -489,7 +489,7 @@ def generate_signal(factor_weekly: Dict[str, pd.Series],
     for h in momentum_detail:
         signal['action_summary'].append(
             f"  {h['etf']} {h['etf_name']}: {h['position_pct']}% "
-            f"(动量{h['momentum_8w']:+.1f}%, 权重{h['weight']*100:.0f}%)"
+            f"(动量{h['momentum_4w']:+.1f}%, 权重{h['weight']*100:.0f}%)"
         )
     signal['action_summary'].append(f"  货币基金/现金: {signal['cash_pct']}%")
 
@@ -592,7 +592,7 @@ def run_backtest(factor_weekly: Dict[str, pd.Series],
     mdd = drawdown.min()
 
     weekly_rets = nav_series.pct_change().dropna()
-    sharpe = weekly_rets.mean() / weekly_rets.std() * np.sqrt(52) if weekly_rets.std() > 0 else 0
+    sharpe = (weekly_rets.mean() * 52 - 0.025) / (weekly_rets.std() * np.sqrt(52)) if weekly_rets.std() > 0 else 0  # rf=2.5%
     calmar = cagr / abs(mdd) if mdd != 0 else 0
 
     # 年度收益

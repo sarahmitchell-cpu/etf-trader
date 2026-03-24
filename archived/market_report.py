@@ -11,7 +11,7 @@ import os
 from datetime import datetime
 
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN", "")  # Set via env var, never hardcode
-TELEGRAM_CHAT_ID = "5310487594"
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")  # Set via env var, never hardcode
 
 # Our positions (cost basis)
 POSITIONS = {

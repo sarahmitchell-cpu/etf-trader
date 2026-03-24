@@ -56,6 +56,7 @@ PARAMS = {
     'txn_cost_bps': 8,       # transaction cost in basis points
     'min_weeks': 25,         # minimum data required per stock
     'warmup': 54,            # warmup period (weeks) before first signal
+    'sector_max': 3,         # max stocks per sector (prevents concentration, e.g. 50% financials)
 }
 
 # CSI 300 rebalance dates (semi-annual)
@@ -270,7 +271,20 @@ def generate_signal(price_df, mask, industries, idx=None):
         return None
 
     top_n = PARAMS['top_n']
-    selected_stocks = scores.nlargest(top_n).index.tolist()
+    sector_max = PARAMS.get('sector_max', 99)
+
+    # Apply sector_max constraint: iterate by score, skip if sector already full
+    sorted_candidates = scores.sort_values(ascending=False)
+    selected_stocks = []
+    sector_count = defaultdict(int)
+    for stock in sorted_candidates.index:
+        info = industries.get(stock, {'industry': 'Unknown'})
+        sector = info.get('industry', 'Unknown')
+        if sector_count[sector] < sector_max:
+            selected_stocks.append(stock)
+            sector_count[sector] += 1
+        if len(selected_stocks) >= top_n:
+            break
 
     current_date = price_df.index[idx]
     returns = price_df.pct_change(fill_method=None)
@@ -301,7 +315,7 @@ def generate_signal(price_df, mask, industries, idx=None):
         'date': current_date.strftime('%Y-%m-%d'),
         'generated_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
         'strategy': 'Strategy D v2 (CSI300 Low Volatility)',
-        'description': 'Select 15 lowest-volatility stocks from CSI 300 real constituents',
+        'description': f'Select {top_n} lowest-volatility stocks from CSI 300 real constituents (max {sector_max}/sector)',
         'params': PARAMS,
         'active_constituents': int(active.sum()),
         'scored_stocks': len(scores),
@@ -398,7 +412,7 @@ def calc_stats(nav_series, weekly_rets, total_txn):
     mdd = float(np.min(dd))
 
     wr = np.array(weekly_rets)
-    sharpe = float(np.mean(wr) / np.std(wr) * np.sqrt(52)) if len(wr) > 10 and np.std(wr) > 0 else 0.0
+    sharpe = float((np.mean(wr) * 52 - 0.025) / (np.std(wr) * np.sqrt(52))) if len(wr) > 10 and np.std(wr) > 0 else 0.0  # rf=2.5%
     calmar = cagr / abs(mdd) if mdd != 0 else 0
 
     annual = {}

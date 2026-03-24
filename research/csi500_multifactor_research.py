@@ -839,7 +839,7 @@ def main():
                     rolling_results[label] = rolling
                     print(f"\n=== Rolling 12m: {label} ===")
                     print(f"  Win rate: {rolling['win_rate']}%, Mean: {rolling['mean']}%, Min: {rolling['min']}%, Max: {rolling['max']}%")
-            except:
+            except Exception:
                 pass
 
     # Equal-weight benchmark

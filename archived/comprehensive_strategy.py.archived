@@ -94,7 +94,7 @@ ALLOCATION_MATRIX = [
     [0.70, 0.65, 0.60, 0.55, 0.50, 0.40, 0.30, 0.25, 0.15],  # L5 合理
     [0.60, 0.55, 0.50, 0.45, 0.40, 0.30, 0.25, 0.20, 0.10],  # L6 偏贵
     [0.50, 0.45, 0.40, 0.35, 0.30, 0.25, 0.20, 0.15, 0.10],  # L7 高估
-    [0.40, 0.35, 0.30, 0.25, 0.35, 0.20, 0.15, 0.10, 0.05],  # L8 深度高估
+    [0.40, 0.35, 0.30, 0.25, 0.20, 0.15, 0.12, 0.08, 0.05],  # L8 深度高估 (fixed: col5 was 0.35, should be monotonic)
     [0.30, 0.25, 0.20, 0.15, 0.10, 0.10, 0.08, 0.05, 0.03],  # L9 极度高估
 ]
 
@@ -105,7 +105,7 @@ ALLOCATION_MATRIX = [
 def get_price(code):
     try:
         prefix = 'sh' if code.startswith('5') else 'sz'
-        r = requests.get(f'http://qt.gtimg.cn/q={prefix}{code}', timeout=5)
+        r = requests.get(f'https://qt.gtimg.cn/q={prefix}{code}', timeout=5)
         r.encoding = 'gbk'
         parts = r.text.split('=')[1].strip().strip('"').split('~')
         price = float(parts[3])
