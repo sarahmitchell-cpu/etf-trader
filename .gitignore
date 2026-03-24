@@ -1,20 +1,10 @@
-# Logs and temporary files
-logs/
-*.pid
-*.log
-cards/
-us_video_frames/
-
-# Generated video files (too large for git)
-*.mp4
-
-# Daily generated reports (regenerated each day)
-quant_report_*.json
-comprehensive_report_*.json
-
-# Compiled Python
+# Data caches - large files
+data/baostock_cache/
+data/fundamental_cache/
+data/fundamental_cache.pkl
+data/csi500_*.csv
+data/sd_*.csv
+sector_cache/
+*.pkl
 __pycache__/
-*.pyc
-
-# HTML render templates (generated)
-card_render*.html
+.DS_Store

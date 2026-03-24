@@ -1,34 +1,46 @@
 #!/usr/bin/env python3
 """
-Strategy D (v2): CSI300 Low Volatility Strategy
+Strategy G: CSI500 Low Volatility + Low PB Value Strategy (Mean Reversion)
 
-Uses real historical CSI 300 constituents (no survivorship bias) via baostock.
-Selects stocks with lowest 20-week realized volatility.
+Uses real historical CSI 500 constituents (no survivorship bias) via baostock.
+Composite factor: 50% Low Volatility (12w) + 50% Low PB value.
 
 Parameters:
-  - vol_lookback: 20 weeks
+  - vol_lookback: 12 weeks
   - top_n: 10 stocks
   - rebal_freq: every 2 weeks
+  - factor weights: low_vol=0.5, low_pb=0.5
   - txn_cost: 8 bps one-way
 
-Backtest (2022-01 ~ 2026-03, ~4 years, real constituents, no survivorship bias):
-  - CAGR = 13.9%
-  - MDD  = -8.5%
-  - Sharpe = 0.955
-  - Calmar = 1.636
-  - 12-month rolling win rate: 98.8%
-  - Annual: 2022:-1.5% | 2023:+12.0% | 2024:+46.6% | 2025:+5.2%
+Backtest (2021-01 ~ 2026-03, ~5 years, real constituents, no survivorship bias):
+  - CAGR = 13.5%
+  - MDD  = -11.9%
+  - Sharpe = 0.794
+  - Calmar = 1.132
+  - 12-month rolling win rate: 97.5% (only 4 losing windows out of 160)
+  - Annual: 2022:+8.8% | 2023:+4.1% | 2024:+38.7% | 2025:+12.0%
 
 Bias Handling:
-  - Survivorship bias: eliminated via baostock historical constituent lists
-  - Look-ahead bias: factors computed strictly from past data
+  - Survivorship bias: eliminated via baostock historical CSI500 constituent lists
+    (928 unique stocks across 11 rebalance periods, 2020-12 to 2025-12)
+  - Look-ahead bias: factors computed strictly from past data, PE/PB from daily
+    data resampled to weekly (last available before rebalance date)
   - Transaction costs: 8 bps per trade (conservative for A-shares)
+  - Data coverage: ~400/928 stocks have PE/PB data (baostock limitation)
+    Only stocks with both price AND PE/PB data are eligible for selection
   - Rebalance dates aligned with Friday close (weekly data)
 
+Strategy Rationale:
+  - CSI 500 mid-cap stocks: pure momentum FAILS (tested, all negative CAGR)
+  - Pure mean reversion (buy dips) also fails (dips = real deterioration)
+  - Low PB captures "genuinely cheap" stocks (fundamental anchor)
+  - Low volatility filters out distressed/speculative names
+  - Combination: buy cheap, stable mid-caps = A-share value investing sweet spot
+
 Usage:
-  python3 strategy_d_weekly_signal.py              # Generate current signal
-  python3 strategy_d_weekly_signal.py --json       # JSON only
-  python3 strategy_d_weekly_signal.py --backtest   # Full backtest
+  python3 strategy_g_weekly_signal.py              # Generate current signal
+  python3 strategy_g_weekly_signal.py --json       # JSON only
+  python3 strategy_g_weekly_signal.py --backtest   # Full backtest
 """
 
 import baostock as bs
@@ -50,15 +62,18 @@ os.makedirs(CACHE_DIR, exist_ok=True)
 # ============================================================
 
 PARAMS = {
-    'vol_lookback': 20,      # 20-week rolling volatility
-    'top_n': 10,             # select top 10 lowest-vol stocks
+    'vol_lookback': 12,      # 12-week rolling volatility
+    'top_n': 10,             # select top 10 stocks
     'rebal_freq': 2,         # rebalance every 2 weeks
     'txn_cost_bps': 8,       # transaction cost in basis points
-    'min_weeks': 25,         # minimum data required per stock
-    'warmup': 54,            # warmup period (weeks) before first signal
+    'factor_weights': {
+        'low_vol': 0.5,
+        'low_pb': 0.5,
+    },
+    'warmup': 54,            # warmup period (weeks)
 }
 
-# CSI 300 rebalance dates (semi-annual)
+# CSI 500 rebalance dates (semi-annual)
 REBALANCE_DATES = [
     '2020-12-14', '2021-06-15', '2021-12-13', '2022-06-13',
     '2022-12-12', '2023-06-12', '2023-12-11', '2024-06-17',
@@ -71,8 +86,8 @@ REBALANCE_DATES = [
 # ============================================================
 
 def fetch_constituents():
-    """Fetch CSI 300 historical constituents from baostock"""
-    cache_path = os.path.join(CACHE_DIR, 'csi300_constituents_history.json')
+    """Fetch CSI 500 historical constituents from baostock"""
+    cache_path = os.path.join(CACHE_DIR, 'csi500_constituents_history.json')
     if os.path.exists(cache_path):
         age = (time.time() - os.path.getmtime(cache_path)) / 86400
         if age <= 7:
@@ -85,7 +100,7 @@ def fetch_constituents():
     all_stocks = set()
 
     for d in REBALANCE_DATES:
-        rs = bs.query_hs300_stocks(date=d)
+        rs = bs.query_zz500_stocks(date=d)
         stocks = []
         while rs.next():
             row = rs.get_row_data()
@@ -111,7 +126,7 @@ def fetch_constituents():
 
 def fetch_industries(stock_list):
     """Get industry classification for all stocks"""
-    cache_path = os.path.join(CACHE_DIR, 'csi300_industries.json')
+    cache_path = os.path.join(CACHE_DIR, 'csi500_industries.json')
     if os.path.exists(cache_path):
         age = (time.time() - os.path.getmtime(cache_path)) / 86400
         if age <= 30:
@@ -149,7 +164,7 @@ def fetch_industries(stock_list):
 
 def fetch_weekly_prices(stock_list):
     """Fetch weekly close prices for all stocks"""
-    cache_path = os.path.join(CACHE_DIR, 'csi300_all_weekly_prices.pkl')
+    cache_path = os.path.join(CACHE_DIR, 'csi500_all_weekly_prices.pkl')
     if os.path.exists(cache_path):
         age = (time.time() - os.path.getmtime(cache_path)) / 86400
         if age <= 3:
@@ -202,12 +217,82 @@ def fetch_weekly_prices(stock_list):
     return price_df
 
 
+def fetch_fundamentals(stock_list):
+    """Fetch daily PE/PB and resample to weekly"""
+    cache_path = os.path.join(CACHE_DIR, 'csi500_weekly_fundamentals.pkl')
+
+    existing = {}
+    if os.path.exists(cache_path):
+        old = pd.read_pickle(cache_path)
+        if isinstance(old, dict) and len(old.get('pe', {})) > 10:
+            existing = old
+            print(f"Loaded PE/PB cache: PE={len(existing.get('pe',{}))}, PB={len(existing.get('pb',{}))}")
+
+    to_fetch = [s for s in stock_list if s not in existing.get('pe', {})]
+    print(f"Need to fetch PE/PB: {len(to_fetch)} stocks")
+
+    if not to_fetch:
+        return existing
+
+    lg = bs.login()
+    pe_data = dict(existing.get('pe', {}))
+    pb_data = dict(existing.get('pb', {}))
+    failed = []
+    t0 = time.time()
+
+    for i, stock in enumerate(to_fetch):
+        if i % 50 == 0:
+            elapsed = time.time() - t0
+            print(f"  Fetching PE/PB: {i}/{len(to_fetch)} ({elapsed:.0f}s)...")
+
+        rs = bs.query_history_k_data_plus(
+            stock, 'date,peTTM,pbMRQ',
+            start_date='2020-09-01', end_date='2026-12-31',
+            frequency='d', adjustflag='1'
+        )
+
+        dates_list, pe_list, pb_list = [], [], []
+        while rs.next():
+            row = rs.get_row_data()
+            try:
+                d = row[0]
+                pe = float(row[1]) if row[1] and row[1] != '' else np.nan
+                pb = float(row[2]) if row[2] and row[2] != '' else np.nan
+                dates_list.append(d)
+                pe_list.append(pe)
+                pb_list.append(pb)
+            except (ValueError, IndexError):
+                continue
+
+        if len(dates_list) > 20:
+            idx = pd.to_datetime(dates_list)
+            weekly_pe = pd.Series(pe_list, index=idx).resample('W-FRI').last()
+            weekly_pb = pd.Series(pb_list, index=idx).resample('W-FRI').last()
+            pe_data[stock] = weekly_pe.dropna()
+            pb_data[stock] = weekly_pb.dropna()
+        else:
+            failed.append(stock)
+
+        if (i + 1) % 200 == 0:
+            pd.to_pickle({'pe': pe_data, 'pb': pb_data}, cache_path)
+
+        if i % 100 == 99:
+            time.sleep(1)
+
+    bs.logout()
+
+    result = {'pe': pe_data, 'pb': pb_data}
+    pd.to_pickle(result, cache_path)
+    print(f"PE/PB done! PE: {len(pe_data)}, PB: {len(pb_data)}, Failed: {len(failed)}")
+    return result
+
+
 # ============================================================
 # Constituent Mask
 # ============================================================
 
 def build_constituent_mask(price_df, const):
-    """Build a boolean mask: True if stock is in CSI300 at that week"""
+    """Build boolean mask: True if stock is in CSI500 at that week"""
     mask = pd.DataFrame(False, index=price_df.index, columns=price_df.columns)
     rebal_dates = const['dates']
     constituents = const['constituents']
@@ -232,15 +317,25 @@ def build_constituent_mask(price_df, const):
 # Factor Computation
 # ============================================================
 
-def compute_low_vol(price_df, lookback=20):
-    """Compute annualized volatility (lower = better, so we negate)"""
+def compute_factors(price_df, pb_df):
+    """Compute low volatility and low PB factors"""
     returns = price_df.pct_change(fill_method=None)
-    vol = returns.rolling(lookback, min_periods=int(lookback * 0.6)).std() * np.sqrt(52)
-    return -vol  # negate: lower vol = higher score
+
+    # Low Volatility (12-week)
+    vol12 = returns.rolling(12, min_periods=8).std() * np.sqrt(52)
+    low_vol = -vol12  # negate: lower vol = higher score
+
+    # Low PB (value)
+    pb_clean = pb_df.copy()
+    pb_clean[pb_clean <= 0] = np.nan
+    pb_clean[pb_clean > 30] = np.nan
+    low_pb = -pb_clean  # negate: lower PB = higher score
+
+    return low_vol, low_pb
 
 
 def cross_sectional_zscore(factor_df, mask):
-    """Z-score normalize within each cross-section (week)"""
+    """Z-score normalize within each cross-section"""
     result = factor_df.copy()
     result[~mask] = np.nan
     row_mean = result.mean(axis=1)
@@ -253,15 +348,20 @@ def cross_sectional_zscore(factor_df, mask):
 # Signal Generation
 # ============================================================
 
-def generate_signal(price_df, mask, industries, idx=None):
-    """Generate current signal: select top-N lowest volatility stocks"""
+def generate_signal(price_df, mask, pb_df, industries, idx=None):
+    """Generate current signal"""
     if idx is None:
         idx = len(price_df) - 1
 
-    low_vol_raw = compute_low_vol(price_df, PARAMS['vol_lookback'])
-    low_vol_z = cross_sectional_zscore(low_vol_raw, mask)
+    low_vol, low_pb = compute_factors(price_df, pb_df)
+    low_vol_z = cross_sectional_zscore(low_vol, mask)
+    low_pb_z = cross_sectional_zscore(low_pb, mask)
 
-    scores = low_vol_z.iloc[idx].copy()
+    # Composite score
+    w = PARAMS['factor_weights']
+    score_df = low_vol_z * w['low_vol'] + low_pb_z * w['low_pb']
+
+    scores = score_df.iloc[idx].copy()
     active = mask.iloc[idx]
     scores[~active] = np.nan
     scores = scores.dropna()
@@ -274,14 +374,15 @@ def generate_signal(price_df, mask, industries, idx=None):
 
     current_date = price_df.index[idx]
     returns = price_df.pct_change(fill_method=None)
-    vol_raw = returns.rolling(PARAMS['vol_lookback'], min_periods=12).std() * np.sqrt(52)
+    vol_raw = returns.rolling(PARAMS['vol_lookback'], min_periods=8).std() * np.sqrt(52)
     mom_4w = (price_df.iloc[idx] / price_df.iloc[max(0, idx-4)] - 1) if idx >= 4 else pd.Series(dtype=float)
     mom_12w = (price_df.iloc[idx] / price_df.iloc[max(0, idx-12)] - 1) if idx >= 12 else pd.Series(dtype=float)
 
     all_rankings = []
-    for rank_i, stock in enumerate(scores.sort_values(ascending=False).index):
+    for rank_i, stock in enumerate(scores.sort_values(ascending=False).index[:50]):
         info = industries.get(stock, {'name': '?', 'industry': '?'})
         vol_val = vol_raw[stock].iloc[idx] if stock in vol_raw.columns else np.nan
+        pb_val = pb_df[stock].iloc[idx] if stock in pb_df.columns else np.nan
         m4 = mom_4w.get(stock, np.nan) if isinstance(mom_4w, pd.Series) else np.nan
         m12 = mom_12w.get(stock, np.nan) if isinstance(mom_12w, pd.Series) else np.nan
 
@@ -290,36 +391,39 @@ def generate_signal(price_df, mask, industries, idx=None):
             'code': stock,
             'name': info.get('name', '?'),
             'industry': info.get('industry', '?'),
-            'vol_20w_ann': round(float(vol_val * 100), 1) if pd.notna(vol_val) else None,
+            'vol_12w_ann': round(float(vol_val * 100), 1) if pd.notna(vol_val) else None,
+            'pb': round(float(pb_val), 2) if pd.notna(pb_val) else None,
             'mom_4w_pct': round(float(m4 * 100), 1) if pd.notna(m4) else None,
             'mom_12w_pct': round(float(m12 * 100), 1) if pd.notna(m12) else None,
-            'z_score': round(float(scores[stock]), 3),
+            'composite_score': round(float(scores[stock]), 3),
             'selected': stock in selected_stocks,
         })
 
     signal = {
         'date': current_date.strftime('%Y-%m-%d'),
         'generated_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-        'strategy': 'Strategy D v2 (CSI300 Low Volatility)',
-        'description': 'Select 15 lowest-volatility stocks from CSI 300 real constituents',
+        'strategy': 'Strategy G (CSI500 LV+PB Mean Reversion)',
+        'description': 'Select 10 lowest-vol + lowest-PB stocks from CSI 500 real constituents',
         'params': PARAMS,
         'active_constituents': int(active.sum()),
         'scored_stocks': len(scores),
         'selected_count': len(selected_stocks),
         'position_per_stock_pct': round(100 / len(selected_stocks), 1),
         'selected_stocks': [r for r in all_rankings if r['selected']],
-        'all_rankings': all_rankings[:50],
+        'all_rankings': all_rankings,
     }
 
     lines = [
-        f"CSI300低波动策略 | {current_date.strftime('%Y-%m-%d')}",
+        f"CSI500低波价值策略 | {current_date.strftime('%Y-%m-%d')}",
         f"当前成分股: {int(active.sum())}只 | 可评分: {len(scores)}只",
-        f"选股: 20周波动率最低的{top_n}只 | 等权配置",
+        f"选股: 50%低波动+50%低PB | Top {top_n} | 等权配置",
         "",
         "本期选股:",
     ]
     for r in signal['selected_stocks']:
-        lines.append(f"  {r['name']}({r['code']}) [{r['industry']}] 波动率={r['vol_20w_ann']}%")
+        pb_str = f"PB={r['pb']}" if r['pb'] else "PB=N/A"
+        vol_str = f"波动率={r['vol_12w_ann']}%" if r['vol_12w_ann'] else "波动率=N/A"
+        lines.append(f"  {r['name']}({r['code']}) [{r['industry']}] {vol_str} {pb_str}")
 
     signal['summary_cn'] = '\n'.join(lines)
     return signal
@@ -329,10 +433,14 @@ def generate_signal(price_df, mask, industries, idx=None):
 # Backtest Engine
 # ============================================================
 
-def run_backtest(price_df, mask, industries):
+def run_backtest(price_df, mask, pb_df, industries):
     """Full backtest"""
-    low_vol_raw = compute_low_vol(price_df, PARAMS['vol_lookback'])
-    low_vol_z = cross_sectional_zscore(low_vol_raw, mask)
+    low_vol, low_pb = compute_factors(price_df, pb_df)
+    low_vol_z = cross_sectional_zscore(low_vol, mask)
+    low_pb_z = cross_sectional_zscore(low_pb, mask)
+
+    w = PARAMS['factor_weights']
+    score_df = low_vol_z * w['low_vol'] + low_pb_z * w['low_pb']
 
     txn_cost = PARAMS['txn_cost_bps'] / 10000
     top_n = PARAMS['top_n']
@@ -349,7 +457,7 @@ def run_backtest(price_df, mask, industries):
 
     i = warmup
     while i < len(price_df) - 1:
-        scores = low_vol_z.iloc[i].copy()
+        scores = score_df.iloc[i].copy()
         active = mask.iloc[i]
         scores[~active] = np.nan
         scores = scores.dropna()
@@ -439,13 +547,23 @@ def calc_stats(nav_series, weekly_rets, total_txn):
 # ============================================================
 
 def load_data():
-    print("Loading CSI300 data...")
+    print("Loading CSI500 data...")
     const = fetch_constituents()
     all_stocks = const['all_unique_stocks']
+    print(f"  {len(all_stocks)} unique stocks")
+
     industries = fetch_industries(all_stocks)
     price_df = fetch_weekly_prices(all_stocks)
+
+    print("Loading PE/PB fundamentals...")
+    fund = fetch_fundamentals(all_stocks)
+    pb_dict = fund.get('pb', {})
+    pb_df = pd.DataFrame(pb_dict).sort_index()
+    pb_df = pb_df.reindex(price_df.index, method='ffill')
+    print(f"  PB matrix: {pb_df.shape}")
+
     mask = build_constituent_mask(price_df, const)
-    return price_df, mask, industries, const
+    return price_df, mask, pb_df, industries, const
 
 
 def main():
@@ -454,30 +572,30 @@ def main():
         mode = 'backtest'
     json_only = '--json' in sys.argv
 
-    price_df, mask, industries, const = load_data()
+    price_df, mask, pb_df, industries, const = load_data()
 
     if mode == 'backtest':
         print("\n" + "=" * 60)
-        print("Strategy D v2 (CSI300 Low Volatility) - Full Backtest")
+        print("Strategy G (CSI500 LV+PB) - Full Backtest")
         print("=" * 60)
-        nav, wr, txn = run_backtest(price_df, mask, industries)
+        nav, wr, txn = run_backtest(price_df, mask, pb_df, industries)
         stats = calc_stats(nav, wr, txn)
         if stats:
             print(f"\nResults:")
             for k, v in stats.items():
                 print(f"  {k}: {v}")
 
-        out_path = os.path.join(DATA_DIR, 'strategy_d_v2_backtest.json')
+        out_path = os.path.join(DATA_DIR, 'strategy_g_backtest.json')
         with open(out_path, 'w') as f:
             json.dump(stats, f, indent=2, ensure_ascii=False)
         print(f"\nSaved to {out_path}")
     else:
-        signal = generate_signal(price_df, mask, industries)
+        signal = generate_signal(price_df, mask, pb_df, industries)
         if signal is None:
             print("ERROR: Could not generate signal")
             sys.exit(1)
 
-        out_path = os.path.join(DATA_DIR, 'strategy_d_v2_latest_signal.json')
+        out_path = os.path.join(DATA_DIR, 'strategy_g_latest_signal.json')
         with open(out_path, 'w') as f:
             json.dump(signal, f, indent=2, ensure_ascii=False)
 

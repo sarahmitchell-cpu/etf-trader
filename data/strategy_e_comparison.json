@@ -1,0 +1,40 @@
+{
+  "original": {
+    "strategy": "Strategy E Original (单因子反转): Top4",
+    "period": "2022-06-05 ~ 2026-03-20",
+    "years": 3.8,
+    "cagr_pct": 13.5,
+    "total_return_pct": 70.0,
+    "mdd_pct": -20.0,
+    "sharpe": 0.753,
+    "calmar": 0.675,
+    "win_rate_pct": 52.8,
+    "annual_returns": {
+      "2023": 2.4,
+      "2024": 20.1,
+      "2025": 17.5,
+      "2026": 13.7
+    },
+    "total_txn_pct": 5.24,
+    "note": "无前瞻偏差: T周决策->T+1周收益, 交易成本8bp"
+  },
+  "enhanced": {
+    "strategy": "Strategy E Enhanced (多因子): Top4",
+    "period": "2022-06-05 ~ 2026-03-20",
+    "years": 3.8,
+    "cagr_pct": -0.2,
+    "total_return_pct": 1.5,
+    "mdd_pct": -27.5,
+    "sharpe": 0.118,
+    "calmar": -0.009,
+    "win_rate_pct": 49.2,
+    "annual_returns": {
+      "2023": -9.1,
+      "2024": 3.0,
+      "2025": 1.6,
+      "2026": 1.1
+    },
+    "total_txn_pct": 5.48,
+    "note": "无前瞻偏差: T周决策->T+1周收益, 交易成本8bp"
+  }
+}

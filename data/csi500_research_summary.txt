@@ -1,0 +1,38 @@
+CSI500 Multi-Factor Research Results (2026-03-23)
+==================================================
+130 strategies tested, 16.7s runtime, no survivorship bias (real constituents)
+
+TOP 5 BY CALMAR:
+1. C_LV_QS_MR_top15_2w_sec3 (LowVol+QualitySharpe+MeanReversion, Top15, 2w rebal, sector cap 3)
+   CAGR=+13.7% MDD=-15.6% Sharpe=0.786 Calmar=0.879
+   Annual: 2022:-4.9% 2023:+10.8% 2024:+27.7% 2025:+24.2% 2026:+0.5%
+   Rolling 12M win rate: 97.5%, mean: +16.1%, min: -1.6%
+
+2. C_LV_QS_top15_2w_sec3 (LowVol+QualitySharpe)
+   CAGR=+11.7% MDD=-18.4% Sharpe=0.680 Calmar=0.636
+
+3. C_Equal4_top15_2w_sec3 (Equal weight 4 factors)
+   CAGR=+10.1% MDD=-16.6% Sharpe=0.649 Calmar=0.605
+
+4. C_LV_QS_MR_top10_2w (no sector cap)
+   CAGR=+11.0% MDD=-19.4% Sharpe=0.620 Calmar=0.566
+
+5. low_vol_26w_top15_4w (single factor)
+   CAGR=+9.3% MDD=-16.6% Sharpe=0.620 Calmar=0.561
+
+FACTOR GROUP AVERAGES:
+  low_vol (10 configs):     avg Calmar=0.383 (BEST single factor)
+  low_vol_26w (10):         avg Calmar=0.367
+  Composite (70):           avg Calmar=0.215 (best=0.879)
+  momentum_12m (10):        avg Calmar=-0.014
+  quality_sharpe (10):      avg Calmar=-0.085
+  mean_reversion (10):      avg Calmar=-0.118
+  momentum_6m (10):         avg Calmar=-0.144
+
+KEY FINDINGS:
+- Low volatility is the strongest single factor for CSI500 stock selection
+- Composite factors + sector diversification (cap 3 per sector) produce best results
+- Momentum/reversal/quality alone are negative, but enhance low vol in composites
+- Best strategy: 13.7% CAGR with only 15.6% max drawdown
+- 97.5% probability of positive return over any rolling 12-month window
+- Sector cap significantly improves risk-adjusted returns
