@@ -1,0 +1,123 @@
+[
+  {
+    "variant": "H1",
+    "index": "科创50ETF",
+    "annualized_return": 0.21661759028696337,
+    "max_drawdown": -0.09593880810205628,
+    "sharpe": 1.422745539290998,
+    "calmar": 2.257872435277008,
+    "n_trades": 12,
+    "win_rate": 0.75,
+    "profit_loss_ratio": 5.954993024362678
+  },
+  {
+    "variant": "H2",
+    "index": "沪深300",
+    "annualized_return": 0.1547492977731615,
+    "max_drawdown": -0.07688396117574582,
+    "sharpe": 1.3292647502871249,
+    "calmar": 2.0127643712246637,
+    "n_trades": 29,
+    "win_rate": 0.6896551724137931,
+    "profit_loss_ratio": 1.8751494932217443
+  },
+  {
+    "variant": "H3",
+    "index": "科创50ETF",
+    "annualized_return": 0.22269494391260314,
+    "max_drawdown": -0.1903508862740227,
+    "sharpe": 0.9965342701967727,
+    "calmar": 1.1699180827139362,
+    "n_trades": 19,
+    "win_rate": 0.7894736842105263,
+    "profit_loss_ratio": 1.661621797729923
+  },
+  {
+    "variant": "H4",
+    "index": "科创50ETF",
+    "annualized_return": 0.1630022232701105,
+    "max_drawdown": -0.05992370414120525,
+    "sharpe": 0.951735005319731,
+    "calmar": 2.7201626736225992,
+    "n_trades": 42,
+    "win_rate": 0.6904761904761905,
+    "profit_loss_ratio": 2.4165033555033695
+  },
+  {
+    "variant": "H5",
+    "index": "恒生指数",
+    "annualized_return": 0.07951758556762223,
+    "max_drawdown": -0.1410694352269028,
+    "sharpe": 0.6061905184232694,
+    "calmar": 0.5636769257615752,
+    "n_trades": 59,
+    "win_rate": 0.6440677966101694,
+    "profit_loss_ratio": 1.413963009812124
+  },
+  {
+    "variant": "H7",
+    "index": "科创50ETF",
+    "annualized_return": 0.0791860688208097,
+    "max_drawdown": -0.07657819485603222,
+    "sharpe": 0.5872133358177817,
+    "calmar": 1.0340550462136162,
+    "n_trades": 32,
+    "win_rate": 0.53125,
+    "profit_loss_ratio": 2.3148196064676907
+  },
+  {
+    "variant": "H7",
+    "index": "沪深300",
+    "annualized_return": 0.05997417361030055,
+    "max_drawdown": -0.030595528015353625,
+    "sharpe": 0.8348874559184959,
+    "calmar": 1.960226788052292,
+    "n_trades": 7,
+    "win_rate": 0.8571428571428571,
+    "profit_loss_ratio": 2.4446415145516087
+  },
+  {
+    "variant": "H7",
+    "index": "恒生指数",
+    "annualized_return": 0.059514951282907624,
+    "max_drawdown": -0.12966279758920662,
+    "sharpe": 0.4687562770564887,
+    "calmar": 0.45899789599990676,
+    "n_trades": 41,
+    "win_rate": 0.6097560975609756,
+    "profit_loss_ratio": 1.884675229660639
+  },
+  {
+    "variant": "H7",
+    "index": "国企指数",
+    "annualized_return": 0.042375601718305456,
+    "max_drawdown": -0.23044736467311489,
+    "sharpe": 0.24802201118866535,
+    "calmar": 0.1838840803339818,
+    "n_trades": 58,
+    "win_rate": 0.5862068965517241,
+    "profit_loss_ratio": 1.1873313561666266
+  },
+  {
+    "variant": "H7",
+    "index": "H股ETF",
+    "annualized_return": 0.04711652136126321,
+    "max_drawdown": -0.18085822862416473,
+    "sharpe": 0.30992697200734387,
+    "calmar": 0.2605163266260582,
+    "n_trades": 46,
+    "win_rate": 0.6521739130434783,
+    "profit_loss_ratio": 1.0859145301354303
+  },
+  {
+    "variant": "H8",
+    "index": "沪深300",
+    "annualized_return": 0.0723299895206082,
+    "max_drawdown": -0.030552383009400944,
+    "sharpe": 0.8542429330775094,
+    "calmar": 2.367409098607867,
+    "n_trades": 31,
+    "win_rate": 0.6451612903225806,
+    "profit_loss_ratio": 3.394644928652137
+  }
+]
