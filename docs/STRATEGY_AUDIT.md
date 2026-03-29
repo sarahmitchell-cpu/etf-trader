@@ -26,7 +26,7 @@ Reviewed: code logic, data sources, look-ahead bias, survivorship bias, Sharpe f
 | E V3 | Value Reversal+Quality | Contrarian Value | CSI300 Constituents | baostock | Monthly | CLEAN (V3 fixed) |
 | E_v2 | Enhanced Value | Multi-factor Value | 28 Hand-picked Stocks | Yahoo+akshare | Monthly | SURVIVORSHIP BIAS (legacy) |
 | F | US QDII Momentum | Momentum+Regime | NQ100/SP500 (CNY) | CSIndex | Weekly | CLEAN |
-| G | CSI500 Low Vol+Low PB | Multi-factor | CSI500 Constituents | baostock | Bi-weekly | CLEAN |
+| G | CSI500 Low Vol+Low PB | Multi-factor | CSI500 Constituents | baostock | Bi-weekly | CLEAN (results revised) |
 | H | Index Dip-Buying | Event-driven | Star50 | akshare/local CSV | Event | CLEAN (IS/OOS validated) |
 | L | MA60 Trend Timing | Trend Following | 300 Growth TR | CSIndex | Daily | CLEAN |
 | Stock | Individual Stock Picking | Multi-factor | CSI800 Constituents | akshare+baostock | Monthly | CLEAN |
@@ -101,8 +101,11 @@ Reviewed: code logic, data sources, look-ahead bias, survivorship bias, Sharpe f
 - **Data**: baostock historical constituents + PE/PB fundamentals
 - **Biases**: Survivorship bias ELIMINATED via baostock historical CSI500 constituent lists. PB data coverage ~400/928 stocks (baostock limitation, not a look-ahead issue)
 - **Code Quality**: Clean, proper z-score normalization within cross-sections
-- **Backtest**: CAGR=13.5%, MDD=-11.9%, Sharpe=0.794, 12M rolling win rate=97.5% (2021-2026)
-- **Verdict**: PASS
+- **Backtest (fresh 2026-03-30)**: CAGR=4.4%, MDD=-15.8%, Sharpe=0.188 (2022-2026)
+  - Previous cached result (CAGR=13.5%, Sharpe=0.794) was from stale/different data
+  - Fresh run with updated baostock data shows significantly weaker performance
+  - 12M rolling win rate=75.2% (was 97.5% with old data)
+- **Verdict**: PASS (code is clean, but performance is weak)
 
 ### Strategy H V2: Index Dip-Buying
 - **Logic**: 6 variants of dip-buying/rally-chasing on Star50 (most volatile A-share index)
@@ -158,7 +161,7 @@ Reviewed: code logic, data sources, look-ahead bias, survivorship bias, Sharpe f
 | D CSI300 LV | 2022-2026 (4y) | 13.4% | -8.5% | 0.755 | 1.578 | No survivorship bias |
 | E V3 Value | 2021-2026 (4.7y) | 9.7% | -28.7% | 0.397 | 0.338 | Fixed! Was 22% with bias |
 | F US QDII | 2011-2026 (15y) | 13.6% | -17.8% | 0.765 | 0.765 | |
-| G CSI500 LV+PB | 2021-2026 (5y) | 13.5% | -11.9% | 0.794 | 1.132 | No survivorship bias |
+| G CSI500 LV+PB | 2022-2026 (4y) | 4.4% | -15.8% | 0.188 | 0.278 | Fresh data, weaker than cached |
 | H Dip-Buy | 2020-2026 (5y) | 8-16% | -3~-23% | 0.68-1.13 | varies | 6 variants |
 | L MA60 Trend | 2005-2026 (20y) | 16.7% | -31.7% | 0.487 | 0.487 | Longest backtest |
 | Stock LT+Mom | 2016-2026 (10y) | 21.4% | -25.4% | 0.966 | 0.843 | No survivorship bias |
