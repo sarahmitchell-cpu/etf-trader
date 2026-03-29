@@ -16,10 +16,7 @@ data/sd_*.csv
 data/se_*.csv
 sector_cache/
 
-# Large data files (reproducible from source)
-data/*.db
-data/*.db-shm
-data/*.db-wal
+# Large data files
 data/a50_fair_backtest_prices.pkl
 
 # US stock mapping drafts
