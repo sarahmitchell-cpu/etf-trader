@@ -1,0 +1,68 @@
+{
+  "date": "2026-03-27",
+  "generated_at": "2026-03-28 18:24:25",
+  "strategy": "Strategy K (300成长/价值RSI动量轮动)",
+  "params": {
+    "rsi_period": 7,
+    "threshold_high": 55,
+    "threshold_low": 45,
+    "ma_stoploss": false,
+    "ma_period": null
+  },
+  "current_rsi": 56.8,
+  "rsi_zone": "成长区（看多成长）",
+  "action": "growth",
+  "action_cn": "持有成长ETF",
+  "in_market": true,
+  "growth_price": 5035.22,
+  "value_price": 5109.71,
+  "ratio": 0.9854,
+  "rsi_history": [
+    {
+      "date": "2026-03-23",
+      "rsi": 60.2
+    },
+    {
+      "date": "2026-03-24",
+      "rsi": 58.4
+    },
+    {
+      "date": "2026-03-25",
+      "rsi": 56.2
+    },
+    {
+      "date": "2026-03-26",
+      "rsi": 59.8
+    },
+    {
+      "date": "2026-03-27",
+      "rsi": 56.8
+    }
+  ],
+  "etfs": {
+    "growth": [
+      {
+        "code": "562310",
+        "name": "300成长ETF(富国)"
+      },
+      {
+        "code": "159523",
+        "name": "300成长ETF(易方达)"
+      }
+    ],
+    "value": [
+      {
+        "code": "159510",
+        "name": "300价值ETF"
+      }
+    ]
+  },
+  "action_summary": [
+    "🟢 当前信号: 持有成长ETF",
+    "RSI(7): 56.8 (成长区（看多成长）)",
+    "成长/价值比: 0.9854",
+    "300成长: 5035.22",
+    "300价值: 5109.71",
+    "操作: 全仓持有 562310 300成长ETF(富国) / 159523 300成长ETF(易方达)"
+  ]
+}

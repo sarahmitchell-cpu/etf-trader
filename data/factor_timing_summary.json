@@ -1,0 +1,230 @@
+{
+  "total_results": 1479,
+  "oos_results": 493,
+  "top_oos_sharpe": [
+    {
+      "strategy": "HighVol80&BelowMA250 | 中证1000 [OOS]",
+      "sharpe": 1.692,
+      "cagr": 15.2,
+      "mdd": -2.42,
+      "calmar": 6.273
+    },
+    {
+      "strategy": "HighVol80&BelowMA250 | 创业板 [OOS]",
+      "sharpe": 1.607,
+      "cagr": 13.69,
+      "mdd": -2.51,
+      "calmar": 5.457
+    },
+    {
+      "strategy": "HighVol80&BelowMA250 | 沪深300 [OOS]",
+      "sharpe": 1.472,
+      "cagr": 5.29,
+      "mdd": -1.27,
+      "calmar": 4.149
+    },
+    {
+      "strategy": "HighVol70&BelowMA250 | 沪深300 [OOS]",
+      "sharpe": 1.45,
+      "cagr": 6.64,
+      "mdd": -2.48,
+      "calmar": 2.678
+    },
+    {
+      "strategy": "HighVol90&BelowMA250 | 中证1000 [OOS]",
+      "sharpe": 1.386,
+      "cagr": 10.1,
+      "mdd": -1.28,
+      "calmar": 7.879
+    },
+    {
+      "strategy": "HighVol90&BelowMA250 | 创业板 [OOS]",
+      "sharpe": 1.345,
+      "cagr": 9.63,
+      "mdd": -2.51,
+      "calmar": 3.838
+    },
+    {
+      "strategy": "Dist_MA60<-5% | 沪深300 [OOS]",
+      "sharpe": 1.224,
+      "cagr": 4.75,
+      "mdd": -2.34,
+      "calmar": 2.032
+    },
+    {
+      "strategy": "M1>5% | 中证500 [OOS]",
+      "sharpe": 1.182,
+      "cagr": 9.09,
+      "mdd": -7.06,
+      "calmar": 1.287
+    },
+    {
+      "strategy": "Dist_MA20<-5% | 沪深300 [OOS]",
+      "sharpe": 1.181,
+      "cagr": 1.79,
+      "mdd": -0.1,
+      "calmar": 17.908
+    },
+    {
+      "strategy": "M1M2>-3 | 中证1000 [OOS]",
+      "sharpe": 1.139,
+      "cagr": 13.32,
+      "mdd": -10.54,
+      "calmar": 1.263
+    }
+  ],
+  "top_oos_calmar": [
+    {
+      "strategy": "Dist_MA20<-10% | 中证500 [OOS]",
+      "sharpe": 0.731,
+      "cagr": 3.27,
+      "mdd": -0.1,
+      "calmar": 32.651
+    },
+    {
+      "strategy": "HighVol90&BelowMA250 | 沪深300 [OOS]",
+      "sharpe": 1.06,
+      "cagr": 3.02,
+      "mdd": -0.1,
+      "calmar": 30.218
+    },
+    {
+      "strategy": "Dist_MA60<-15% | 中证500 [OOS]",
+      "sharpe": 0.562,
+      "cagr": 2.38,
+      "mdd": -0.1,
+      "calmar": 23.83
+    },
+    {
+      "strategy": "Dist_MA20<-10% | 中证1000 [OOS]",
+      "sharpe": 1.024,
+      "cagr": 1.88,
+      "mdd": -0.1,
+      "calmar": 18.757
+    },
+    {
+      "strategy": "Dist_MA20<-5% | 沪深300 [OOS]",
+      "sharpe": 1.181,
+      "cagr": 1.79,
+      "mdd": -0.1,
+      "calmar": 17.908
+    },
+    {
+      "strategy": "Dist_MA20<-10% | 创业板 [OOS]",
+      "sharpe": 0.921,
+      "cagr": 1.58,
+      "mdd": -0.1,
+      "calmar": 15.79
+    },
+    {
+      "strategy": "Dist_MA60<-15% | 中证1000 [OOS]",
+      "sharpe": 0.855,
+      "cagr": 1.37,
+      "mdd": -0.1,
+      "calmar": 13.697
+    },
+    {
+      "strategy": "HighVol80&BelowMA250 | 沪深300 [OOS]",
+      "sharpe": 0.943,
+      "cagr": 1.23,
+      "mdd": -0.1,
+      "calmar": 12.318
+    },
+    {
+      "strategy": "Dist_MA120<-10% | 沪深300 [OOS]",
+      "sharpe": 0.862,
+      "cagr": 0.85,
+      "mdd": -0.1,
+      "calmar": 8.489
+    },
+    {
+      "strategy": "HighVol90&BelowMA250 | 中证1000 [OOS]",
+      "sharpe": 1.386,
+      "cagr": 10.1,
+      "mdd": -1.28,
+      "calmar": 7.879
+    }
+  ],
+  "consistent_strategies": [
+    {
+      "strategy": "M1M2_Rising(3m) | 创业板",
+      "is_sharpe": 0.689,
+      "oos_sharpe": 0.781,
+      "decay_pct": 13.4,
+      "oos_cagr": 14.6,
+      "oos_mdd": -25.41
+    },
+    {
+      "strategy": "TS>0.1 | 沪深300",
+      "is_sharpe": 0.315,
+      "oos_sharpe": 0.361,
+      "decay_pct": 14.6,
+      "oos_cagr": 4.8,
+      "oos_mdd": -24.8
+    },
+    {
+      "strategy": "Above_MA60 | 创业板",
+      "is_sharpe": 0.447,
+      "oos_sharpe": 0.729,
+      "decay_pct": 63.1,
+      "oos_cagr": 16.03,
+      "oos_mdd": -20.26
+    },
+    {
+      "strategy": "10Y<3.2 | 中证500",
+      "is_sharpe": 0.331,
+      "oos_sharpe": 0.49,
+      "decay_pct": 48.0,
+      "oos_cagr": 8.75,
+      "oos_mdd": -31.15
+    },
+    {
+      "strategy": "Above_MA20 | 创业板",
+      "is_sharpe": 0.413,
+      "oos_sharpe": 0.559,
+      "decay_pct": 35.4,
+      "oos_cagr": 11.07,
+      "oos_mdd": -24.75
+    },
+    {
+      "strategy": "10Y<2.5 | 中证1000",
+      "is_sharpe": 0.327,
+      "oos_sharpe": 0.974,
+      "decay_pct": 197.9,
+      "oos_cagr": 27.83,
+      "oos_mdd": -31.22
+    },
+    {
+      "strategy": "Dist_MA120<-8% | 创业板",
+      "is_sharpe": 0.349,
+      "oos_sharpe": 0.422,
+      "decay_pct": 20.9,
+      "oos_cagr": 3.95,
+      "oos_mdd": -18.51
+    },
+    {
+      "strategy": "Dist_MA120<-15% | 创业板",
+      "is_sharpe": 0.347,
+      "oos_sharpe": 0.452,
+      "decay_pct": 30.3,
+      "oos_cagr": 1.99,
+      "oos_mdd": -4.72
+    },
+    {
+      "strategy": "M1M2>0|TS>0.3 | 中证1000",
+      "is_sharpe": 0.372,
+      "oos_sharpe": 0.473,
+      "decay_pct": 27.2,
+      "oos_cagr": 10.09,
+      "oos_mdd": -44.75
+    },
+    {
+      "strategy": "Above_MA20 | 中证500",
+      "is_sharpe": 0.361,
+      "oos_sharpe": 0.52,
+      "decay_pct": 44.0,
+      "oos_cagr": 7.1,
+      "oos_mdd": -21.79
+    }
+  ]
+}

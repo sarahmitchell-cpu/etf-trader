@@ -1,0 +1,502 @@
+{
+  "002625": {
+    "name": "光启技术",
+    "sector": "军工",
+    "market": "sz"
+  },
+  "300059": {
+    "name": "东方财富",
+    "sector": "创业板",
+    "market": "sz"
+  },
+  "300476": {
+    "name": "胜宏科技",
+    "sector": "创业板",
+    "market": "sz"
+  },
+  "600160": {
+    "name": "巨化股份",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "601127": {
+    "name": "赛力斯",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "603019": {
+    "name": "中科曙光",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "002028": {
+    "name": "思源电气",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "002001": {
+    "name": "新和成",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "002463": {
+    "name": "沪电股份",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "002648": {
+    "name": "卫星化学",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "600489": {
+    "name": "中金黄金",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "000425": {
+    "name": "徐工机械",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "002422": {
+    "name": "科伦药业",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "600150": {
+    "name": "中国船舶",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "601669": {
+    "name": "中国电建",
+    "sector": "建筑",
+    "market": "sh"
+  },
+  "688041": {
+    "name": "海光信息",
+    "sector": "科创板",
+    "market": "sh"
+  },
+  "688256": {
+    "name": "寒武纪",
+    "sector": "科创板",
+    "market": "sh"
+  },
+  "688271": {
+    "name": "联影医疗",
+    "sector": "科创板",
+    "market": "sh"
+  },
+  "000538": {
+    "name": "云南白药",
+    "sector": "中药",
+    "market": "sz"
+  },
+  "002252": {
+    "name": "上海莱士",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "600760": {
+    "name": "中航沈飞",
+    "sector": "军工",
+    "market": "sh"
+  },
+  "002179": {
+    "name": "中航光电",
+    "sector": "军工",
+    "market": "sz"
+  },
+  "601006": {
+    "name": "大秦铁路",
+    "sector": "铁路",
+    "market": "sh"
+  },
+  "601816": {
+    "name": "京沪高铁",
+    "sector": "铁路",
+    "market": "sh"
+  },
+  "600547": {
+    "name": "山东黄金",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "688012": {
+    "name": "中微公司",
+    "sector": "科创板",
+    "market": "sh"
+  },
+  "300308": {
+    "name": "中际旭创",
+    "sector": "光模块",
+    "market": "sz"
+  },
+  "688008": {
+    "name": "澜起科技",
+    "sector": "科创板",
+    "market": "sh"
+  },
+  "688111": {
+    "name": "金山办公",
+    "sector": "科创板",
+    "market": "sh"
+  },
+  "002466": {
+    "name": "天齐锂业",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "601390": {
+    "name": "中国中铁",
+    "sector": "建筑",
+    "market": "sh"
+  },
+  "000938": {
+    "name": "紫光股份",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "002371": {
+    "name": "北方华创",
+    "sector": "半导体设备",
+    "market": "sz"
+  },
+  "002241": {
+    "name": "歌尔股份",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "002230": {
+    "name": "科大讯飞",
+    "sector": "AI",
+    "market": "sz"
+  },
+  "600111": {
+    "name": "北方稀土",
+    "sector": "稀土",
+    "market": "sh"
+  },
+  "000338": {
+    "name": "潍柴动力",
+    "sector": "柴油机",
+    "market": "sz"
+  },
+  "000792": {
+    "name": "盐湖股份",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "603986": {
+    "name": "兆易创新",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "001979": {
+    "name": "招商蛇口",
+    "sector": "地产",
+    "market": "sz"
+  },
+  "601985": {
+    "name": "中国核电",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "600893": {
+    "name": "航发动力",
+    "sector": "航发",
+    "market": "sh"
+  },
+  "600089": {
+    "name": "特变电工",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "600426": {
+    "name": "华鲁恒升",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "688981": {
+    "name": "中芯国际",
+    "sector": "半导体",
+    "market": "sh"
+  },
+  "603993": {
+    "name": "洛阳钼业",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "002460": {
+    "name": "赣锋锂业",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "601600": {
+    "name": "中国铝业",
+    "sector": "铝",
+    "market": "sh"
+  },
+  "600010": {
+    "name": "包钢股份",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "603799": {
+    "name": "华友钴业",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "600989": {
+    "name": "宝丰能源",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "000100": {
+    "name": "TCL科技",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "600941": {
+    "name": "中国移动",
+    "sector": "运营商",
+    "market": "sh"
+  },
+  "300274": {
+    "name": "阳光电源",
+    "sector": "逆变器",
+    "market": "sz"
+  },
+  "601919": {
+    "name": "中远海控",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "300014": {
+    "name": "亿纬锂能",
+    "sector": "创业板",
+    "market": "sz"
+  },
+  "300124": {
+    "name": "汇川技术",
+    "sector": "工控",
+    "market": "sz"
+  },
+  "300760": {
+    "name": "迈瑞医疗",
+    "sector": "医疗器械",
+    "market": "sz"
+  },
+  "601728": {
+    "name": "中国电信",
+    "sector": "运营商",
+    "market": "sh"
+  },
+  "300750": {
+    "name": "宁德时代",
+    "sector": "电池",
+    "market": "sz"
+  },
+  "600436": {
+    "name": "片仔癀",
+    "sector": "中药",
+    "market": "sh"
+  },
+  "600438": {
+    "name": "通威股份",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "601012": {
+    "name": "隆基股份",
+    "sector": "光伏",
+    "market": "sh"
+  },
+  "603501": {
+    "name": "韦尔股份",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "300122": {
+    "name": "智飞生物",
+    "sector": "创业板",
+    "market": "sz"
+  },
+  "002714": {
+    "name": "牧原股份",
+    "sector": "养殖",
+    "market": "sz"
+  },
+  "002475": {
+    "name": "立讯精密",
+    "sector": "消费电子",
+    "market": "sz"
+  },
+  "300015": {
+    "name": "爱尔眼科",
+    "sector": "眼科",
+    "market": "sz"
+  },
+  "600031": {
+    "name": "三一重工",
+    "sector": "工程机械",
+    "market": "sh"
+  },
+  "600346": {
+    "name": "恒力石化",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "600406": {
+    "name": "国电南瑞",
+    "sector": "电力设备",
+    "market": "sh"
+  },
+  "603259": {
+    "name": "药明康德",
+    "sector": "CXO",
+    "market": "sh"
+  },
+  "601888": {
+    "name": "中国国旅",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "600309": {
+    "name": "万华化学",
+    "sector": "化工",
+    "market": "sh"
+  },
+  "002352": {
+    "name": "顺丰控股",
+    "sector": "SZ其他",
+    "market": "sz"
+  },
+  "002027": {
+    "name": "分众传媒",
+    "sector": "传媒",
+    "market": "sz"
+  },
+  "000725": {
+    "name": "京东方A",
+    "sector": "面板",
+    "market": "sz"
+  },
+  "600690": {
+    "name": "青岛海尔",
+    "sector": "家电",
+    "market": "sh"
+  },
+  "000333": {
+    "name": "美的集团",
+    "sector": "家电",
+    "market": "sz"
+  },
+  "600276": {
+    "name": "恒瑞医药",
+    "sector": "创新药",
+    "market": "sh"
+  },
+  "002594": {
+    "name": "比亚迪",
+    "sector": "新能源车",
+    "market": "sz"
+  },
+  "002415": {
+    "name": "海康威视",
+    "sector": "安防",
+    "market": "sz"
+  },
+  "601668": {
+    "name": "中国建筑",
+    "sector": "建筑",
+    "market": "sh"
+  },
+  "601766": {
+    "name": "中国南车",
+    "sector": "SH其他",
+    "market": "sh"
+  },
+  "601899": {
+    "name": "紫金矿业",
+    "sector": "有色",
+    "market": "sh"
+  },
+  "601857": {
+    "name": "中国石油",
+    "sector": "石油",
+    "market": "sh"
+  },
+  "601088": {
+    "name": "中国神华",
+    "sector": "煤炭",
+    "market": "sh"
+  },
+  "601318": {
+    "name": "中国平安",
+    "sector": "保险",
+    "market": "sh"
+  },
+  "600048": {
+    "name": "保利地产",
+    "sector": "地产",
+    "market": "sh"
+  },
+  "601398": {
+    "name": "工商银行",
+    "sector": "银行",
+    "market": "sh"
+  },
+  "000002": {
+    "name": "万科A",
+    "sector": "地产",
+    "market": "sz"
+  },
+  "000063": {
+    "name": "中兴通讯",
+    "sector": "通信设备",
+    "market": "sz"
+  },
+  "000651": {
+    "name": "格力电器",
+    "sector": "家电",
+    "market": "sz"
+  },
+  "600019": {
+    "name": "宝钢股份",
+    "sector": "钢铁",
+    "market": "sh"
+  },
+  "600028": {
+    "name": "中国石化",
+    "sector": "石油",
+    "market": "sh"
+  },
+  "600036": {
+    "name": "招商银行",
+    "sector": "银行",
+    "market": "sh"
+  },
+  "600050": {
+    "name": "中国联通",
+    "sector": "运营商",
+    "market": "sh"
+  },
+  "600519": {
+    "name": "贵州茅台",
+    "sector": "白酒",
+    "market": "sh"
+  },
+  "600585": {
+    "name": "海螺水泥",
+    "sector": "水泥",
+    "market": "sh"
+  },
+  "600900": {
+    "name": "长江电力",
+    "sector": "水电",
+    "market": "sh"
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "date": "2026-03-27",
+  "strategy": "J",
+  "description": "Growth HoH (EPS+Revenue) Top15",
+  "top_n": 15,
+  "rebal_weeks": 4,
+  "picks": [
+    {
+      "code": "688297",
+      "name": "中无人机",
+      "price": 51.79,
+      "eps_growth_pct": 454.4,
+      "rev_growth_pct": 260.1,
+      "composite_rank": 0.9977
+    },
+    {
+      "code": "688256",
+      "name": "寒武纪",
+      "price": 1024.0,
+      "eps_growth_pct": 101.7,
+      "rev_growth_pct": 78.0,
+      "composite_rank": 0.9883
+    },
+    {
+      "code": "688183",
+      "name": "生益电子",
+      "price": 80.68,
+      "eps_growth_pct": 100.6,
+      "rev_growth_pct": 52.8,
+      "composite_rank": 0.9847
+    },
+    {
+      "code": "600549",
+      "name": "厦门钨业",
+      "price": 58.74,
+      "eps_growth_pct": 63.4,
+      "rev_growth_pct": 48.7,
+      "composite_rank": 0.9777
+    },
+    {
+      "code": "300308",
+      "name": "中际旭创",
+      "price": 598.0,
+      "eps_growth_pct": 55.4,
+      "rev_growth_pct": 34.5,
+      "composite_rank": 0.9693
+    },
+    {
+      "code": "300476",
+      "name": "胜宏科技",
+      "price": 262.1,
+      "eps_growth_pct": 50.8,
+      "rev_growth_pct": 28.5,
+      "composite_rank": 0.9649
+    },
+    {
+      "code": "300033",
+      "name": "同花顺",
+      "price": 300.92,
+      "eps_growth_pct": 57.5,
+      "rev_growth_pct": 27.0,
+      "composite_rank": 0.9638
+    },
+    {
+      "code": "688778",
+      "name": "厦钨新能",
+      "price": 75.72,
+      "eps_growth_pct": 40.5,
+      "rev_growth_pct": 44.7,
+      "composite_rank": 0.9634
+    },
+    {
+      "code": "688271",
+      "name": "联影医疗",
+      "price": 113.72,
+      "eps_growth_pct": 47.1,
+      "rev_growth_pct": 28.4,
+      "composite_rank": 0.9619
+    },
+    {
+      "code": "000408",
+      "name": "藏格矿业",
+      "price": 80.5,
+      "eps_growth_pct": 43.1,
+      "rev_growth_pct": 29.4,
+      "composite_rank": 0.9616
+    },
+    {
+      "code": "688629",
+      "name": "华丰科技",
+      "price": 109.09,
+      "eps_growth_pct": 99.2,
+      "rev_growth_pct": 21.6,
+      "composite_rank": 0.9611
+    },
+    {
+      "code": "600032",
+      "name": "浙江新能",
+      "price": 11.71,
+      "eps_growth_pct": 60.0,
+      "rev_growth_pct": 25.0,
+      "composite_rank": 0.9611
+    },
+    {
+      "code": "000703",
+      "name": "恒逸石化",
+      "price": 12.43,
+      "eps_growth_pct": 823.0,
+      "rev_growth_pct": 17.3,
+      "composite_rank": 0.956
+    },
+    {
+      "code": "688578",
+      "name": "艾力斯",
+      "price": 96.8,
+      "eps_growth_pct": 36.5,
+      "rev_growth_pct": 35.6,
+      "composite_rank": 0.9533
+    },
+    {
+      "code": "688017",
+      "name": "绿的谐波",
+      "price": 187.66,
+      "eps_growth_pct": 68.8,
+      "rev_growth_pct": 20.2,
+      "composite_rank": 0.9515
+    }
+  ],
+  "positions": [
+    {
+      "code": "688297",
+      "name": "中无人机",
+      "price": 51.79,
+      "eps_growth_pct": 454.4,
+      "rev_growth_pct": 260.1,
+      "composite_rank": 0.9977,
+      "target_shares": 1200,
+      "target_amount": 62148.0
+    },
+    {
+      "code": "688256",
+      "name": "寒武纪",
+      "price": 1024.0,
+      "eps_growth_pct": 101.7,
+      "rev_growth_pct": 78.0,
+      "composite_rank": 0.9883,
+      "target_shares": 0,
+      "target_amount": 0.0
+    },
+    {
+      "code": "688183",
+      "name": "生益电子",
+      "price": 80.68,
+      "eps_growth_pct": 100.6,
+      "rev_growth_pct": 52.8,
+      "composite_rank": 0.9847,
+      "target_shares": 800,
+      "target_amount": 64544.0
+    },
+    {
+      "code": "600549",
+      "name": "厦门钨业",
+      "price": 58.74,
+      "eps_growth_pct": 63.4,
+      "rev_growth_pct": 48.7,
+      "composite_rank": 0.9777,
+      "target_shares": 1100,
+      "target_amount": 64614.0
+    },
+    {
+      "code": "300308",
+      "name": "中际旭创",
+      "price": 598.0,
+      "eps_growth_pct": 55.4,
+      "rev_growth_pct": 34.5,
+      "composite_rank": 0.9693,
+      "target_shares": 100,
+      "target_amount": 59800.0
+    },
+    {
+      "code": "300476",
+      "name": "胜宏科技",
+      "price": 262.1,
+      "eps_growth_pct": 50.8,
+      "rev_growth_pct": 28.5,
+      "composite_rank": 0.9649,
+      "target_shares": 200,
+      "target_amount": 52420.0
+    },
+    {
+      "code": "300033",
+      "name": "同花顺",
+      "price": 300.92,
+      "eps_growth_pct": 57.5,
+      "rev_growth_pct": 27.0,
+      "composite_rank": 0.9638,
+      "target_shares": 200,
+      "target_amount": 60184.0
+    },
+    {
+      "code": "688778",
+      "name": "厦钨新能",
+      "price": 75.72,
+      "eps_growth_pct": 40.5,
+      "rev_growth_pct": 44.7,
+      "composite_rank": 0.9634,
+      "target_shares": 800,
+      "target_amount": 60576.0
+    },
+    {
+      "code": "688271",
+      "name": "联影医疗",
+      "price": 113.72,
+      "eps_growth_pct": 47.1,
+      "rev_growth_pct": 28.4,
+      "composite_rank": 0.9619,
+      "target_shares": 500,
+      "target_amount": 56860.0
+    },
+    {
+      "code": "000408",
+      "name": "藏格矿业",
+      "price": 80.5,
+      "eps_growth_pct": 43.1,
+      "rev_growth_pct": 29.4,
+      "composite_rank": 0.9616,
+      "target_shares": 800,
+      "target_amount": 64400.0
+    },
+    {
+      "code": "688629",
+      "name": "华丰科技",
+      "price": 109.09,
+      "eps_growth_pct": 99.2,
+      "rev_growth_pct": 21.6,
+      "composite_rank": 0.9611,
+      "target_shares": 600,
+      "target_amount": 65454.0
+    },
+    {
+      "code": "600032",
+      "name": "浙江新能",
+      "price": 11.71,
+      "eps_growth_pct": 60.0,
+      "rev_growth_pct": 25.0,
+      "composite_rank": 0.9611,
+      "target_shares": 5600,
+      "target_amount": 65576.0
+    },
+    {
+      "code": "000703",
+      "name": "恒逸石化",
+      "price": 12.43,
+      "eps_growth_pct": 823.0,
+      "rev_growth_pct": 17.3,
+      "composite_rank": 0.956,
+      "target_shares": 5300,
+      "target_amount": 65879.0
+    },
+    {
+      "code": "688578",
+      "name": "艾力斯",
+      "price": 96.8,
+      "eps_growth_pct": 36.5,
+      "rev_growth_pct": 35.6,
+      "composite_rank": 0.9533,
+      "target_shares": 600,
+      "target_amount": 58080.0
+    },
+    {
+      "code": "688017",
+      "name": "绿的谐波",
+      "price": 187.66,
+      "eps_growth_pct": 68.8,
+      "rev_growth_pct": 20.2,
+      "composite_rank": 0.9515,
+      "target_shares": 300,
+      "target_amount": 56298.0
+    }
+  ],
+  "generated": "2026-03-28T17:45:06.614859"
+}

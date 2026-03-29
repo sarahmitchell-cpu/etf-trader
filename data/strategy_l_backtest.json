@@ -2,7 +2,7 @@
   "strategy": {
     "cagr": 17.67,
     "vol": 18.0,
-    "sharpe": 0.982,
+    "sharpe": 0.843,
     "max_dd": -36.29,
     "calmar": 0.487,
     "win_rate_monthly": 39.2,
@@ -13,7 +13,7 @@
   "buy_hold": {
     "cagr": 10.33,
     "vol": 26.68,
-    "sharpe": 0.387,
+    "sharpe": 0.294,
     "max_dd": -75.43
   },
   "annual_returns": {

@@ -1,0 +1,801 @@
+{
+  "size": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 25.0,
+        "AnnVol": 24.02,
+        "Sharpe": 0.937,
+        "MaxDD": -25.56
+      },
+      "Q2": {
+        "CAGR": 21.16,
+        "AnnVol": 22.33,
+        "Sharpe": 0.836,
+        "MaxDD": -22.81
+      },
+      "Q3": {
+        "CAGR": 18.47,
+        "AnnVol": 21.78,
+        "Sharpe": 0.733,
+        "MaxDD": -28.04
+      },
+      "Q4": {
+        "CAGR": 14.81,
+        "AnnVol": 22.31,
+        "Sharpe": 0.552,
+        "MaxDD": -31.98
+      },
+      "Q5": {
+        "CAGR": 8.9,
+        "AnnVol": 25.25,
+        "Sharpe": 0.253,
+        "MaxDD": -47.12
+      },
+      "LS": {
+        "CAGR": -14.1,
+        "AnnVol": 17.27,
+        "Sharpe": -0.961,
+        "MaxDD": -78.77
+      }
+    },
+    "avg_IC": -0.0553,
+    "ICIR": -0.3681,
+    "IC_positive_pct": 34.7,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "size",
+    "description": "市值(成交额代理)"
+  },
+  "ret_1m": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 19.91,
+        "AnnVol": 30.6,
+        "Sharpe": 0.569,
+        "MaxDD": -28.73
+      },
+      "Q2": {
+        "CAGR": 14.32,
+        "AnnVol": 22.79,
+        "Sharpe": 0.519,
+        "MaxDD": -31.72
+      },
+      "Q3": {
+        "CAGR": 15.9,
+        "AnnVol": 20.96,
+        "Sharpe": 0.639,
+        "MaxDD": -29.95
+      },
+      "Q4": {
+        "CAGR": 16.57,
+        "AnnVol": 19.99,
+        "Sharpe": 0.704,
+        "MaxDD": -27.76
+      },
+      "Q5": {
+        "CAGR": 20.47,
+        "AnnVol": 23.29,
+        "Sharpe": 0.772,
+        "MaxDD": -31.42
+      },
+      "LS": {
+        "CAGR": -3.78,
+        "AnnVol": 22.31,
+        "Sharpe": -0.282,
+        "MaxDD": -42.68
+      }
+    },
+    "avg_IC": -0.0201,
+    "ICIR": -0.1193,
+    "IC_positive_pct": 49.6,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "ret_1m",
+    "description": "1月收益(反转)"
+  },
+  "ret_3m": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 20.21,
+        "AnnVol": 30.23,
+        "Sharpe": 0.586,
+        "MaxDD": -31.69
+      },
+      "Q2": {
+        "CAGR": 14.29,
+        "AnnVol": 22.97,
+        "Sharpe": 0.513,
+        "MaxDD": -32.47
+      },
+      "Q3": {
+        "CAGR": 15.43,
+        "AnnVol": 20.98,
+        "Sharpe": 0.616,
+        "MaxDD": -24.39
+      },
+      "Q4": {
+        "CAGR": 18.76,
+        "AnnVol": 20.55,
+        "Sharpe": 0.791,
+        "MaxDD": -23.19
+      },
+      "Q5": {
+        "CAGR": 18.34,
+        "AnnVol": 23.53,
+        "Sharpe": 0.673,
+        "MaxDD": -39.2
+      },
+      "LS": {
+        "CAGR": -5.92,
+        "AnnVol": 23.7,
+        "Sharpe": -0.355,
+        "MaxDD": -54.81
+      }
+    },
+    "avg_IC": -0.0258,
+    "ICIR": -0.1421,
+    "IC_positive_pct": 47.9,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "ret_3m",
+    "description": "3月收益(反转)"
+  },
+  "mom_6m": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 14.86,
+        "AnnVol": 30.01,
+        "Sharpe": 0.412,
+        "MaxDD": -42.76
+      },
+      "Q2": {
+        "CAGR": 13.79,
+        "AnnVol": 21.99,
+        "Sharpe": 0.513,
+        "MaxDD": -33.16
+      },
+      "Q3": {
+        "CAGR": 14.31,
+        "AnnVol": 21.23,
+        "Sharpe": 0.556,
+        "MaxDD": -28.78
+      },
+      "Q4": {
+        "CAGR": 19.13,
+        "AnnVol": 20.88,
+        "Sharpe": 0.796,
+        "MaxDD": -24.44
+      },
+      "Q5": {
+        "CAGR": 24.99,
+        "AnnVol": 23.93,
+        "Sharpe": 0.94,
+        "MaxDD": -30.93
+      },
+      "LS": {
+        "CAGR": 4.88,
+        "AnnVol": 21.88,
+        "Sharpe": 0.109,
+        "MaxDD": -47.02
+      }
+    },
+    "avg_IC": 0.0128,
+    "ICIR": 0.0692,
+    "IC_positive_pct": 52.9,
+    "avg_stocks": 687,
+    "n_months": 121,
+    "factor": "mom_6m",
+    "description": "6月动量(skip1M)"
+  },
+  "mom_12m": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 14.99,
+        "AnnVol": 28.05,
+        "Sharpe": 0.445,
+        "MaxDD": -35.4
+      },
+      "Q2": {
+        "CAGR": 12.74,
+        "AnnVol": 21.95,
+        "Sharpe": 0.467,
+        "MaxDD": -30.53
+      },
+      "Q3": {
+        "CAGR": 16.26,
+        "AnnVol": 20.74,
+        "Sharpe": 0.664,
+        "MaxDD": -26.65
+      },
+      "Q4": {
+        "CAGR": 18.4,
+        "AnnVol": 20.77,
+        "Sharpe": 0.765,
+        "MaxDD": -23.74
+      },
+      "Q5": {
+        "CAGR": 25.47,
+        "AnnVol": 26.46,
+        "Sharpe": 0.868,
+        "MaxDD": -32.9
+      },
+      "LS": {
+        "CAGR": 6.11,
+        "AnnVol": 22.64,
+        "Sharpe": 0.159,
+        "MaxDD": -32.76
+      }
+    },
+    "avg_IC": 0.015,
+    "ICIR": 0.0739,
+    "IC_positive_pct": 56.2,
+    "avg_stocks": 669,
+    "n_months": 121,
+    "factor": "mom_12m",
+    "description": "12月动量(skip1M)"
+  },
+  "vol_20d": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 11.43,
+        "AnnVol": 17.7,
+        "Sharpe": 0.504,
+        "MaxDD": -26.86
+      },
+      "Q2": {
+        "CAGR": 12.39,
+        "AnnVol": 20.49,
+        "Sharpe": 0.482,
+        "MaxDD": -26.23
+      },
+      "Q3": {
+        "CAGR": 15.55,
+        "AnnVol": 22.07,
+        "Sharpe": 0.591,
+        "MaxDD": -27.24
+      },
+      "Q4": {
+        "CAGR": 17.04,
+        "AnnVol": 23.98,
+        "Sharpe": 0.606,
+        "MaxDD": -29.06
+      },
+      "Q5": {
+        "CAGR": 31.36,
+        "AnnVol": 32.93,
+        "Sharpe": 0.876,
+        "MaxDD": -34.11
+      },
+      "LS": {
+        "CAGR": 18.92,
+        "AnnVol": 23.88,
+        "Sharpe": 0.688,
+        "MaxDD": -36.68
+      }
+    },
+    "avg_IC": -0.0182,
+    "ICIR": -0.098,
+    "IC_positive_pct": 41.3,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "vol_20d",
+    "description": "20日波动率"
+  },
+  "turn_20d": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 16.37,
+        "AnnVol": 18.91,
+        "Sharpe": 0.734,
+        "MaxDD": -20.0
+      },
+      "Q2": {
+        "CAGR": 17.96,
+        "AnnVol": 21.49,
+        "Sharpe": 0.72,
+        "MaxDD": -22.74
+      },
+      "Q3": {
+        "CAGR": 20.83,
+        "AnnVol": 23.13,
+        "Sharpe": 0.793,
+        "MaxDD": -25.55
+      },
+      "Q4": {
+        "CAGR": 16.84,
+        "AnnVol": 25.48,
+        "Sharpe": 0.563,
+        "MaxDD": -35.19
+      },
+      "Q5": {
+        "CAGR": 14.89,
+        "AnnVol": 29.16,
+        "Sharpe": 0.425,
+        "MaxDD": -44.6
+      },
+      "LS": {
+        "CAGR": -1.67,
+        "AnnVol": 23.41,
+        "Sharpe": -0.178,
+        "MaxDD": -61.24
+      }
+    },
+    "avg_IC": -0.047,
+    "ICIR": -0.2249,
+    "IC_positive_pct": 38.8,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "turn_20d",
+    "description": "20日换手率"
+  },
+  "illiquidity": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 7.94,
+        "AnnVol": 22.07,
+        "Sharpe": 0.246,
+        "MaxDD": -42.88
+      },
+      "Q2": {
+        "CAGR": 9.46,
+        "AnnVol": 21.76,
+        "Sharpe": 0.32,
+        "MaxDD": -33.67
+      },
+      "Q3": {
+        "CAGR": 17.09,
+        "AnnVol": 21.23,
+        "Sharpe": 0.687,
+        "MaxDD": -26.32
+      },
+      "Q4": {
+        "CAGR": 21.38,
+        "AnnVol": 21.96,
+        "Sharpe": 0.86,
+        "MaxDD": -24.69
+      },
+      "Q5": {
+        "CAGR": 33.61,
+        "AnnVol": 28.24,
+        "Sharpe": 1.101,
+        "MaxDD": -23.31
+      },
+      "LS": {
+        "CAGR": 23.71,
+        "AnnVol": 17.56,
+        "Sharpe": 1.208,
+        "MaxDD": -12.86
+      }
+    },
+    "avg_IC": 0.0476,
+    "ICIR": 0.3737,
+    "IC_positive_pct": 66.9,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "illiquidity",
+    "description": "非流动性Amihud"
+  },
+  "vol_trend": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 17.17,
+        "AnnVol": 24.72,
+        "Sharpe": 0.593,
+        "MaxDD": -34.11
+      },
+      "Q2": {
+        "CAGR": 16.35,
+        "AnnVol": 23.18,
+        "Sharpe": 0.598,
+        "MaxDD": -25.79
+      },
+      "Q3": {
+        "CAGR": 16.3,
+        "AnnVol": 22.42,
+        "Sharpe": 0.615,
+        "MaxDD": -32.05
+      },
+      "Q4": {
+        "CAGR": 21.26,
+        "AnnVol": 21.75,
+        "Sharpe": 0.863,
+        "MaxDD": -27.53
+      },
+      "Q5": {
+        "CAGR": 17.21,
+        "AnnVol": 21.95,
+        "Sharpe": 0.67,
+        "MaxDD": -26.38
+      },
+      "LS": {
+        "CAGR": -1.34,
+        "AnnVol": 12.5,
+        "Sharpe": -0.307,
+        "MaxDD": -27.24
+      }
+    },
+    "avg_IC": -0.0128,
+    "ICIR": -0.1144,
+    "IC_positive_pct": 45.5,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "vol_trend",
+    "description": "量比5d/60d"
+  },
+  "ep": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 16.32,
+        "AnnVol": 26.43,
+        "Sharpe": 0.523,
+        "MaxDD": -35.54
+      },
+      "Q2": {
+        "CAGR": 15.69,
+        "AnnVol": 23.94,
+        "Sharpe": 0.551,
+        "MaxDD": -32.79
+      },
+      "Q3": {
+        "CAGR": 16.58,
+        "AnnVol": 22.79,
+        "Sharpe": 0.618,
+        "MaxDD": -28.64
+      },
+      "Q4": {
+        "CAGR": 18.1,
+        "AnnVol": 22.81,
+        "Sharpe": 0.684,
+        "MaxDD": -30.29
+      },
+      "Q5": {
+        "CAGR": 19.0,
+        "AnnVol": 24.2,
+        "Sharpe": 0.682,
+        "MaxDD": -39.51
+      },
+      "LS": {
+        "CAGR": -1.06,
+        "AnnVol": 23.62,
+        "Sharpe": -0.151,
+        "MaxDD": -63.28
+      }
+    },
+    "avg_IC": 0.0285,
+    "ICIR": 0.1297,
+    "IC_positive_pct": 54.5,
+    "avg_stocks": 639,
+    "n_months": 121,
+    "factor": "ep",
+    "description": "盈利收益率1/PE"
+  },
+  "bp": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 16.25,
+        "AnnVol": 26.15,
+        "Sharpe": 0.526,
+        "MaxDD": -45.87
+      },
+      "Q2": {
+        "CAGR": 18.1,
+        "AnnVol": 25.05,
+        "Sharpe": 0.623,
+        "MaxDD": -32.56
+      },
+      "Q3": {
+        "CAGR": 16.99,
+        "AnnVol": 23.45,
+        "Sharpe": 0.618,
+        "MaxDD": -30.92
+      },
+      "Q4": {
+        "CAGR": 16.01,
+        "AnnVol": 22.74,
+        "Sharpe": 0.594,
+        "MaxDD": -31.83
+      },
+      "Q5": {
+        "CAGR": 18.99,
+        "AnnVol": 23.66,
+        "Sharpe": 0.697,
+        "MaxDD": -31.35
+      },
+      "LS": {
+        "CAGR": -1.56,
+        "AnnVol": 25.55,
+        "Sharpe": -0.159,
+        "MaxDD": -69.99
+      }
+    },
+    "avg_IC": 0.0208,
+    "ICIR": 0.0884,
+    "IC_positive_pct": 50.4,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "bp",
+    "description": "账面市值比1/PB"
+  },
+  "combo_rev_lowvol": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 21.05,
+        "AnnVol": 25.81,
+        "Sharpe": 0.718,
+        "MaxDD": -32.97
+      },
+      "Q2": {
+        "CAGR": 18.73,
+        "AnnVol": 22.63,
+        "Sharpe": 0.717,
+        "MaxDD": -27.14
+      },
+      "Q3": {
+        "CAGR": 23.4,
+        "AnnVol": 25.5,
+        "Sharpe": 0.82,
+        "MaxDD": -27.38
+      },
+      "Q4": {
+        "CAGR": 15.46,
+        "AnnVol": 21.45,
+        "Sharpe": 0.604,
+        "MaxDD": -28.66
+      },
+      "Q5": {
+        "CAGR": 9.36,
+        "AnnVol": 21.34,
+        "Sharpe": 0.322,
+        "MaxDD": -28.17
+      },
+      "LS": {
+        "CAGR": -12.16,
+        "AnnVol": 17.54,
+        "Sharpe": -0.836,
+        "MaxDD": -75.95
+      }
+    },
+    "avg_IC": 0.0249,
+    "ICIR": 0.1711,
+    "IC_positive_pct": 55.4,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "combo_rev_lowvol",
+    "description": "反转+低波"
+  },
+  "combo_rev_lowturn": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 14.3,
+        "AnnVol": 26.25,
+        "Sharpe": 0.45,
+        "MaxDD": -39.95
+      },
+      "Q2": {
+        "CAGR": 19.58,
+        "AnnVol": 22.37,
+        "Sharpe": 0.763,
+        "MaxDD": -25.59
+      },
+      "Q3": {
+        "CAGR": 17.49,
+        "AnnVol": 22.65,
+        "Sharpe": 0.662,
+        "MaxDD": -25.03
+      },
+      "Q4": {
+        "CAGR": 17.74,
+        "AnnVol": 21.94,
+        "Sharpe": 0.695,
+        "MaxDD": -26.42
+      },
+      "Q5": {
+        "CAGR": 18.26,
+        "AnnVol": 24.38,
+        "Sharpe": 0.646,
+        "MaxDD": -23.22
+      },
+      "LS": {
+        "CAGR": 0.57,
+        "AnnVol": 21.28,
+        "Sharpe": -0.09,
+        "MaxDD": -58.97
+      }
+    },
+    "avg_IC": 0.0466,
+    "ICIR": 0.2833,
+    "IC_positive_pct": 64.5,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "combo_rev_lowturn",
+    "description": "反转+低换手"
+  },
+  "combo_value_lowvol": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 23.82,
+        "AnnVol": 30.7,
+        "Sharpe": 0.695,
+        "MaxDD": -39.29
+      },
+      "Q2": {
+        "CAGR": 18.74,
+        "AnnVol": 24.48,
+        "Sharpe": 0.663,
+        "MaxDD": -29.64
+      },
+      "Q3": {
+        "CAGR": 19.4,
+        "AnnVol": 24.51,
+        "Sharpe": 0.69,
+        "MaxDD": -30.77
+      },
+      "Q4": {
+        "CAGR": 12.38,
+        "AnnVol": 20.81,
+        "Sharpe": 0.475,
+        "MaxDD": -29.46
+      },
+      "Q5": {
+        "CAGR": 12.36,
+        "AnnVol": 19.11,
+        "Sharpe": 0.516,
+        "MaxDD": -27.97
+      },
+      "LS": {
+        "CAGR": -14.96,
+        "AnnVol": 26.27,
+        "Sharpe": -0.665,
+        "MaxDD": -83.35
+      }
+    },
+    "avg_IC": 0.0204,
+    "ICIR": 0.0868,
+    "IC_positive_pct": 51.2,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "combo_value_lowvol",
+    "description": "价值+低波"
+  },
+  "combo_val_rev_lowvol": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 19.78,
+        "AnnVol": 26.69,
+        "Sharpe": 0.647,
+        "MaxDD": -39.92
+      },
+      "Q2": {
+        "CAGR": 19.92,
+        "AnnVol": 23.18,
+        "Sharpe": 0.752,
+        "MaxDD": -29.64
+      },
+      "Q3": {
+        "CAGR": 19.91,
+        "AnnVol": 23.77,
+        "Sharpe": 0.732,
+        "MaxDD": -27.24
+      },
+      "Q4": {
+        "CAGR": 15.04,
+        "AnnVol": 24.05,
+        "Sharpe": 0.521,
+        "MaxDD": -33.48
+      },
+      "Q5": {
+        "CAGR": 12.6,
+        "AnnVol": 20.38,
+        "Sharpe": 0.496,
+        "MaxDD": -26.41
+      },
+      "LS": {
+        "CAGR": -9.55,
+        "AnnVol": 21.1,
+        "Sharpe": -0.571,
+        "MaxDD": -76.9
+      }
+    },
+    "avg_IC": 0.0279,
+    "ICIR": 0.1464,
+    "IC_positive_pct": 54.5,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "combo_val_rev_lowvol",
+    "description": "价值+反转+低波"
+  },
+  "combo_rev_lowvol_lowturn": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 19.67,
+        "AnnVol": 27.58,
+        "Sharpe": 0.623,
+        "MaxDD": -38.3
+      },
+      "Q2": {
+        "CAGR": 20.07,
+        "AnnVol": 24.98,
+        "Sharpe": 0.703,
+        "MaxDD": -29.69
+      },
+      "Q3": {
+        "CAGR": 19.23,
+        "AnnVol": 23.24,
+        "Sharpe": 0.72,
+        "MaxDD": -24.99
+      },
+      "Q4": {
+        "CAGR": 15.94,
+        "AnnVol": 22.39,
+        "Sharpe": 0.6,
+        "MaxDD": -26.43
+      },
+      "Q5": {
+        "CAGR": 12.4,
+        "AnnVol": 19.26,
+        "Sharpe": 0.514,
+        "MaxDD": -24.37
+      },
+      "LS": {
+        "CAGR": -9.97,
+        "AnnVol": 20.81,
+        "Sharpe": -0.599,
+        "MaxDD": -72.43
+      }
+    },
+    "avg_IC": 0.038,
+    "ICIR": 0.2125,
+    "IC_positive_pct": 60.3,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "combo_rev_lowvol_lowturn",
+    "description": "反转+低波+低换手"
+  },
+  "combo_small_val_rev": {
+    "quintile_metrics": {
+      "Q1": {
+        "CAGR": 11.9,
+        "AnnVol": 25.32,
+        "Sharpe": 0.371,
+        "MaxDD": -50.6
+      },
+      "Q2": {
+        "CAGR": 17.45,
+        "AnnVol": 21.93,
+        "Sharpe": 0.682,
+        "MaxDD": -31.47
+      },
+      "Q3": {
+        "CAGR": 19.0,
+        "AnnVol": 22.11,
+        "Sharpe": 0.746,
+        "MaxDD": -25.06
+      },
+      "Q4": {
+        "CAGR": 16.91,
+        "AnnVol": 22.21,
+        "Sharpe": 0.649,
+        "MaxDD": -29.87
+      },
+      "Q5": {
+        "CAGR": 22.03,
+        "AnnVol": 26.93,
+        "Sharpe": 0.725,
+        "MaxDD": -29.32
+      },
+      "LS": {
+        "CAGR": 6.62,
+        "AnnVol": 22.47,
+        "Sharpe": 0.183,
+        "MaxDD": -46.07
+      }
+    },
+    "avg_IC": 0.0496,
+    "ICIR": 0.2706,
+    "IC_positive_pct": 57.9,
+    "avg_stocks": 688,
+    "n_months": 121,
+    "factor": "combo_small_val_rev",
+    "description": "小市值+价值+反转"
+  }
+}

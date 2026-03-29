@@ -1,10 +1,30 @@
-# Data caches - large files
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pkl
+
+# macOS
+.DS_Store
+
+# Data caches (large, reproducible)
 data/baostock_cache/
 data/fundamental_cache/
 data/fundamental_cache.pkl
 data/csi500_*.csv
 data/sd_*.csv
+data/se_*.csv
 sector_cache/
-*.pkl
-__pycache__/
-.DS_Store
+
+# Large data files (reproducible from source)
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/a50_fair_backtest_prices.pkl
+
+# US stock mapping drafts
+data/us_top100_cn_mapping*.txt
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,15 @@
+{
+  "screening_date": "2026-03-25",
+  "criteria": {
+    "market_cap": "50-300亿",
+    "target": "3年5倍",
+    "pe_range": "0-200",
+    "min_rev_growth": "15% or min_profit_growth 20%",
+    "min_roe": "5%"
+  },
+  "total_stocks": 0,
+  "after_mcap_filter": 0,
+  "after_growth_filter": 0,
+  "top50": [],
+  "all_candidates": []
+}

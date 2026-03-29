@@ -1,0 +1,313 @@
+{
+  "total_results": 3636,
+  "oos_results": 1212,
+  "global_top10_oos": [
+    {
+      "index": "上证指数",
+      "params": "Vol60_LB756_P70_MA120",
+      "sharpe": 2.147,
+      "cagr": 5.84,
+      "mdd": -0.63,
+      "calmar": 9.294,
+      "trade_win_rate": 75.0,
+      "pct_in_market": 3.6,
+      "n_trades": 4
+    },
+    {
+      "index": "上证指数",
+      "params": "Vol60_LB504_P70_MA120",
+      "sharpe": 2.053,
+      "cagr": 6.99,
+      "mdd": -0.63,
+      "calmar": 11.137,
+      "trade_win_rate": 80.0,
+      "pct_in_market": 3.7,
+      "n_trades": 5
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol30_LB504_P80_MA120",
+      "sharpe": 1.91,
+      "cagr": 6.8,
+      "mdd": -0.43,
+      "calmar": 15.673,
+      "trade_win_rate": 71.4,
+      "pct_in_market": 4.2,
+      "n_trades": 7
+    },
+    {
+      "index": "上证指数",
+      "params": "Vol60_LB504_P80_MA120",
+      "sharpe": 1.896,
+      "cagr": 4.39,
+      "mdd": -0.63,
+      "calmar": 6.988,
+      "trade_win_rate": 75.0,
+      "pct_in_market": 3.2,
+      "n_trades": 4
+    },
+    {
+      "index": "上证指数",
+      "params": "Vol30_LB756_P90_MA120",
+      "sharpe": 1.872,
+      "cagr": 4.48,
+      "mdd": -0.1,
+      "calmar": 44.778,
+      "trade_win_rate": 75.0,
+      "pct_in_market": 1.7,
+      "n_trades": 4
+    },
+    {
+      "index": "上证指数",
+      "params": "Vol60_LB756_P60_MA120",
+      "sharpe": 1.832,
+      "cagr": 6.64,
+      "mdd": -2.57,
+      "calmar": 2.582,
+      "trade_win_rate": 60.0,
+      "pct_in_market": 4.1,
+      "n_trades": 5
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol20_LB756_P80_MA120",
+      "sharpe": 1.828,
+      "cagr": 6.12,
+      "mdd": -0.43,
+      "calmar": 14.121,
+      "trade_win_rate": 75.0,
+      "pct_in_market": 3.9,
+      "n_trades": 4
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol30_LB756_P70_MA120",
+      "sharpe": 1.813,
+      "cagr": 6.9,
+      "mdd": -1.27,
+      "calmar": 5.417,
+      "trade_win_rate": 80.0,
+      "pct_in_market": 4.8,
+      "n_trades": 5
+    },
+    {
+      "index": "创业板指",
+      "params": "Vol20_LB756_P90_MA120",
+      "sharpe": 1.806,
+      "cagr": 7.06,
+      "mdd": -1.33,
+      "calmar": 5.288,
+      "trade_win_rate": 100.0,
+      "pct_in_market": 4.0,
+      "n_trades": 3
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol20_LB756_P70_MA120",
+      "sharpe": 1.803,
+      "cagr": 6.92,
+      "mdd": -1.27,
+      "calmar": 5.434,
+      "trade_win_rate": 71.4,
+      "pct_in_market": 4.8,
+      "n_trades": 7
+    }
+  ],
+  "consistent_top10": [
+    {
+      "index": "沪深300",
+      "params": "Vol10_LB252_P60_MA500",
+      "is_sharpe": 0.261,
+      "oos_sharpe": 0.971,
+      "oos_cagr": 6.25,
+      "oos_mdd": -7.24,
+      "oos_calmar": 0.864,
+      "oos_win_rate": 58.8,
+      "oos_pct_in_market": 14.4
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol10_LB252_P70_MA500",
+      "is_sharpe": 0.061,
+      "oos_sharpe": 0.912,
+      "oos_cagr": 5.49,
+      "oos_mdd": -9.01,
+      "oos_calmar": 0.609,
+      "oos_win_rate": 83.3,
+      "oos_pct_in_market": 10.2
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol10_LB252_P90_MA120",
+      "is_sharpe": 0.232,
+      "oos_sharpe": 1.159,
+      "oos_cagr": 5.02,
+      "oos_mdd": -4.88,
+      "oos_calmar": 1.028,
+      "oos_win_rate": 50.0,
+      "oos_pct_in_market": 4.6
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol10_LB252_P90_MA200",
+      "is_sharpe": 0.183,
+      "oos_sharpe": 1.063,
+      "oos_cagr": 4.57,
+      "oos_mdd": -4.88,
+      "oos_calmar": 0.936,
+      "oos_win_rate": 50.0,
+      "oos_pct_in_market": 3.7
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol10_LB252_P90_MA250",
+      "is_sharpe": 0.125,
+      "oos_sharpe": 0.985,
+      "oos_cagr": 4.17,
+      "oos_mdd": -4.88,
+      "oos_calmar": 0.854,
+      "oos_win_rate": 60.0,
+      "oos_pct_in_market": 3.6
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol10_LB252_P90_MA500",
+      "is_sharpe": 0.083,
+      "oos_sharpe": 1.16,
+      "oos_cagr": 5.78,
+      "oos_mdd": -4.88,
+      "oos_calmar": 1.183,
+      "oos_win_rate": 50.0,
+      "oos_pct_in_market": 3.9
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol10_LB504_P60_MA500",
+      "is_sharpe": 0.22,
+      "oos_sharpe": 0.803,
+      "oos_cagr": 4.73,
+      "oos_mdd": -7.82,
+      "oos_calmar": 0.605,
+      "oos_win_rate": 66.7,
+      "oos_pct_in_market": 10.4
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol10_LB504_P70_MA500",
+      "is_sharpe": 0.11,
+      "oos_sharpe": 0.971,
+      "oos_cagr": 5.12,
+      "oos_mdd": -5.13,
+      "oos_calmar": 1.0,
+      "oos_win_rate": 50.0,
+      "oos_pct_in_market": 5.7
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol10_LB756_P60_MA200",
+      "is_sharpe": 0.017,
+      "oos_sharpe": 0.893,
+      "oos_cagr": 4.37,
+      "oos_mdd": -4.88,
+      "oos_calmar": 0.894,
+      "oos_win_rate": 55.6,
+      "oos_pct_in_market": 6.4
+    },
+    {
+      "index": "沪深300",
+      "params": "Vol10_LB756_P60_MA250",
+      "is_sharpe": 0.018,
+      "oos_sharpe": 0.823,
+      "oos_cagr": 3.97,
+      "oos_mdd": -4.88,
+      "oos_calmar": 0.813,
+      "oos_win_rate": 62.5,
+      "oos_pct_in_market": 6.3
+    }
+  ],
+  "parameter_sensitivity": {
+    "vol_window": [
+      {
+        "vol_window": 10,
+        "mean": 0.9597916666666667,
+        "max": 1.332
+      },
+      {
+        "vol_window": 20,
+        "mean": 1.205734693877551,
+        "max": 1.828
+      },
+      {
+        "vol_window": 30,
+        "mean": 1.1611666666666667,
+        "max": 1.91
+      },
+      {
+        "vol_window": 60,
+        "mean": 0.8137291666666666,
+        "max": 1.73
+      }
+    ],
+    "vol_lookback": [
+      {
+        "vol_lookback": 252,
+        "mean": 0.990671875,
+        "max": 1.572
+      },
+      {
+        "vol_lookback": 504,
+        "mean": 1.1336461538461537,
+        "max": 1.91
+      },
+      {
+        "vol_lookback": 756,
+        "mean": 0.982125,
+        "max": 1.828
+      }
+    ],
+    "vol_pct_thresh": [
+      {
+        "vol_pct_thresh": 60,
+        "mean": 1.0209791666666665,
+        "max": 1.73
+      },
+      {
+        "vol_pct_thresh": 70,
+        "mean": 1.1892500000000001,
+        "max": 1.813
+      },
+      {
+        "vol_pct_thresh": 80,
+        "mean": 1.110795918367347,
+        "max": 1.91
+      },
+      {
+        "vol_pct_thresh": 90,
+        "mean": 0.8213750000000001,
+        "max": 1.497
+      }
+    ],
+    "ma_period": [
+      {
+        "ma_period": 120,
+        "mean": 1.1735,
+        "max": 1.91
+      },
+      {
+        "ma_period": 200,
+        "mean": 0.9767916666666667,
+        "max": 1.608
+      },
+      {
+        "ma_period": 250,
+        "mean": 0.9575510204081633,
+        "max": 1.605
+      },
+      {
+        "ma_period": 500,
+        "mean": 1.03775,
+        "max": 1.613
+      }
+    ]
+  }
+}

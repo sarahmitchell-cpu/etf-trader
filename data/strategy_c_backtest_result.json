@@ -6,7 +6,7 @@
   "cagr_pct": 17.0,
   "total_return_pct": 94.2,
   "mdd_pct": -23.3,
-  "sharpe": 0.7,
+  "sharpe": 0.613,
   "calmar": 0.727,
   "win_rate_pct": 54.2,
   "holding_distribution": {

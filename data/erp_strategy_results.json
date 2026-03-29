@@ -1,0 +1,2542 @@
+{
+  "000300": {
+    "name": "沪深300",
+    "current": {
+      "pe": 13.61,
+      "earnings_yield": 7.35,
+      "bond_yield": 1.82,
+      "erp": 5.53,
+      "erp_pct_3y": 31.5,
+      "erp_pct_all": 64.4
+    },
+    "strategies": {
+      "连续权重_3年分位": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 47.2,
+          "ann_ret": 2.91,
+          "ann_vol": 9.84,
+          "sharpe": 0.296,
+          "max_dd": -26.68,
+          "calmar": 0.109,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 27.6,
+          "ann_ret": 1.82,
+          "ann_vol": 15.07,
+          "sharpe": 0.121,
+          "max_dd": -45.6,
+          "calmar": 0.04,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 42.2,
+          "ann_ret": 2.64,
+          "ann_vol": 7.54,
+          "sharpe": 0.351,
+          "max_dd": -20.53,
+          "calmar": 0.129,
+          "years": 13.5
+        },
+        "trades": 269,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "连续权重_5年分位": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 63.5,
+          "ann_ret": 3.71,
+          "ann_vol": 9.92,
+          "sharpe": 0.374,
+          "max_dd": -23.45,
+          "calmar": 0.158,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 27.6,
+          "ann_ret": 1.82,
+          "ann_vol": 15.07,
+          "sharpe": 0.121,
+          "max_dd": -45.6,
+          "calmar": 0.04,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 42.2,
+          "ann_ret": 2.64,
+          "ann_vol": 7.54,
+          "sharpe": 0.351,
+          "max_dd": -20.53,
+          "calmar": 0.129,
+          "years": 13.5
+        },
+        "trades": 292,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "连续权重_全历史": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 60.6,
+          "ann_ret": 3.57,
+          "ann_vol": 10.39,
+          "sharpe": 0.344,
+          "max_dd": -25.59,
+          "calmar": 0.14,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 27.6,
+          "ann_ret": 1.82,
+          "ann_vol": 15.07,
+          "sharpe": 0.121,
+          "max_dd": -45.6,
+          "calmar": 0.04,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 42.2,
+          "ann_ret": 2.64,
+          "ann_vol": 7.54,
+          "sharpe": 0.351,
+          "max_dd": -20.53,
+          "calmar": 0.129,
+          "years": 13.5
+        },
+        "trades": 276,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "二值_3年_50%": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 32.9,
+          "ann_ret": 1.98,
+          "ann_vol": 11.73,
+          "sharpe": 0.169,
+          "max_dd": -33.24,
+          "calmar": 0.06,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 42.0,
+          "ann_ret": 2.45,
+          "ann_vol": 14.84,
+          "sharpe": 0.165,
+          "max_dd": -45.6,
+          "calmar": 0.054,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 52.4,
+          "ann_ret": 2.95,
+          "ann_vol": 7.42,
+          "sharpe": 0.398,
+          "max_dd": -20.53,
+          "calmar": 0.144,
+          "years": 14.5
+        },
+        "trades": 23,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "二值_3年_40%": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 4.1,
+          "ann_ret": 0.28,
+          "ann_vol": 11.94,
+          "sharpe": 0.023,
+          "max_dd": -38.68,
+          "calmar": 0.007,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 42.0,
+          "ann_ret": 2.45,
+          "ann_vol": 14.84,
+          "sharpe": 0.165,
+          "max_dd": -45.6,
+          "calmar": 0.054,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 52.4,
+          "ann_ret": 2.95,
+          "ann_vol": 7.42,
+          "sharpe": 0.398,
+          "max_dd": -20.53,
+          "calmar": 0.144,
+          "years": 14.5
+        },
+        "trades": 11,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "三档_3年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 73.8,
+          "ann_ret": 3.89,
+          "ann_vol": 10.68,
+          "sharpe": 0.364,
+          "max_dd": -29.81,
+          "calmar": 0.13,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 42.0,
+          "ann_ret": 2.45,
+          "ann_vol": 14.84,
+          "sharpe": 0.165,
+          "max_dd": -45.6,
+          "calmar": 0.054,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 52.4,
+          "ann_ret": 2.95,
+          "ann_vol": 7.42,
+          "sharpe": 0.398,
+          "max_dd": -20.53,
+          "calmar": 0.144,
+          "years": 14.5
+        },
+        "trades": 53,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "三档_5年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 64.8,
+          "ann_ret": 3.51,
+          "ann_vol": 10.94,
+          "sharpe": 0.321,
+          "max_dd": -25.91,
+          "calmar": 0.135,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 42.0,
+          "ann_ret": 2.45,
+          "ann_vol": 14.84,
+          "sharpe": 0.165,
+          "max_dd": -45.6,
+          "calmar": 0.054,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 52.4,
+          "ann_ret": 2.95,
+          "ann_vol": 7.42,
+          "sharpe": 0.398,
+          "max_dd": -20.53,
+          "calmar": 0.144,
+          "years": 14.5
+        },
+        "trades": 49,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "五档_3年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 50.3,
+          "ann_ret": 2.85,
+          "ann_vol": 10.51,
+          "sharpe": 0.271,
+          "max_dd": -29.74,
+          "calmar": 0.096,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 42.0,
+          "ann_ret": 2.45,
+          "ann_vol": 14.84,
+          "sharpe": 0.165,
+          "max_dd": -45.6,
+          "calmar": 0.054,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 52.4,
+          "ann_ret": 2.95,
+          "ann_vol": 7.42,
+          "sharpe": 0.398,
+          "max_dd": -20.53,
+          "calmar": 0.144,
+          "years": 14.5
+        },
+        "trades": 79,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "均线交叉_60日": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 47.5,
+          "ann_ret": 2.72,
+          "ann_vol": 10.95,
+          "sharpe": 0.248,
+          "max_dd": -32.76,
+          "calmar": 0.083,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 42.0,
+          "ann_ret": 2.45,
+          "ann_vol": 14.84,
+          "sharpe": 0.165,
+          "max_dd": -45.6,
+          "calmar": 0.054,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 52.4,
+          "ann_ret": 2.95,
+          "ann_vol": 7.42,
+          "sharpe": 0.398,
+          "max_dd": -20.53,
+          "calmar": 0.144,
+          "years": 14.5
+        },
+        "trades": 84,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "均线交叉_120日": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 28.9,
+          "ann_ret": 1.77,
+          "ann_vol": 10.83,
+          "sharpe": 0.163,
+          "max_dd": -37.04,
+          "calmar": 0.048,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 42.0,
+          "ann_ret": 2.45,
+          "ann_vol": 14.84,
+          "sharpe": 0.165,
+          "max_dd": -45.6,
+          "calmar": 0.054,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 52.4,
+          "ann_ret": 2.95,
+          "ann_vol": 7.42,
+          "sharpe": 0.398,
+          "max_dd": -20.53,
+          "calmar": 0.144,
+          "years": 14.5
+        },
+        "trades": 58,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "双均线_20_120": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 16.7,
+          "ann_ret": 1.07,
+          "ann_vol": 10.64,
+          "sharpe": 0.1,
+          "max_dd": -30.89,
+          "calmar": 0.035,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 42.0,
+          "ann_ret": 2.45,
+          "ann_vol": 14.84,
+          "sharpe": 0.165,
+          "max_dd": -45.6,
+          "calmar": 0.054,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 52.4,
+          "ann_ret": 2.95,
+          "ann_vol": 7.42,
+          "sharpe": 0.398,
+          "max_dd": -20.53,
+          "calmar": 0.144,
+          "years": 14.5
+        },
+        "trades": 37,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      }
+    }
+  },
+  "000905": {
+    "name": "中证500",
+    "current": {
+      "pe": 33.6,
+      "earnings_yield": 2.98,
+      "bond_yield": 1.82,
+      "erp": 1.16,
+      "erp_pct_3y": 20.3,
+      "erp_pct_all": 47.9
+    },
+    "strategies": {
+      "连续权重_3年分位": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 41.8,
+          "ann_ret": 2.62,
+          "ann_vol": 11.84,
+          "sharpe": 0.221,
+          "max_dd": -35.36,
+          "calmar": 0.074,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 18.7,
+          "ann_ret": 1.28,
+          "ann_vol": 17.58,
+          "sharpe": 0.073,
+          "max_dd": -41.81,
+          "calmar": 0.031,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 39.1,
+          "ann_ret": 2.47,
+          "ann_vol": 8.79,
+          "sharpe": 0.281,
+          "max_dd": -19.97,
+          "calmar": 0.124,
+          "years": 13.5
+        },
+        "trades": 264,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "连续权重_5年分位": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 38.2,
+          "ann_ret": 2.43,
+          "ann_vol": 12.55,
+          "sharpe": 0.193,
+          "max_dd": -35.36,
+          "calmar": 0.069,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 18.7,
+          "ann_ret": 1.28,
+          "ann_vol": 17.58,
+          "sharpe": 0.073,
+          "max_dd": -41.81,
+          "calmar": 0.031,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 39.1,
+          "ann_ret": 2.47,
+          "ann_vol": 8.79,
+          "sharpe": 0.281,
+          "max_dd": -19.97,
+          "calmar": 0.124,
+          "years": 13.5
+        },
+        "trades": 275,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "连续权重_全历史": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 39.1,
+          "ann_ret": 2.48,
+          "ann_vol": 13.58,
+          "sharpe": 0.182,
+          "max_dd": -35.36,
+          "calmar": 0.07,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 18.7,
+          "ann_ret": 1.28,
+          "ann_vol": 17.58,
+          "sharpe": 0.073,
+          "max_dd": -41.81,
+          "calmar": 0.031,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 39.1,
+          "ann_ret": 2.47,
+          "ann_vol": 8.79,
+          "sharpe": 0.281,
+          "max_dd": -19.97,
+          "calmar": 0.124,
+          "years": 13.5
+        },
+        "trades": 256,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "二值_3年_50%": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 51.8,
+          "ann_ret": 2.92,
+          "ann_vol": 13.85,
+          "sharpe": 0.211,
+          "max_dd": -39.76,
+          "calmar": 0.073,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 28.2,
+          "ann_ret": 1.73,
+          "ann_vol": 17.5,
+          "sharpe": 0.099,
+          "max_dd": -41.81,
+          "calmar": 0.041,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.1,
+          "ann_ret": 2.7,
+          "ann_vol": 8.75,
+          "sharpe": 0.308,
+          "max_dd": -19.97,
+          "calmar": 0.135,
+          "years": 14.5
+        },
+        "trades": 31,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "二值_3年_40%": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 39.2,
+          "ann_ret": 2.31,
+          "ann_vol": 14.65,
+          "sharpe": 0.158,
+          "max_dd": -40.11,
+          "calmar": 0.058,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 28.2,
+          "ann_ret": 1.73,
+          "ann_vol": 17.5,
+          "sharpe": 0.099,
+          "max_dd": -41.81,
+          "calmar": 0.041,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.1,
+          "ann_ret": 2.7,
+          "ann_vol": 8.75,
+          "sharpe": 0.308,
+          "max_dd": -19.97,
+          "calmar": 0.135,
+          "years": 14.5
+        },
+        "trades": 31,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "三档_3年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 45.2,
+          "ann_ret": 2.61,
+          "ann_vol": 12.9,
+          "sharpe": 0.202,
+          "max_dd": -38.65,
+          "calmar": 0.067,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 28.2,
+          "ann_ret": 1.73,
+          "ann_vol": 17.5,
+          "sharpe": 0.099,
+          "max_dd": -41.81,
+          "calmar": 0.041,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.1,
+          "ann_ret": 2.7,
+          "ann_vol": 8.75,
+          "sharpe": 0.308,
+          "max_dd": -19.97,
+          "calmar": 0.135,
+          "years": 14.5
+        },
+        "trades": 61,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "三档_5年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 45.9,
+          "ann_ret": 2.64,
+          "ann_vol": 13.86,
+          "sharpe": 0.191,
+          "max_dd": -38.65,
+          "calmar": 0.068,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 28.2,
+          "ann_ret": 1.73,
+          "ann_vol": 17.5,
+          "sharpe": 0.099,
+          "max_dd": -41.81,
+          "calmar": 0.041,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.1,
+          "ann_ret": 2.7,
+          "ann_vol": 8.75,
+          "sharpe": 0.308,
+          "max_dd": -19.97,
+          "calmar": 0.135,
+          "years": 14.5
+        },
+        "trades": 46,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "五档_3年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 53.1,
+          "ann_ret": 2.98,
+          "ann_vol": 12.58,
+          "sharpe": 0.237,
+          "max_dd": -38.65,
+          "calmar": 0.077,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 28.2,
+          "ann_ret": 1.73,
+          "ann_vol": 17.5,
+          "sharpe": 0.099,
+          "max_dd": -41.81,
+          "calmar": 0.041,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.1,
+          "ann_ret": 2.7,
+          "ann_vol": 8.75,
+          "sharpe": 0.308,
+          "max_dd": -19.97,
+          "calmar": 0.135,
+          "years": 14.5
+        },
+        "trades": 107,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "均线交叉_60日": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 86.5,
+          "ann_ret": 4.4,
+          "ann_vol": 13.17,
+          "sharpe": 0.334,
+          "max_dd": -34.71,
+          "calmar": 0.127,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 28.2,
+          "ann_ret": 1.73,
+          "ann_vol": 17.5,
+          "sharpe": 0.099,
+          "max_dd": -41.81,
+          "calmar": 0.041,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.1,
+          "ann_ret": 2.7,
+          "ann_vol": 8.75,
+          "sharpe": 0.308,
+          "max_dd": -19.97,
+          "calmar": 0.135,
+          "years": 14.5
+        },
+        "trades": 88,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "均线交叉_120日": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 61.9,
+          "ann_ret": 3.38,
+          "ann_vol": 13.16,
+          "sharpe": 0.257,
+          "max_dd": -38.99,
+          "calmar": 0.087,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 28.2,
+          "ann_ret": 1.73,
+          "ann_vol": 17.5,
+          "sharpe": 0.099,
+          "max_dd": -41.81,
+          "calmar": 0.041,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.1,
+          "ann_ret": 2.7,
+          "ann_vol": 8.75,
+          "sharpe": 0.308,
+          "max_dd": -19.97,
+          "calmar": 0.135,
+          "years": 14.5
+        },
+        "trades": 58,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "双均线_20_120": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 56.7,
+          "ann_ret": 3.15,
+          "ann_vol": 13.33,
+          "sharpe": 0.236,
+          "max_dd": -42.86,
+          "calmar": 0.073,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 28.2,
+          "ann_ret": 1.73,
+          "ann_vol": 17.5,
+          "sharpe": 0.099,
+          "max_dd": -41.81,
+          "calmar": 0.041,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.1,
+          "ann_ret": 2.7,
+          "ann_vol": 8.75,
+          "sharpe": 0.308,
+          "max_dd": -19.97,
+          "calmar": 0.135,
+          "years": 14.5
+        },
+        "trades": 41,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      }
+    }
+  },
+  "000852": {
+    "name": "中证1000",
+    "current": {
+      "pe": 44.92,
+      "earnings_yield": 2.23,
+      "bond_yield": 1.82,
+      "erp": 0.41,
+      "erp_pct_3y": 35.3,
+      "erp_pct_all": 70.2
+    },
+    "strategies": {
+      "连续权重_3年分位": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 42.8,
+          "ann_ret": 2.68,
+          "ann_vol": 13.57,
+          "sharpe": 0.197,
+          "max_dd": -41.68,
+          "calmar": 0.064,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": -13.0,
+          "ann_ret": -1.02,
+          "ann_vol": 19.48,
+          "sharpe": -0.053,
+          "max_dd": -53.74,
+          "calmar": -0.019,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 20.6,
+          "ann_ret": 1.4,
+          "ann_vol": 9.74,
+          "sharpe": 0.143,
+          "max_dd": -27.88,
+          "calmar": 0.05,
+          "years": 13.5
+        },
+        "trades": 291,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "连续权重_5年分位": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 32.0,
+          "ann_ret": 2.08,
+          "ann_vol": 14.35,
+          "sharpe": 0.145,
+          "max_dd": -41.68,
+          "calmar": 0.05,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": -13.0,
+          "ann_ret": -1.02,
+          "ann_vol": 19.48,
+          "sharpe": -0.053,
+          "max_dd": -53.74,
+          "calmar": -0.019,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 20.6,
+          "ann_ret": 1.4,
+          "ann_vol": 9.74,
+          "sharpe": 0.143,
+          "max_dd": -27.88,
+          "calmar": 0.05,
+          "years": 13.5
+        },
+        "trades": 295,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "连续权重_全历史": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 27.0,
+          "ann_ret": 1.79,
+          "ann_vol": 15.28,
+          "sharpe": 0.117,
+          "max_dd": -41.68,
+          "calmar": 0.043,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": -13.0,
+          "ann_ret": -1.02,
+          "ann_vol": 19.48,
+          "sharpe": -0.053,
+          "max_dd": -53.74,
+          "calmar": -0.019,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 20.6,
+          "ann_ret": 1.4,
+          "ann_vol": 9.74,
+          "sharpe": 0.143,
+          "max_dd": -27.88,
+          "calmar": 0.05,
+          "years": 13.5
+        },
+        "trades": 260,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "二值_3年_50%": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 91.9,
+          "ann_ret": 4.6,
+          "ann_vol": 15.58,
+          "sharpe": 0.295,
+          "max_dd": -45.38,
+          "calmar": 0.101,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": -6.7,
+          "ann_ret": -0.47,
+          "ann_vol": 19.38,
+          "sharpe": -0.024,
+          "max_dd": -55.11,
+          "calmar": -0.009,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 27.1,
+          "ann_ret": 1.67,
+          "ann_vol": 9.69,
+          "sharpe": 0.172,
+          "max_dd": -28.9,
+          "calmar": 0.058,
+          "years": 14.5
+        },
+        "trades": 33,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "二值_3年_40%": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 78.7,
+          "ann_ret": 4.09,
+          "ann_vol": 16.58,
+          "sharpe": 0.247,
+          "max_dd": -48.1,
+          "calmar": 0.085,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": -6.7,
+          "ann_ret": -0.47,
+          "ann_vol": 19.38,
+          "sharpe": -0.024,
+          "max_dd": -55.11,
+          "calmar": -0.009,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 27.1,
+          "ann_ret": 1.67,
+          "ann_vol": 9.69,
+          "sharpe": 0.172,
+          "max_dd": -28.9,
+          "calmar": 0.058,
+          "years": 14.5
+        },
+        "trades": 31,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "三档_3年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 47.9,
+          "ann_ret": 2.74,
+          "ann_vol": 14.61,
+          "sharpe": 0.188,
+          "max_dd": -45.11,
+          "calmar": 0.061,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": -6.7,
+          "ann_ret": -0.47,
+          "ann_vol": 19.38,
+          "sharpe": -0.024,
+          "max_dd": -55.11,
+          "calmar": -0.009,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 27.1,
+          "ann_ret": 1.67,
+          "ann_vol": 9.69,
+          "sharpe": 0.172,
+          "max_dd": -28.9,
+          "calmar": 0.058,
+          "years": 14.5
+        },
+        "trades": 54,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "三档_5年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 71.1,
+          "ann_ret": 3.78,
+          "ann_vol": 15.64,
+          "sharpe": 0.242,
+          "max_dd": -45.11,
+          "calmar": 0.084,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": -6.7,
+          "ann_ret": -0.47,
+          "ann_vol": 19.38,
+          "sharpe": -0.024,
+          "max_dd": -55.11,
+          "calmar": -0.009,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 27.1,
+          "ann_ret": 1.67,
+          "ann_vol": 9.69,
+          "sharpe": 0.172,
+          "max_dd": -28.9,
+          "calmar": 0.058,
+          "years": 14.5
+        },
+        "trades": 68,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "五档_3年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 64.1,
+          "ann_ret": 3.48,
+          "ann_vol": 14.63,
+          "sharpe": 0.238,
+          "max_dd": -44.85,
+          "calmar": 0.078,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": -6.7,
+          "ann_ret": -0.47,
+          "ann_vol": 19.38,
+          "sharpe": -0.024,
+          "max_dd": -55.11,
+          "calmar": -0.009,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 27.1,
+          "ann_ret": 1.67,
+          "ann_vol": 9.69,
+          "sharpe": 0.172,
+          "max_dd": -28.9,
+          "calmar": 0.058,
+          "years": 14.5
+        },
+        "trades": 109,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "均线交叉_60日": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 54.7,
+          "ann_ret": 3.06,
+          "ann_vol": 14.7,
+          "sharpe": 0.208,
+          "max_dd": -45.88,
+          "calmar": 0.067,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": -6.7,
+          "ann_ret": -0.47,
+          "ann_vol": 19.38,
+          "sharpe": -0.024,
+          "max_dd": -55.11,
+          "calmar": -0.009,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 27.1,
+          "ann_ret": 1.67,
+          "ann_vol": 9.69,
+          "sharpe": 0.172,
+          "max_dd": -28.9,
+          "calmar": 0.058,
+          "years": 14.5
+        },
+        "trades": 100,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "均线交叉_120日": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 58.5,
+          "ann_ret": 3.23,
+          "ann_vol": 15.0,
+          "sharpe": 0.216,
+          "max_dd": -45.21,
+          "calmar": 0.071,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": -6.7,
+          "ann_ret": -0.47,
+          "ann_vol": 19.38,
+          "sharpe": -0.024,
+          "max_dd": -55.11,
+          "calmar": -0.009,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 27.1,
+          "ann_ret": 1.67,
+          "ann_vol": 9.69,
+          "sharpe": 0.172,
+          "max_dd": -28.9,
+          "calmar": 0.058,
+          "years": 14.5
+        },
+        "trades": 66,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "双均线_20_120": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 45.0,
+          "ann_ret": 2.6,
+          "ann_vol": 14.84,
+          "sharpe": 0.175,
+          "max_dd": -46.96,
+          "calmar": 0.055,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": -6.7,
+          "ann_ret": -0.47,
+          "ann_vol": 19.38,
+          "sharpe": -0.024,
+          "max_dd": -55.11,
+          "calmar": -0.009,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 27.1,
+          "ann_ret": 1.67,
+          "ann_vol": 9.69,
+          "sharpe": 0.172,
+          "max_dd": -28.9,
+          "calmar": 0.058,
+          "years": 14.5
+        },
+        "trades": 37,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      }
+    }
+  },
+  "000016": {
+    "name": "上证50",
+    "current": {
+      "pe": 11.11,
+      "earnings_yield": 9.0,
+      "bond_yield": 1.82,
+      "erp": 7.19,
+      "erp_pct_3y": 43.1,
+      "erp_pct_all": 57.1
+    },
+    "strategies": {
+      "连续权重_3年分位": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 65.4,
+          "ann_ret": 3.8,
+          "ann_vol": 9.62,
+          "sharpe": 0.395,
+          "max_dd": -25.23,
+          "calmar": 0.151,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 17.4,
+          "ann_ret": 1.2,
+          "ann_vol": 14.79,
+          "sharpe": 0.081,
+          "max_dd": -45.41,
+          "calmar": 0.026,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 36.2,
+          "ann_ret": 2.32,
+          "ann_vol": 7.4,
+          "sharpe": 0.313,
+          "max_dd": -21.14,
+          "calmar": 0.11,
+          "years": 13.5
+        },
+        "trades": 274,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "连续权重_5年分位": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 74.2,
+          "ann_ret": 4.2,
+          "ann_vol": 9.18,
+          "sharpe": 0.457,
+          "max_dd": -20.39,
+          "calmar": 0.206,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 17.4,
+          "ann_ret": 1.2,
+          "ann_vol": 14.79,
+          "sharpe": 0.081,
+          "max_dd": -45.41,
+          "calmar": 0.026,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 36.2,
+          "ann_ret": 2.32,
+          "ann_vol": 7.4,
+          "sharpe": 0.313,
+          "max_dd": -21.14,
+          "calmar": 0.11,
+          "years": 13.5
+        },
+        "trades": 294,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "连续权重_全历史": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 68.6,
+          "ann_ret": 3.94,
+          "ann_vol": 9.44,
+          "sharpe": 0.418,
+          "max_dd": -21.38,
+          "calmar": 0.185,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 17.4,
+          "ann_ret": 1.2,
+          "ann_vol": 14.79,
+          "sharpe": 0.081,
+          "max_dd": -45.41,
+          "calmar": 0.026,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 36.2,
+          "ann_ret": 2.32,
+          "ann_vol": 7.4,
+          "sharpe": 0.313,
+          "max_dd": -21.14,
+          "calmar": 0.11,
+          "years": 13.5
+        },
+        "trades": 304,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "二值_3年_50%": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 52.1,
+          "ann_ret": 2.94,
+          "ann_vol": 11.16,
+          "sharpe": 0.263,
+          "max_dd": -29.94,
+          "calmar": 0.098,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 33.6,
+          "ann_ret": 2.02,
+          "ann_vol": 14.52,
+          "sharpe": 0.139,
+          "max_dd": -45.41,
+          "calmar": 0.045,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.6,
+          "ann_ret": 2.72,
+          "ann_vol": 7.26,
+          "sharpe": 0.375,
+          "max_dd": -21.14,
+          "calmar": 0.129,
+          "years": 14.5
+        },
+        "trades": 27,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "二值_3年_40%": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 45.8,
+          "ann_ret": 2.64,
+          "ann_vol": 11.87,
+          "sharpe": 0.222,
+          "max_dd": -35.04,
+          "calmar": 0.075,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 33.6,
+          "ann_ret": 2.02,
+          "ann_vol": 14.52,
+          "sharpe": 0.139,
+          "max_dd": -45.41,
+          "calmar": 0.045,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.6,
+          "ann_ret": 2.72,
+          "ann_vol": 7.26,
+          "sharpe": 0.375,
+          "max_dd": -21.14,
+          "calmar": 0.129,
+          "years": 14.5
+        },
+        "trades": 26,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "三档_3年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 90.3,
+          "ann_ret": 4.54,
+          "ann_vol": 10.66,
+          "sharpe": 0.426,
+          "max_dd": -28.61,
+          "calmar": 0.159,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 33.6,
+          "ann_ret": 2.02,
+          "ann_vol": 14.52,
+          "sharpe": 0.139,
+          "max_dd": -45.41,
+          "calmar": 0.045,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.6,
+          "ann_ret": 2.72,
+          "ann_vol": 7.26,
+          "sharpe": 0.375,
+          "max_dd": -21.14,
+          "calmar": 0.129,
+          "years": 14.5
+        },
+        "trades": 58,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "三档_5年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 125.8,
+          "ann_ret": 5.78,
+          "ann_vol": 9.84,
+          "sharpe": 0.588,
+          "max_dd": -21.98,
+          "calmar": 0.263,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 33.6,
+          "ann_ret": 2.02,
+          "ann_vol": 14.52,
+          "sharpe": 0.139,
+          "max_dd": -45.41,
+          "calmar": 0.045,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.6,
+          "ann_ret": 2.72,
+          "ann_vol": 7.26,
+          "sharpe": 0.375,
+          "max_dd": -21.14,
+          "calmar": 0.129,
+          "years": 14.5
+        },
+        "trades": 67,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "五档_3年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 102.2,
+          "ann_ret": 4.98,
+          "ann_vol": 10.33,
+          "sharpe": 0.482,
+          "max_dd": -27.79,
+          "calmar": 0.179,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 33.6,
+          "ann_ret": 2.02,
+          "ann_vol": 14.52,
+          "sharpe": 0.139,
+          "max_dd": -45.41,
+          "calmar": 0.045,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.6,
+          "ann_ret": 2.72,
+          "ann_vol": 7.26,
+          "sharpe": 0.375,
+          "max_dd": -21.14,
+          "calmar": 0.129,
+          "years": 14.5
+        },
+        "trades": 110,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "均线交叉_60日": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 66.8,
+          "ann_ret": 3.59,
+          "ann_vol": 10.63,
+          "sharpe": 0.338,
+          "max_dd": -31.73,
+          "calmar": 0.113,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 33.6,
+          "ann_ret": 2.02,
+          "ann_vol": 14.52,
+          "sharpe": 0.139,
+          "max_dd": -45.41,
+          "calmar": 0.045,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.6,
+          "ann_ret": 2.72,
+          "ann_vol": 7.26,
+          "sharpe": 0.375,
+          "max_dd": -21.14,
+          "calmar": 0.129,
+          "years": 14.5
+        },
+        "trades": 82,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "均线交叉_120日": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 78.3,
+          "ann_ret": 4.07,
+          "ann_vol": 10.71,
+          "sharpe": 0.38,
+          "max_dd": -31.12,
+          "calmar": 0.131,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 33.6,
+          "ann_ret": 2.02,
+          "ann_vol": 14.52,
+          "sharpe": 0.139,
+          "max_dd": -45.41,
+          "calmar": 0.045,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.6,
+          "ann_ret": 2.72,
+          "ann_vol": 7.26,
+          "sharpe": 0.375,
+          "max_dd": -21.14,
+          "calmar": 0.129,
+          "years": 14.5
+        },
+        "trades": 62,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "双均线_20_120": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 42.1,
+          "ann_ret": 2.46,
+          "ann_vol": 10.83,
+          "sharpe": 0.227,
+          "max_dd": -26.73,
+          "calmar": 0.092,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 33.6,
+          "ann_ret": 2.02,
+          "ann_vol": 14.52,
+          "sharpe": 0.139,
+          "max_dd": -45.41,
+          "calmar": 0.045,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 47.6,
+          "ann_ret": 2.72,
+          "ann_vol": 7.26,
+          "sharpe": 0.375,
+          "max_dd": -21.14,
+          "calmar": 0.129,
+          "years": 14.5
+        },
+        "trades": 42,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      }
+    }
+  },
+  "399006": {
+    "name": "创业板指",
+    "current": {
+      "pe": 39.72,
+      "earnings_yield": 2.52,
+      "bond_yield": 1.82,
+      "erp": 0.7,
+      "erp_pct_3y": 29.2,
+      "erp_pct_all": 80.5
+    },
+    "strategies": {
+      "连续权重_3年分位": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 59.2,
+          "ann_ret": 3.51,
+          "ann_vol": 14.48,
+          "sharpe": 0.242,
+          "max_dd": -50.1,
+          "calmar": 0.07,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 53.8,
+          "ann_ret": 3.24,
+          "ann_vol": 22.65,
+          "sharpe": 0.143,
+          "max_dd": -57.05,
+          "calmar": 0.057,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 63.7,
+          "ann_ret": 3.72,
+          "ann_vol": 11.33,
+          "sharpe": 0.328,
+          "max_dd": -29.52,
+          "calmar": 0.126,
+          "years": 13.5
+        },
+        "trades": 267,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "连续权重_5年分位": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 68.4,
+          "ann_ret": 3.94,
+          "ann_vol": 14.93,
+          "sharpe": 0.264,
+          "max_dd": -48.22,
+          "calmar": 0.082,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 53.8,
+          "ann_ret": 3.24,
+          "ann_vol": 22.65,
+          "sharpe": 0.143,
+          "max_dd": -57.05,
+          "calmar": 0.057,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 63.7,
+          "ann_ret": 3.72,
+          "ann_vol": 11.33,
+          "sharpe": 0.328,
+          "max_dd": -29.52,
+          "calmar": 0.126,
+          "years": 13.5
+        },
+        "trades": 264,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "连续权重_全历史": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 82.1,
+          "ann_ret": 4.54,
+          "ann_vol": 15.86,
+          "sharpe": 0.286,
+          "max_dd": -45.69,
+          "calmar": 0.099,
+          "years": 13.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 53.8,
+          "ann_ret": 3.24,
+          "ann_vol": 22.65,
+          "sharpe": 0.143,
+          "max_dd": -57.05,
+          "calmar": 0.057,
+          "years": 13.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 46.8,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 75.741,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 13.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 63.7,
+          "ann_ret": 3.72,
+          "ann_vol": 11.33,
+          "sharpe": 0.328,
+          "max_dd": -29.52,
+          "calmar": 0.126,
+          "years": 13.5
+        },
+        "trades": 234,
+        "start_date": "2016-12-02",
+        "end_date": "2026-03-27"
+      },
+      "二值_3年_50%": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 23.4,
+          "ann_ret": 1.46,
+          "ann_vol": 17.18,
+          "sharpe": 0.085,
+          "max_dd": -58.31,
+          "calmar": 0.025,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 49.8,
+          "ann_ret": 2.83,
+          "ann_vol": 22.46,
+          "sharpe": 0.126,
+          "max_dd": -57.05,
+          "calmar": 0.05,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 64.7,
+          "ann_ret": 3.5,
+          "ann_vol": 11.23,
+          "sharpe": 0.312,
+          "max_dd": -29.52,
+          "calmar": 0.119,
+          "years": 14.5
+        },
+        "trades": 33,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "二值_3年_40%": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 57.3,
+          "ann_ret": 3.17,
+          "ann_vol": 18.05,
+          "sharpe": 0.176,
+          "max_dd": -57.05,
+          "calmar": 0.056,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 49.8,
+          "ann_ret": 2.83,
+          "ann_vol": 22.46,
+          "sharpe": 0.126,
+          "max_dd": -57.05,
+          "calmar": 0.05,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 64.7,
+          "ann_ret": 3.5,
+          "ann_vol": 11.23,
+          "sharpe": 0.312,
+          "max_dd": -29.52,
+          "calmar": 0.119,
+          "years": 14.5
+        },
+        "trades": 37,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "三档_3年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 69.8,
+          "ann_ret": 3.72,
+          "ann_vol": 15.44,
+          "sharpe": 0.241,
+          "max_dd": -56.72,
+          "calmar": 0.066,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 49.8,
+          "ann_ret": 2.83,
+          "ann_vol": 22.46,
+          "sharpe": 0.126,
+          "max_dd": -57.05,
+          "calmar": 0.05,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 64.7,
+          "ann_ret": 3.5,
+          "ann_vol": 11.23,
+          "sharpe": 0.312,
+          "max_dd": -29.52,
+          "calmar": 0.119,
+          "years": 14.5
+        },
+        "trades": 48,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "三档_5年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 79.8,
+          "ann_ret": 4.13,
+          "ann_vol": 16.85,
+          "sharpe": 0.245,
+          "max_dd": -53.07,
+          "calmar": 0.078,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 49.8,
+          "ann_ret": 2.83,
+          "ann_vol": 22.46,
+          "sharpe": 0.126,
+          "max_dd": -57.05,
+          "calmar": 0.05,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 64.7,
+          "ann_ret": 3.5,
+          "ann_vol": 11.23,
+          "sharpe": 0.312,
+          "max_dd": -29.52,
+          "calmar": 0.119,
+          "years": 14.5
+        },
+        "trades": 50,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "五档_3年": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 59.6,
+          "ann_ret": 3.28,
+          "ann_vol": 15.32,
+          "sharpe": 0.214,
+          "max_dd": -54.43,
+          "calmar": 0.06,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 49.8,
+          "ann_ret": 2.83,
+          "ann_vol": 22.46,
+          "sharpe": 0.126,
+          "max_dd": -57.05,
+          "calmar": 0.05,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 64.7,
+          "ann_ret": 3.5,
+          "ann_vol": 11.23,
+          "sharpe": 0.312,
+          "max_dd": -29.52,
+          "calmar": 0.119,
+          "years": 14.5
+        },
+        "trades": 115,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "均线交叉_60日": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 121.9,
+          "ann_ret": 5.65,
+          "ann_vol": 16.77,
+          "sharpe": 0.337,
+          "max_dd": -49.91,
+          "calmar": 0.113,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 49.8,
+          "ann_ret": 2.83,
+          "ann_vol": 22.46,
+          "sharpe": 0.126,
+          "max_dd": -57.05,
+          "calmar": 0.05,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 64.7,
+          "ann_ret": 3.5,
+          "ann_vol": 11.23,
+          "sharpe": 0.312,
+          "max_dd": -29.52,
+          "calmar": 0.119,
+          "years": 14.5
+        },
+        "trades": 94,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "均线交叉_120日": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 94.2,
+          "ann_ret": 4.69,
+          "ann_vol": 16.84,
+          "sharpe": 0.278,
+          "max_dd": -58.17,
+          "calmar": 0.081,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 49.8,
+          "ann_ret": 2.83,
+          "ann_vol": 22.46,
+          "sharpe": 0.126,
+          "max_dd": -57.05,
+          "calmar": 0.05,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 64.7,
+          "ann_ret": 3.5,
+          "ann_vol": 11.23,
+          "sharpe": 0.312,
+          "max_dd": -29.52,
+          "calmar": 0.119,
+          "years": 14.5
+        },
+        "trades": 64,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      },
+      "双均线_20_120": {
+        "strategy": {
+          "name": "ERP策略",
+          "total_ret": 149.4,
+          "ann_ret": 6.51,
+          "ann_vol": 16.62,
+          "sharpe": 0.392,
+          "max_dd": -49.16,
+          "calmar": 0.132,
+          "years": 14.5
+        },
+        "stock": {
+          "name": "纯股票",
+          "total_ret": 49.8,
+          "ann_ret": 2.83,
+          "ann_vol": 22.46,
+          "sharpe": 0.126,
+          "max_dd": -57.05,
+          "calmar": 0.05,
+          "years": 14.5
+        },
+        "bond": {
+          "name": "纯债券",
+          "total_ret": 50.9,
+          "ann_ret": 2.88,
+          "ann_vol": 0.04,
+          "sharpe": 78.345,
+          "max_dd": 0.0,
+          "calmar": 0,
+          "years": 14.5
+        },
+        "bal50": {
+          "name": "固定50/50",
+          "total_ret": 64.7,
+          "ann_ret": 3.5,
+          "ann_vol": 11.23,
+          "sharpe": 0.312,
+          "max_dd": -29.52,
+          "calmar": 0.119,
+          "years": 14.5
+        },
+        "trades": 38,
+        "start_date": "2016-03-28",
+        "end_date": "2026-03-27"
+      }
+    }
+  }
+}

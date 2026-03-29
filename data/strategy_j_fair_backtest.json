@@ -1,0 +1,255 @@
+{
+  "generated_at": "2026-03-28 21:30:31",
+  "description": "Strategy J fair backtest with survivorship bias fix",
+  "total_unique_stocks": 1206,
+  "constituent_dates": [
+    "2020-06-15",
+    "2020-12-14",
+    "2021-06-15",
+    "2021-12-13",
+    "2022-06-13",
+    "2022-12-12",
+    "2023-06-12",
+    "2023-12-11",
+    "2024-06-17",
+    "2024-12-16",
+    "2025-06-16",
+    "2025-12-15"
+  ],
+  "data_shape": {
+    "close": [
+      298,
+      1206
+    ],
+    "pe": [
+      298,
+      1206
+    ],
+    "ps": [
+      298,
+      1206
+    ]
+  },
+  "strategies": [
+    {
+      "label": "BM_EqualWeight_AllStocks",
+      "cagr_pct": 10.4,
+      "mdd_pct": -24.9,
+      "sharpe": 0.624,
+      "calmar": 0.416,
+      "win_rate_pct": 54.1,
+      "total_return_pct": 66.9,
+      "years": 5.2,
+      "total_txn_pct": 0.0,
+      "annual_returns": {
+        "2021": 24.8,
+        "2022": -10.2,
+        "2023": -2.3,
+        "2024": 19.9,
+        "2025": 32.9,
+        "2026": 2.4
+      },
+      "period": "2020-12-11 ~ 2026-03-27"
+    },
+    {
+      "label": "BIASED_Top15_4w_g26",
+      "cagr_pct": 20.0,
+      "mdd_pct": -53.6,
+      "sharpe": 0.773,
+      "calmar": 0.374,
+      "win_rate_pct": 52.6,
+      "total_return_pct": 158.1,
+      "years": 5.2,
+      "total_txn_pct": 1.77,
+      "annual_returns": {
+        "2021": 36.0,
+        "2022": -14.8,
+        "2023": -25.0,
+        "2024": 45.8,
+        "2025": 120.9,
+        "2026": 1.9
+      },
+      "period": "2020-12-11 ~ 2026-03-27"
+    },
+    {
+      "label": "BIASED_Top10_4w_g26",
+      "cagr_pct": 16.5,
+      "mdd_pct": -54.0,
+      "sharpe": 0.659,
+      "calmar": 0.307,
+      "win_rate_pct": 51.5,
+      "total_return_pct": 121.4,
+      "years": 5.2,
+      "total_txn_pct": 1.81,
+      "annual_returns": {
+        "2021": 53.5,
+        "2022": -11.1,
+        "2023": -23.4,
+        "2024": 21.4,
+        "2025": 100.8,
+        "2026": 0.2
+      },
+      "period": "2020-12-11 ~ 2026-03-27"
+    },
+    {
+      "label": "BIASED_Top20_4w_g26",
+      "cagr_pct": 15.9,
+      "mdd_pct": -53.0,
+      "sharpe": 0.673,
+      "calmar": 0.301,
+      "win_rate_pct": 52.2,
+      "total_return_pct": 115.6,
+      "years": 5.2,
+      "total_txn_pct": 1.7,
+      "annual_returns": {
+        "2021": 29.1,
+        "2022": -17.8,
+        "2023": -23.9,
+        "2024": 43.9,
+        "2025": 101.7,
+        "2026": -0.2
+      },
+      "period": "2020-12-11 ~ 2026-03-27"
+    },
+    {
+      "label": "BM_EqualWeight_Historical",
+      "cagr_pct": 6.0,
+      "mdd_pct": -30.7,
+      "sharpe": 0.407,
+      "calmar": 0.196,
+      "win_rate_pct": 51.1,
+      "total_return_pct": 35.3,
+      "years": 5.2,
+      "total_txn_pct": 0.0,
+      "annual_returns": {
+        "2021": 15.3,
+        "2022": -14.5,
+        "2023": -6.2,
+        "2024": 15.9,
+        "2025": 31.7,
+        "2026": 2.3
+      },
+      "period": "2020-12-11 ~ 2026-03-27"
+    },
+    {
+      "label": "FAIR_Top15_4w_g13",
+      "cagr_pct": 9.4,
+      "mdd_pct": -57.6,
+      "sharpe": 0.476,
+      "calmar": 0.164,
+      "win_rate_pct": 48.1,
+      "total_return_pct": 63.3,
+      "years": 5.4,
+      "total_txn_pct": 3.35,
+      "annual_returns": {
+        "2021": 36.9,
+        "2022": -14.3,
+        "2023": -24.9,
+        "2024": 24.5,
+        "2025": 54.8,
+        "2026": 12.0
+      },
+      "period": "2020-09-11 ~ 2026-03-27"
+    },
+    {
+      "label": "FAIR_Top15_4w_g26",
+      "cagr_pct": 9.0,
+      "mdd_pct": -57.1,
+      "sharpe": 0.45,
+      "calmar": 0.158,
+      "win_rate_pct": 49.3,
+      "total_return_pct": 56.7,
+      "years": 5.2,
+      "total_txn_pct": 1.83,
+      "annual_returns": {
+        "2021": 27.9,
+        "2022": -15.3,
+        "2023": -29.8,
+        "2024": 25.2,
+        "2025": 82.2,
+        "2026": -3.6
+      },
+      "period": "2020-12-11 ~ 2026-03-27"
+    },
+    {
+      "label": "FAIR_Top15_2w_g26",
+      "cagr_pct": 8.1,
+      "mdd_pct": -58.7,
+      "sharpe": 0.417,
+      "calmar": 0.137,
+      "win_rate_pct": 50.4,
+      "total_return_pct": 49.5,
+      "years": 5.2,
+      "total_txn_pct": 2.22,
+      "annual_returns": {
+        "2021": 18.1,
+        "2022": -10.5,
+        "2023": -35.7,
+        "2024": 36.1,
+        "2025": 78.0,
+        "2026": -3.0
+      },
+      "period": "2020-12-11 ~ 2026-03-27"
+    },
+    {
+      "label": "FAIR_Top20_4w_g26",
+      "cagr_pct": 7.8,
+      "mdd_pct": -56.9,
+      "sharpe": 0.415,
+      "calmar": 0.136,
+      "win_rate_pct": 49.3,
+      "total_return_pct": 47.5,
+      "years": 5.2,
+      "total_txn_pct": 1.8,
+      "annual_returns": {
+        "2021": 21.5,
+        "2022": -16.1,
+        "2023": -31.1,
+        "2024": 27.1,
+        "2025": 78.9,
+        "2026": -4.3
+      },
+      "period": "2020-12-11 ~ 2026-03-27"
+    },
+    {
+      "label": "FAIR_Top10_4w_g26",
+      "cagr_pct": 7.0,
+      "mdd_pct": -63.4,
+      "sharpe": 0.373,
+      "calmar": 0.11,
+      "win_rate_pct": 49.6,
+      "total_return_pct": 42.0,
+      "years": 5.2,
+      "total_txn_pct": 1.99,
+      "annual_returns": {
+        "2021": 21.8,
+        "2022": -21.0,
+        "2023": -32.4,
+        "2024": 22.0,
+        "2025": 111.9,
+        "2026": -4.7
+      },
+      "period": "2020-12-11 ~ 2026-03-27"
+    },
+    {
+      "label": "FAIR_Top15_4w_g52",
+      "cagr_pct": -3.8,
+      "mdd_pct": -67.2,
+      "sharpe": -0.008,
+      "calmar": -0.057,
+      "win_rate_pct": 45.9,
+      "total_return_pct": -16.6,
+      "years": 4.7,
+      "total_txn_pct": 1.13,
+      "annual_returns": {
+        "2021": 1.3,
+        "2022": -35.4,
+        "2023": -30.0,
+        "2024": 12.5,
+        "2025": 72.5,
+        "2026": 9.7
+      },
+      "period": "2021-06-11 ~ 2026-03-27"
+    }
+  ]
+}
