@@ -16,6 +16,12 @@ Strategy E: A股价值投资策略 (逆向价值+质量)
   - CAGR=22.0%, MDD=-17.6%, Sharpe=0.937, Calmar=1.25
   - 年度: 2022:+19.3%, 2023:-4.3%, 2024:+26.5%, 2025:+15.4%
 
+⚠️ 重要偏差警告:
+  - 股票池(28只龙头股)是手工选择的当前行业领军者，存在严重幸存者偏差
+  - 这些股票能成为当前龙头本身就是后验结果，回测收益可能被高估
+  - 与策略D/G不同(使用baostock历史成分股消除幸存者偏差)，本策略无法消除此偏差
+  - 建议: 将回测结果打折30-50%来估计真实未来表现
+
 策略理念: "在龙头中寻找近期被低估的优质股(逆向投资)"
   - 与策略D(动量)形成互补: D买强势股, E买被低估的优质股
   - 两策略低相关性, 组合使用可分散风险
@@ -271,7 +277,7 @@ def run_backtest(price_df: pd.DataFrame) -> dict:
     dd = nav_s / nav_s.cummax() - 1
     mdd = dd.min()
     wr = pd.Series(weekly_rets)
-    sharpe = wr.mean() / wr.std() * np.sqrt(52) if wr.std() > 0 else 0
+    sharpe = (wr.mean() * 52 - 0.025) / (wr.std() * np.sqrt(52)) if wr.std() > 0 else 0  # rf=2.5%
     calmar = cagr / abs(mdd) if mdd != 0 else 0
     win_rate = (wr > 0).sum() / len(wr) * 100
 

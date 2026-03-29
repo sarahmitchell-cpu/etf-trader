@@ -229,7 +229,7 @@ def run_backtest(df: pd.DataFrame, verbose: bool = True) -> dict:
     years = len(returns) / 252
     cagr = (1 + total_ret) ** (1 / years) - 1
     vol = returns.std() * np.sqrt(252)
-    sharpe = cagr / vol if vol > 0 else 0
+    sharpe = (cagr - 0.025) / vol if vol > 0 else 0  # rf=2.5%
     peak = cum.cummax()
     dd = (cum - peak) / peak
     max_dd = dd.min()
@@ -242,7 +242,7 @@ def run_backtest(df: pd.DataFrame, verbose: bool = True) -> dict:
     bh_total = bh_cum.iloc[-1] - 1
     bh_cagr = (1 + bh_total) ** (1 / years) - 1
     bh_vol = bh_returns.std() * np.sqrt(252)
-    bh_sharpe = bh_cagr / bh_vol if bh_vol > 0 else 0
+    bh_sharpe = (bh_cagr - 0.025) / bh_vol if bh_vol > 0 else 0  # rf=2.5%
     bh_peak = bh_cum.cummax()
     bh_dd = (bh_cum - bh_peak) / bh_peak
     bh_max_dd = bh_dd.min()
