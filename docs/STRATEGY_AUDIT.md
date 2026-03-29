@@ -23,8 +23,8 @@ Reviewed: code logic, data sources, look-ahead bias, survivorship bias, Sharpe f
 | B | Enhanced Factor ETF | Momentum+Regime | 4 Factor ETFs | CSIndex TR | Weekly | MINOR (selection bias noted) |
 | C | Cross-border ETF Momentum | Top1 Momentum | 3 HK ETFs | Yahoo Finance | Weekly | MINOR (short backtest) |
 | D | CSI300 Low Volatility | Low Vol Factor | CSI300 Constituents | baostock | Bi-weekly | CLEAN |
-| E | Value Reversal+Quality | Contrarian Value | 28 Hand-picked Stocks | Yahoo Finance | Monthly | SURVIVORSHIP BIAS |
-| E_v2 | Enhanced Value | Multi-factor Value | 28 Hand-picked Stocks | Yahoo+akshare | Monthly | SURVIVORSHIP BIAS |
+| E V3 | Value Reversal+Quality | Contrarian Value | CSI300 Constituents | baostock | Monthly | CLEAN (V3 fixed) |
+| E_v2 | Enhanced Value | Multi-factor Value | 28 Hand-picked Stocks | Yahoo+akshare | Monthly | SURVIVORSHIP BIAS (legacy) |
 | F | US QDII Momentum | Momentum+Regime | NQ100/SP500 (CNY) | CSIndex | Weekly | CLEAN |
 | G | CSI500 Low Vol+Low PB | Multi-factor | CSI500 Constituents | baostock | Bi-weekly | CLEAN |
 | H | Index Dip-Buying | Event-driven | Star50 | akshare/local CSV | Event | CLEAN (IS/OOS validated) |
@@ -70,13 +70,15 @@ Reviewed: code logic, data sources, look-ahead bias, survivorship bias, Sharpe f
 - **Backtest**: CAGR=13.4%, MDD=-8.5%, Sharpe=0.755, 12M rolling win rate=98.8% (2022-2026)
 - **Verdict**: PASS
 
-### Strategy E: Value Reversal + Quality
-- **Logic**: Contrarian (negative momentum) + low volatility from 28 hand-picked stocks
-- **Data**: Yahoo Finance weekly prices
-- **BUG FIXED**: Sharpe formula was `mean/std*sqrt(52)` — missing risk-free rate subtraction. Fixed to `(mean*52 - 0.025) / (std*sqrt(52))`
-- **SURVIVORSHIP BIAS**: 28 stocks are current industry leaders, chosen with full hindsight. This is a FUNDAMENTAL design flaw that inflates backtest returns by an estimated 30-50%
-- **Mitigation**: Added prominent warnings in docstring and stock_data_common.py
-- **Verdict**: FAIL (survivorship bias). Use with extreme caution, discount results significantly
+### Strategy E V3: Value Reversal + Quality (FIXED)
+- **Logic**: Contrarian (negative momentum) + low volatility from CSI300 historical constituents
+- **Data**: baostock (historical constituents + weekly prices + industry classification)
+- **V3 Fix**: Migrated from 28 hand-picked stocks to CSI300 real historical constituents
+- **BUG FIXED**: Sharpe formula corrected (was missing RF subtraction)
+- **Survivorship Bias**: ELIMINATED in V3 via baostock historical constituent lists
+- **Impact of Fix**: CAGR 22.0%→9.7%, Sharpe 0.82→0.40, confirming bias inflated returns by >50%
+- **Backtest V3**: CAGR=9.7%, MDD=-28.7%, Sharpe=0.397 (2021-2026, 4.7 years)
+- **Verdict**: PASS (V3). The strategy is mediocre after bias removal — reversal/contrarian doesn't work well in CSI300
 
 ### Strategy E_v2: Enhanced Value (PE/PB + Reversal + Quality + Earnings)
 - **Logic**: Same 28-stock pool, adds PE/PB percentile and ROE proxy factors
@@ -154,7 +156,7 @@ Reviewed: code logic, data sources, look-ahead bias, survivorship bias, Sharpe f
 | B Factor ETF | 2025-2026 (0.8y) | 61.1%* | -6.5% | 2.929* | 9.4* | *Short period, unreliable |
 | C HK ETF | 2022-2026 (4.2y) | 17.0% | -23.3% | 0.613 | 0.727 | |
 | D CSI300 LV | 2022-2026 (4y) | 13.4% | -8.5% | 0.755 | 1.578 | No survivorship bias |
-| E Value | 2021-2026 (5y) | ~22% | ~-18% | ~0.9 | ~1.25 | SURVIVORSHIP BIAS |
+| E V3 Value | 2021-2026 (4.7y) | 9.7% | -28.7% | 0.397 | 0.338 | Fixed! Was 22% with bias |
 | F US QDII | 2011-2026 (15y) | 13.6% | -17.8% | 0.765 | 0.765 | |
 | G CSI500 LV+PB | 2021-2026 (5y) | 13.5% | -11.9% | 0.794 | 1.132 | No survivorship bias |
 | H Dip-Buy | 2020-2026 (5y) | 8-16% | -3~-23% | 0.68-1.13 | varies | 6 variants |
