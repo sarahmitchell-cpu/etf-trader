@@ -1,6 +1,6 @@
 # ETF & 个股量化策略体系
 
-> 10套独立策略 · A股/港股/美股/债券全覆盖 · 无前瞻偏差 · 自动化信号推送
+> 11套独立策略 · A股/港股/美股/债券全覆盖 · 无前瞻偏差 · 自动化信号推送
 
 一套完整的量化交易策略体系，覆盖债券、A股ETF、港股ETF、美股QDII、指数择时和个股因子选股。
 
@@ -19,8 +19,7 @@
 | **G** | CSI500低波价值 | 中证500成分股 | 50%低波+50%低PB | 4.4% | -15.8% | 0.19 | 双周 |
 | **H** | 指数超跌买入 | 科创50指数 | 超跌/追涨信号+定期持有 | 13.9% | -6.6% | 1.04 | 事件驱动 |
 | **L** | 300成长MA60趋势 | 沪深300成长指数 | 纯MA60趋势跟踪 | 18.9% | -31.7% | 0.49 | 日频信号 |
-
-> 另有**个股因子策略**（CSI800 低换手+12M动量 Top20，CAGR=21.4%，Sharpe=0.97），见 `research/stock_strategy_live.py`
+| **M** | CSI800低换手+动量 | CSI800成分股(个股) | 低换手+12M动量多因子Top20 | 21.4% | -25.4% | 0.97 | 月度 |
 
 ### 策略互补关系
 
@@ -42,6 +41,8 @@
                +-- 策略H (指数超跌买入)          <-- 科创50事件驱动，低仓位占用
                |
                +-- 策略L (300成长MA60)           <-- 大盘成长趋势择时，极简
+               |
+               +-- 策略M (CSI800低换手+动量)     <-- 个股多因子选股，Sharpe最高
 ```
 
 ---
@@ -55,8 +56,8 @@ Python 3.8+
 pip3 install -r requirements.txt
 ```
 
-- `baostock`: 策略D和G需要（获取沪深300/中证500历史成分股数据）
-- `akshare`: 策略E v2和个股因子策略需要（获取PE/PB基本面数据）
+- `baostock`: 策略D/G/M需要（获取沪深300/中证500/中证800历史成分股数据）
+- `akshare`: 策略E/M需要（获取PE/PB/换手率等基本面数据）
 - 其他策略仅需 `pandas numpy requests`
 
 ### 运行信号
@@ -92,8 +93,8 @@ python3 strategies/strategy_h_weekly_signal.py
 # 策略L - 300成长MA60趋势择时
 python3 strategies/strategy_l_weekly_signal.py
 
-# 个股因子策略 - CSI800 低换手+动量 Top20
-python3 research/stock_strategy_live.py
+# 策略M - CSI800低换手+动量 个股因子选股
+python3 strategies/strategy_m_stock_factor.py
 ```
 
 ### 运行回测
@@ -249,13 +250,17 @@ python3 strategies/strategy_h_weekly_signal.py --json
 
 ---
 
-### 个股因子策略: CSI800 低换手+12M动量
+### 策略M: CSI800 低换手+动量 个股因子选股
 
-> 代码: `research/stock_strategy_live.py`
+> 详细文档: [docs/strategy_m.md](docs/strategy_m.md)
 
-**逻辑**: 从CSI800历史真实成分股中，用低换手率+12M动量(skip1M)多因子选股，Top20等权，月度调仓。
+**逻辑**: 从CSI800**历史真实成分股**中，用低换手率+12M动量(skip1M)多因子选股，Top20等权，月度调仓。单边交易成本30bps（含冲击成本）。
 
-**回测 (2016-01~2026-03, ~10年)**: CAGR 21.4%, Sharpe 0.97, MDD -25.4%
+**子策略**:
+- **M-A**: 低换手+12M动量 (CAGR=21.4%, Sharpe=0.966)
+- **M-B**: 低换手+12M动量+高EP价值增强 (CAGR~19.7%, Sharpe~0.878)
+
+**回测 (2016-01~2026-03, ~10年)**: CAGR 21.4%, MDD -25.4%, Sharpe 0.97
 
 ---
 
@@ -279,13 +284,14 @@ etf-trader/
 │   ├── strategy_j_growth_momentum.py      # J: 成长动量
 │   ├── strategy_k_growth_value_rotation.py # K: 成长价值轮动
 │   ├── strategy_l_weekly_signal.py        # L: 300成长MA60趋势
+│   ├── strategy_m_stock_factor.py        # M: CSI800低换手+动量 个股因子
 │   └── panic_buy_signal.py               # 恐慌买入信号
 │
 ├── lib/                                   # 共享库模块
 │   └── stock_data_common.py               # D/E/G共用数据获取模块
 │
 ├── research/                              # 研究 & 回测脚本 (66个)
-│   ├── stock_strategy_live.py             # 个股因子策略 (CSI800)
+│   ├── stock_factor_research_v3.py        # 个股因子V3研究 (survivorship-bias free)
 │   ├── stock_factor_research_v*.py        # 个股因子研究系列
 │   ├── strategy_*_research.py             # 各策略研究脚本
 │   ├── csi500_*.py                        # CSI500因子研究系列
@@ -338,7 +344,7 @@ etf-trader/
 | F | 15bp | QDII ETF（含汇兑） |
 | H | 10bp(双边) | 指数ETF |
 | L | 8bp | A股ETF |
-| 个股因子 | 30bp | A股个股（含冲击成本） |
+| M | 30bp | A股个股（含冲击成本） |
 
 ### 3. 审计验证 (2026-03-29)
 
@@ -346,7 +352,7 @@ etf-trader/
 主要发现:
 - 策略E: 原28只龙头存在严重幸存者偏差（CAGR从22%降至9.7%）
 - 策略G: 刷新baostock数据后表现大幅下降（CAGR从13.5%降至4.4%）
-- 推荐策略: A(Sharpe=1.54), D(0.76), 个股低换手+动量(0.97)
+- 推荐策略: A(Sharpe=1.54), M(0.97), D(0.76)
 
 ---
 
@@ -373,6 +379,7 @@ etf-trader/
 
 | 日期 | 版本 | 更新内容 |
 |------|------|---------|
+| 2026-03-30 | v5.1 | 策略M(CSI800低换手+动量)编号化；数据库via git-lfs提交；代码库重构完善 |
 | 2026-03-30 | v5.0 | 代码库重构：strategies/lib/research/tools/目录划分；全策略审计完成；修正E/G偏差 |
 | 2026-03-29 | v4.0 | 新增策略H(指数超跌)/L(300成长MA60), 个股因子策略; 全策略文档完善 |
 | 2026-03-24 | v3.0 | 新增策略A/F/G，策略D改为CSI300低波TOP10，7策略模拟盘启动 |

@@ -11,8 +11,8 @@ import sys, os, time, pickle
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, '/Users/claw/etf-trader/research')
-from stock_strategy_live import (
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'strategies'))
+from strategy_m_stock_factor import (
     get_historical_constituents, fetch_stock_akshare,
     get_month_ends, get_constituents_at_date, get_csi800_at_date,
     build_composite_signal, compute_factors_single,

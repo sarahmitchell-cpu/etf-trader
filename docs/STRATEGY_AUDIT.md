@@ -29,7 +29,7 @@ Reviewed: code logic, data sources, look-ahead bias, survivorship bias, Sharpe f
 | G | CSI500 Low Vol+Low PB | Multi-factor | CSI500 Constituents | baostock | Bi-weekly | CLEAN (results revised) |
 | H | Index Dip-Buying | Event-driven | Star50 | akshare/local CSV | Event | CLEAN (IS/OOS validated) |
 | L | MA60 Trend Timing | Trend Following | 300 Growth TR | CSIndex | Daily | CLEAN |
-| Stock | Individual Stock Picking | Multi-factor | CSI800 Constituents | akshare+baostock | Monthly | CLEAN |
+| M | CSI800 Low Turn+Momentum | Multi-factor | CSI800 Constituents | akshare+baostock | Monthly | CLEAN |
 
 ---
 
@@ -124,7 +124,7 @@ Reviewed: code logic, data sources, look-ahead bias, survivorship bias, Sharpe f
 - **Backtest**: CAGR=16.7%, MDD=-31.7%, Sharpe=0.487 (2005-2026, ~20 years)
 - **Verdict**: PASS
 
-### Individual Stock Strategy (research/stock_strategy_live.py)
+### Strategy M: CSI800 Low Turnover + Momentum (strategies/strategy_m_stock_factor.py)
 - **Logic**: Low turnover + 12M momentum (skip-1M) on CSI800, Top20 monthly rebalance
 - **Data**: akshare prices + baostock historical CSI800 constituents
 - **Biases**: Survivorship bias ELIMINATED. Skip-1M avoids short-term reversal contamination
@@ -164,7 +164,7 @@ Reviewed: code logic, data sources, look-ahead bias, survivorship bias, Sharpe f
 | G CSI500 LV+PB | 2022-2026 (4y) | 4.4% | -15.8% | 0.188 | 0.278 | Fresh data, weaker than cached |
 | H Dip-Buy | 2020-2026 (5y) | 8-16% | -3~-23% | 0.68-1.13 | varies | 6 variants |
 | L MA60 Trend | 2005-2026 (20y) | 16.7% | -31.7% | 0.487 | 0.487 | Longest backtest |
-| Stock LT+Mom | 2016-2026 (10y) | 21.4% | -25.4% | 0.966 | 0.843 | No survivorship bias |
+| M LT+Mom | 2016-2026 (10y) | 21.4% | -25.4% | 0.966 | 0.843 | No survivorship bias |
 
 ---
 

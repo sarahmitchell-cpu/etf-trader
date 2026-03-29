@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Quick test: LowTurn+Mom12M CSI800 Top10 vs Top30 vs Top20"""
-import sys
-sys.path.insert(0, '/Users/claw/etf-trader/research')
-from stock_strategy_live import *
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'strategies'))
+from strategy_m_stock_factor import *
 
 def main():
     t_start = time.time()

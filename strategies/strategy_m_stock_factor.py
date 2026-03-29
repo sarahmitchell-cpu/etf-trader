@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-A股个股因子策略 — 实盘选股脚本
+策略M: CSI800 低换手+动量 个股因子选股
 
-策略 A: 低换手 + 12M动量  CSI800 Top20  月度调仓
-策略 B: 低换手 + 12M动量 + 高EP  CSI800 Top20  月度调仓
+子策略 M-A: 低换手 + 12M动量  CSI800 Top20  月度调仓
+子策略 M-B: 低换手 + 12M动量 + 高EP  CSI800 Top20  月度调仓
 
 回测绩效 (2016-01 ~ 2026-03, 历史成分股, 单边TC=30bps):
   策略A: CAGR=21.4%, Sharpe=0.966, MaxDD=-25.4%
@@ -19,8 +19,8 @@ A股个股因子策略 — 实盘选股脚本
   5. 单边交易成本假设30bps (含佣金+滑点+冲击成本)
 
 使用方法:
-  python3 stock_strategy_live.py              # 显示最新选股结果
-  python3 stock_strategy_live.py --backtest   # 运行回测
+  python3 strategies/strategy_m_stock_factor.py              # 显示最新选股结果
+  python3 strategies/strategy_m_stock_factor.py --backtest   # 运行回测
 
 Author: Sarah Mitchell / VisionClaw
 Date: 2026-03-29
