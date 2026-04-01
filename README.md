@@ -1,6 +1,6 @@
 # ETF & 个股量化策略体系
 
-> 11套独立策略 · A股/港股/美股/债券全覆盖 · 无前瞻偏差 · 自动化信号推送
+> 12套独立策略 · A股/港股/美股/债券全覆盖 · 无前瞻偏差 · 自动化信号推送
 
 一套完整的量化交易策略体系，覆盖债券、A股ETF、港股ETF、美股QDII、指数择时和个股因子选股。
 
@@ -20,6 +20,42 @@
 | **H** | 指数超跌买入 | 科创50指数 | 超跌/追涨信号+定期持有 | 13.9% | -6.6% | 1.04 | 事件驱动 |
 | **L** | 300成长MA60趋势 | 沪深300成长指数 | 纯MA60趋势跟踪 | 18.9% | -31.7% | 0.49 | 日频信号 |
 | **M** | CSI800低换手+动量 | CSI800成分股(个股) | 低换手+12M动量多因子Top20 | 21.4% | -25.4% | 0.97 | 月度 |
+| **Q** | 红利低波DY利差择时 | 红利低波全收益指数 | DY-国债利差阈值择时 | 17.6% | -16.9% | 1.04 | 低频(年1-2次) |
+
+### 策略绩效对比
+
+![Strategy Performance Comparison](docs/charts/strategy_metrics_comparison.png)
+
+### 净值走势对比
+
+![All Strategies Equity Curves](docs/charts/all_strategies_comparison.png)
+
+### 各策略净值走势
+
+<details>
+<summary>点击展开各策略净值曲线</summary>
+
+#### Strategy A: 债券分散持有
+![Strategy A](docs/charts/strategy_a_equity.png)
+
+#### Strategy B: 因子ETF轮动
+![Strategy B](docs/charts/strategy_b_equity.png)
+
+#### Strategy E: 逆向价值+质量
+![Strategy E](docs/charts/strategy_e_equity.png)
+
+#### Strategy F: 美股QDII动量
+![Strategy F](docs/charts/strategy_f_equity.png)
+
+#### Strategy L: 300成长MA60趋势
+![Strategy L](docs/charts/strategy_l_equity.png)
+
+#### Strategy Q: 红利低波DY利差择时
+![Strategy Q](docs/charts/strategy_q_equity.png)
+
+> C/D/G/H/M 策略的净值图运行 `python3 tools/generate_all_equity.py` 后自动生成。
+
+</details>
 
 ### 策略互补关系
 
@@ -43,6 +79,8 @@
                +-- 策略L (300成长MA60)           <-- 大盘成长趋势择时，极简
                |
                +-- 策略M (CSI800低换手+动量)     <-- 个股多因子选股，Sharpe最高
+               |
+               +-- 策略Q (红利低波DY利差择时)    <-- 估值择时，Calmar最高
 ```
 
 ---
@@ -95,6 +133,9 @@ python3 strategies/strategy_l_weekly_signal.py
 
 # 策略M - CSI800低换手+动量 个股因子选股
 python3 strategies/strategy_m_stock_factor.py
+
+# 策略Q - 红利低波DY-国债利差择时
+python3 strategies/strategy_q_weekly_signal.py
 ```
 
 ### 运行回测
@@ -264,6 +305,26 @@ python3 strategies/strategy_h_weekly_signal.py --json
 
 ---
 
+### 策略Q: 红利低波DY-国债利差择时
+
+**逻辑**: 当红利低波指数的估算股息率(DY)显著高于10年期国债收益率时持有ETF，利差收窄至阈值以下时卖出转货基。本质是"类债券资产的估值择时"。
+
+**信号**: `DY(45%分红率) - 10Y国债收益率`
+- 买入: 利差 > 3.3
+- 卖出: 利差 < 0.0
+
+**标的**: 中证红利低波动全收益指数 (H20269) / ETF: 512890
+
+**数据源**: CSIndex官方API(PE数据) + 东方财富(10Y国债收益率)
+
+**回测 (12年, 2014-01 ~ 2026-04)**: CAGR 17.6%, MDD -16.9%, Calmar 1.04, 交易5次
+
+**优势**: 全体系Calmar比率最高(1.04)；操作极简（年均不到1次交易）；逻辑清晰（红利资产 vs 无风险利率的性价比择时）。
+
+**局限**: 交易次数少(5次/12年)，样本统计意义有限；依赖PE数据准确性和分红率假设。
+
+---
+
 ## 目录结构
 
 ```
@@ -285,6 +346,7 @@ etf-trader/
 │   ├── strategy_k_growth_value_rotation.py # K: 成长价值轮动
 │   ├── strategy_l_weekly_signal.py        # L: 300成长MA60趋势
 │   ├── strategy_m_stock_factor.py        # M: CSI800低换手+动量 个股因子
+│   ├── strategy_q_weekly_signal.py      # Q: 红利低波DY利差择时
 │   └── panic_buy_signal.py               # 恐慌买入信号
 │
 ├── lib/                                   # 共享库模块
@@ -300,13 +362,16 @@ etf-trader/
 │   └── ...                                # 更多研究脚本
 │
 ├── tools/                                 # 工具脚本
+│   ├── generate_equity_charts.py          # 生成所有策略净值走势图
+│   ├── generate_all_equity.py             # 生成所有策略净值CSV
 │   ├── generate_position_report_ppt.py    # PPT建仓报告生成器
 │   └── download_missing_stocks.py         # 缺失股票数据下载
 │
 ├── docs/                                  # 详细策略文档
 │   ├── STRATEGY_AUDIT.md                  # 策略审计报告
-│   ├── strategy_a.md ~ strategy_l.md      # 各策略详细文档
-│   └── strategy_d_v1.md                   # D v1旧版文档
+│   ├── strategy_a.md ~ strategy_q.md      # 各策略详细文档
+│   ├── strategy_d_v1.md                   # D v1旧版文档
+│   └── charts/                            # 策略净值走势图 (PNG)
 │
 ├── data/                                  # 数据缓存 (大部分gitignored)
 │   ├── *_daily.csv / *_weekly.csv         # 指数/个股历史行情
@@ -345,14 +410,15 @@ etf-trader/
 | H | 10bp(双边) | 指数ETF |
 | L | 8bp | A股ETF |
 | M | 30bp | A股个股（含冲击成本） |
+| Q | 8bp | A股ETF（低频交易） |
 
 ### 3. 审计验证 (2026-03-29)
 
-全部11个策略经过独立审计，详见 [docs/STRATEGY_AUDIT.md](docs/STRATEGY_AUDIT.md)。
+全部12个策略经过独立审计，详见 [docs/STRATEGY_AUDIT.md](docs/STRATEGY_AUDIT.md)。
 主要发现:
 - 策略E: 原28只龙头存在严重幸存者偏差（CAGR从22%降至9.7%）
 - 策略G: 刷新baostock数据后表现大幅下降（CAGR从13.5%降至4.4%）
-- 推荐策略: A(Sharpe=1.54), M(0.97), D(0.76)
+- 推荐策略: A(Sharpe=1.54), Q(Calmar=1.04), M(Sharpe=0.97), D(0.76)
 
 ---
 
@@ -379,6 +445,7 @@ etf-trader/
 
 | 日期 | 版本 | 更新内容 |
 |------|------|---------|
+| 2026-04-01 | v6.0 | 新增策略Q(红利低波DY利差择时)；README增加全策略净值走势图和绩效对比图 |
 | 2026-03-30 | v5.1 | 策略M(CSI800低换手+动量)编号化；数据库via git-lfs提交；代码库重构完善 |
 | 2026-03-30 | v5.0 | 代码库重构：strategies/lib/research/tools/目录划分；全策略审计完成；修正E/G偏差 |
 | 2026-03-29 | v4.0 | 新增策略H(指数超跌)/L(300成长MA60), 个股因子策略; 全策略文档完善 |
