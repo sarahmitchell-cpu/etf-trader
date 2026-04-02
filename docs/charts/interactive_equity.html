@@ -76,6 +76,8 @@ const D={"A":{"d":["20200827","20200828","20200831","20200901","20200902","20200
 
 let bm='none',ys='log',vw='all',al=false;
 
+function fmt(d){return d.length===8?d.slice(0,4)+'-'+d.slice(4,6)+'-'+d.slice(6,8):d;}
+
 function interp(bd,bv,td){
   const m={};for(let i=0;i<bd.length;i++)m[bd[i]]=bv[i];
   const r=[];let lv=1;
@@ -86,8 +88,8 @@ function interp(bd,bv,td){
 function render(){
   const traces=[],trs=[];
   let keys=Object.keys(D).sort();
-  if(vw==='long')keys=keys.filter(l=>D[l].d[0]<'2015-01-01');
-  if(vw==='short')keys=keys.filter(l=>D[l].d[0]>='2015-01-01');
+  if(vw==='long')keys=keys.filter(l=>fmt(D[l].d[0])<'2015-01-01');
+  if(vw==='short')keys=keys.filter(l=>fmt(D[l].d[0])>='2015-01-01');
 
   let commonStart=null;
   if(al){
@@ -119,7 +121,7 @@ function render(){
     }
 
     const ret=((yv[yv.length-1]/yv[0])-1)*100;
-    traces.push({x:dates,y:yv,type:'scatter',mode:'lines',
+    traces.push({x:dates.map(fmt),y:yv,type:'scatter',mode:'lines',
       name:l+': '+s.name,
       line:{color:s.color,width:s.is_benchmark?2.5:2,dash:s.is_benchmark?'dash':'solid'},
       opacity:s.is_benchmark?0.7:1,
@@ -128,7 +130,7 @@ function render(){
     const cc=s.calmar>=1?'g':s.calmar>=0.5?'y':'r';
     const gc=s.cagr>=15?'g':s.cagr>=8?'y':'r';
     const bmTag=s.is_benchmark?' <span style="color:#8b949e;font-size:10px">[基准]</span>':'';
-    trs.push('<tr><td style="color:'+s.color+';font-weight:bold">'+l+'</td><td style="text-align:left">'+s.name+bmTag+'</td><td><span class="tg '+gc+'">'+s.cagr+'%</span></td><td><span class="tg r">'+s.mdd+'%</span></td><td><span class="tg '+cc+'">'+s.calmar+'</span></td><td style="font-size:11px;color:#8b949e">'+s.d[0]+'</td><td style="color:'+(ret>=0?'#3fb950':'#f85149')+'">'+(ret>=0?'+':'')+ret.toFixed(1)+'%</td></tr>');
+    trs.push('<tr><td style="color:'+s.color+';font-weight:bold">'+l+'</td><td style="text-align:left">'+s.name+bmTag+'</td><td><span class="tg '+gc+'">'+s.cagr+'%</span></td><td><span class="tg r">'+s.mdd+'%</span></td><td><span class="tg '+cc+'">'+s.calmar+'</span></td><td style="font-size:11px;color:#8b949e">'+fmt(s.d[0])+'</td><td style="color:'+(ret>=0?'#3fb950':'#f85149')+'">'+(ret>=0?'+':'')+ret.toFixed(1)+'%</td></tr>');
   }
   document.getElementById('tb').innerHTML=trs.join('');
 
